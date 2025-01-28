@@ -3,7 +3,14 @@
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/bin" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/backend-app-tasklist-java-spring-angular/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/backend-app-tasklist-java-spring-angular/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/backend-app-tasklist-java-spring-angular/target" />
+      <excludeFolder url="file://$MODULE_DIR$/frontend-app-tasklist-java-spring-angular/.angular/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/frontend-app-tasklist-java-spring-angular/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/frontend-app-tasklist-java-spring-angular/node_modules" />
+    </content>
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
