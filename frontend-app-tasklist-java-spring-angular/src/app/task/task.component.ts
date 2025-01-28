@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-task',
   imports: [CommonModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  templateUrl: './task.component.html',
+  styleUrl: './task.component.css'
 })
-export class HomeComponent {
-     iteration = new Array(5);
+export class TaskComponent {
+  iteration = new Array(5);
 }
