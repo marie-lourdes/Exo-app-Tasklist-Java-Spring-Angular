@@ -1,0 +1,13 @@
+/* le lien configuré dans angular.jso, qui charge le fichier sans ajour de stylesUrl  dans le point d entree de l appli main.ts ou link dans index.html
+Angular charge le fichier css automatiquement grace a la configuration angular.json*/
+body {
+   min-height: 100vh;
+ }
+header {
+ display: flex;
+ justify-content: center;
+}
+.section-styled {
+  font-weight: bold;
+  color: red;
+}
