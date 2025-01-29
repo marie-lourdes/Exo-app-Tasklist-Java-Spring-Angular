@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {HomeComponent,TaskListComponent} from './home/home.component';
+import { HomeComponent} from  './home/home.component';
+import { TaskListComponent} from  './task-list/task-list.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [HomeComponent,TaskListComponent,RouterOutlet],
+  imports: [RouterOutlet,HomeComponent,TaskListComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'frontend-app-tasklist-java-spring-angular';

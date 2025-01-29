@@ -1,18 +1,22 @@
 import { Component,OnInit } from '@angular/core';
 import { TaskService, Task } from '../service/task.service';
+import {CommonModule} from '@angular/common';
+// pour ngModel!!! le formModule doit etre importe dans le component qui l utilise et pas dans le app.module  selon l exo
+import {FormsModule } from '@angular/forms'; // Importer FormsModule
 
 @Component({
   selector: 'app-task-list',
+  imports: [CommonModule,FormsModule ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
 export class TaskListComponent implements OnInit{
-  Tasks : Task[];
+  tasks : Task[]= [];
 
   //on cree des donne vide et par defaut pour le template a remplir de l ajout d un task
-  newTask : Task = {title:"", completed:false};
+  newTask : Task = {title:'', completed:false};
 
-  constructor( private TaskService taskService) {}
+  constructor( private taskService : TaskService) {}
 
    ngOnInit(): void {
      this.loadTasks();
@@ -25,7 +29,7 @@ export class TaskListComponent implements OnInit{
    addTask(): void {
      this.taskService.createTask(this.newTask).subscribe(task => {
        this.tasks.push(task);
-       this.newTask = { title: '', completed: false };
+      // this.newTask = { title: '', completed: false };
      });
    }
 
