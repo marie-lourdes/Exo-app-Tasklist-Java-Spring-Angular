@@ -1,11 +1,44 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { TaskService, Task } from '../service/task.service';
 
 @Component({
   selector: 'app-task-list',
-  imports: [],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
-export class TaskListComponent {
+export class TaskListComponent implements OnInit{
+  Tasks : Task[];
+
+  //on cree des donne vide et par defaut pour le template a remplir de l ajout d un task
+  newTask : Task = {title:"", completed:false};
+
+  constructor( private TaskService taskService) {}
+
+   ngOnInit(): void {
+     this.loadTasks();
+   }
+
+   loadTasks(): void {
+     this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
+   }
+
+   addTask(): void {
+     this.taskService.createTask(this.newTask).subscribe(task => {
+       this.tasks.push(task);
+       this.newTask = { title: '', completed: false };
+     });
+   }
+
+   updateTask(task: Task): void {
+     this.taskService.updateTask(task).subscribe();
+   }
+
+   deleteTask(id: number): void {
+     this.taskService.deleteTask(id).subscribe(() => {
+       //filter() retourne un nouveau tableau sans les tasks dont l id ne corrspond pas l id du task supprimer
+       this.tasks = this.tasks.filter(task => task.id !== id);
+     });
+   }
 
 }
+
