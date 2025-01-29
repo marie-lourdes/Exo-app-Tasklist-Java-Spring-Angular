@@ -29,7 +29,7 @@ export class TaskListComponent implements OnInit{
    addTask(): void {
      this.taskService.createTask(this.newTask).subscribe(task => {
        this.tasks.push(task);
-      // this.newTask = { title: '', completed: false };
+       this.newTask = { title: '', completed: false };
      });
    }
 

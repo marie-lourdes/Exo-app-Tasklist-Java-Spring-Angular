@@ -3,6 +3,7 @@ package com.TaskList.backend_app_tasklist_java_spring_angular.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,8 @@ import com.TaskList.backend_app_tasklist_java_spring_angular.service.TaskService
 
 @RestController// a la diffrence de controller qui englobe egalement le restcontroller, le restcontroller comprend @responsebody en valeur retourné serialisé au format JSON et comprend @requestbody avec les objet java (deserialization)
 @RequestMapping("/api/tasks")
-//@Crossorigin(url server Angular 4200) et supprimer les securité dans les header des requetes du server angular et spring boot tom cat 8080
+@CrossOrigin(origins = "http://localhost:4200")
+//@Crossorigin(url server Angular 4200) : supprimer les securité dans les header des requetes CRUD du server angular et spring boot tom cat 8080
 public class TaskController {
 
 	@Autowired
