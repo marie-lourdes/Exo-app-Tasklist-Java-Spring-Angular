@@ -35,13 +35,9 @@ export class TaskListComponent implements OnInit{
    }
 
    updateTask(task: Task): void {
-     this.taskService.updateTask(task).subscribe(() => {
-       if(task.completed === true) {
-           task.completed = false;
-       } else{
-         task.completed = true;
-       }
-     });
+
+     this.taskService.updateTask(task).subscribe()
+
    }
 
    deleteTask(id: number): void {
