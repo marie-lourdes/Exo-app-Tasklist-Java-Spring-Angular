@@ -35,9 +35,7 @@ export class TaskListComponent implements OnInit{
    }
 
    updateTask(task: Task): void {
-
      this.taskService.updateTask(task).subscribe()
-
    }
 
    deleteTask(id: number): void {
