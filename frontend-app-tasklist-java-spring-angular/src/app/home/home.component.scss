@@ -15,10 +15,13 @@ $margin-horizontal: 50px;
   margin: 0 $margin-horizontal;
 
   // Ajout d'un effet hover
+  animation: 3s ease-out 1s 2 backwards slidein;
+  /* backwards applique les valeurs de depart  du keyframe de scale 0 au lancement de l animation
   &:hover {
-    transform: scale(1.2);
-    transition: transform 0.3s ease;
-  }
+    transform: scale(2);
+    transition: transform 3s ease-out; /* avec changement de valeur, propriete tel que : hover (une sorte de condition et changement d etat)
+    a la difference des animtation css avec les keyframes qui s active meme au chargement d une page sans avoir besoin de changement d etat
+  }*/
 }
 
 // Ajout éventuel de styles globaux ou partiels pour unifier
@@ -32,3 +35,9 @@ $margin-horizontal: 50px;
     font-size: 1rem;
   }
 }
+
+@keyframes slidein {
+  from { transform: scaleX(0.1); }
+  to   { transform: scaleX(1); }
+}
+

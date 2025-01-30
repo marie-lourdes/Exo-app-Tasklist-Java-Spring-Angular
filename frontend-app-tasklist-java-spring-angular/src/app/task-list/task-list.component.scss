@@ -1,10 +1,13 @@
+@use 'sass:color';
 /*span + button {
 margin-left: 1rem;
 }*/
 // Variables pour uniformité
 $button-margin: 1rem;
 $primary-color: #3498db;
-$hover-color: darken($primary-color, 10%);
+$hover-color: color.adjust($primary-color, $lightness: -10%);
+
+/*$hover-color: darken($primary-color, 10%);*/
 
 // Style des spans suivis de boutons avec SCSS
 span + button {
@@ -27,5 +30,7 @@ span + button {
 
 input:focus {
    color: #e566db;
-   transition: color 0.2s ease;
+   border:0;
+   outline: 2px solid  #e566db;
+   transition: border 0.2s ease;
   }
