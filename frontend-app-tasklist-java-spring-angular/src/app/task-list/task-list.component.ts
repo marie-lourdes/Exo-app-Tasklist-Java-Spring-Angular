@@ -15,6 +15,7 @@ export class TaskListComponent implements OnInit{
 
   //on cree des donne vide et par defaut pour le template a remplir de l ajout d un task
   newTask : Task = {title:'', completed:false};
+  color!: string;
 
   constructor( private taskService : TaskService) {}
 
@@ -34,7 +35,13 @@ export class TaskListComponent implements OnInit{
    }
 
    updateTask(task: Task): void {
-     this.taskService.updateTask(task).subscribe();
+     this.taskService.updateTask(task).subscribe(() => {
+       if(task.completed === true) {
+           task.completed = false;
+       } else{
+         task.completed = true;
+       }
+     });
    }
 
    deleteTask(id: number): void {

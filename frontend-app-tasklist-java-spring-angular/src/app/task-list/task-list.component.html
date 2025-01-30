@@ -2,8 +2,10 @@
   <h2>Task List</h2>
   <ul>
     <li *ngFor="let task of tasks">
-      <input type="checkbox" [checked]="task.completed" (change)="updateTask(task)"/>
-      {{ task.title }}
+      <input type="checkbox"  [checked]="task.completed" (change)="updateTask(task)"/>
+      <p [style.color]="task.completed ? 'red' : 'black'">{{ task.title }}</p>
+
+      <button (click)="updateTask(task)">update</button>
       <button (click)="deleteTask(task.id!)">Delete</button>
     </li>
   </ul>
@@ -11,5 +13,6 @@
     <input [(ngModel)]="newTask.title"  placeholder="New task"/>
     <button (click)="addTask()">Add Task</button>
   </div>
+
 </div>
 
