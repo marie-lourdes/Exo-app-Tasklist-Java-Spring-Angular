@@ -1,0 +1,31 @@
+/*span + button {
+margin-left: 1rem;
+}*/
+// Variables pour uniformité
+$button-margin: 1rem;
+$primary-color: #3498db;
+$hover-color: darken($primary-color, 10%);
+
+// Style des spans suivis de boutons avec SCSS
+span + button {
+  margin-left: $button-margin;
+
+  // Style de base des boutons
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+
+  // Effet hover
+  &:hover {
+    background-color: $hover-color;
+    transition: background-color 0.2s ease;
+  }
+}
+
+input:focus {
+   color: #e566db;
+   transition: color 0.2s ease;
+  }

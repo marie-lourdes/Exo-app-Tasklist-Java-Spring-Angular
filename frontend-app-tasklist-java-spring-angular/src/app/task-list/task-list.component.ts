@@ -8,7 +8,7 @@ import {FormsModule } from '@angular/forms'; // Importer FormsModule
   selector: 'app-task-list',
   imports: [CommonModule,FormsModule ],
   templateUrl: './task-list.component.html',
-  styleUrl: './task-list.component.css'
+  styleUrl: './task-list.component.scss'
 })
 export class TaskListComponent implements OnInit{
   tasks : Task[]= [];
