@@ -28,7 +28,7 @@ span + button {
   }
 }
 
-input:focus {
+.task-list-input:focus {
    color: #e566db;
    border:0;
    outline: 2px solid  #e566db;
