@@ -1,11 +1,11 @@
 @use 'sass:color';
-/*span + button {
-margin-left: 1rem;
-}*/
+//les artials scss ne doit etre configuré dans styles angular.json car non global et non compilé en css
+@use 'colors';
+
 // Variables pour uniformité
 $button-margin: 1rem;
-$primary-color: #3498db;
-$hover-color: color.adjust($primary-color, $lightness: -10%);
+
+$hover-color: color.adjust(colors.$secondary-color, $lightness: -10%);
 
 /*$hover-color: darken($primary-color, 10%);*/
 
@@ -14,7 +14,7 @@ span + button {
   margin-left: $button-margin;
 
   // Style de base des boutons
-  background-color: $primary-color;
+  background-color: colors.$secondary-color;
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
@@ -29,8 +29,8 @@ span + button {
 }
 
 .task-list-input:focus {
-   color: #e566db;
+   color: colors.$primary-color;
    border:0;
-   outline: 2px solid  #e566db;
+   outline: 2px solid  colors.$primary-color;
    transition: border 0.2s ease;
   }

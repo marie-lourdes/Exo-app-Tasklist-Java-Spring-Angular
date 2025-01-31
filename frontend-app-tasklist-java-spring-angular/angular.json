@@ -91,7 +91,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/sass/styles.scss"
+              "src/sass/styles.scss",
+              "src/sass/_colors.scss"
             ],
             "scripts": []
           }

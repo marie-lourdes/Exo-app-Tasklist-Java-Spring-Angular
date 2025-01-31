@@ -1,10 +1,75 @@
-/* le lien configuré dans angular.jso, qui charge le fichier sans ajour de stylesUrl  dans le point d entree de l appli main.ts ou link dans index.html
+/* le lien configuré dans angular.json, qui charge le fichier sans ajout de stylesUrl  dans le point d entree de l appli main.ts ou link dans index.html
 Angular charge le fichier css automatiquement grace a la configuration angular.json*/
+@use 'colors';
+// Définition de variables pour réutilisation
+$rose-width: 60px;
+$rose-height: 60px;
+$logo-width: 5rem;
+$logo-height: 5rem;
+$margin-horizontal: 50px;
+
 body {
    min-height: 100vh;
+   @media (max-width: 768px) {
+     font-size: 1rem;
+   }
  }
+
 header {
  display: flex;
- justify-content: center;
+ justify-content: flex-start;
+ align-items: center;
+ color: colors.$primary-color;
+ font-size: 1.2rem;
+ font-weight: bold;
 }
+
+.brand-logo{
+  width:$logo-width;
+  height:$logo-height;
+  margin:1rem
+ }
+
+main {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: inherit;
+    position: relative;
+  }
+
+// Application des styles
+
+.main-separator {
+  display: flex;
+  justify-content: center;
+  & .separator-rose {
+      height: $rose-height;
+      width: $rose-width;
+      margin: 0 $margin-horizontal;
+
+      // Ajout d'un effet hover
+      // backwards applique les valeurs de depart  du keyframe de scale 0 au lancement de l animation
+      animation: 5s ease-out 1s 1 backwards slidein;
+     /* test transition css
+      &:hover {
+        transform: scale(2);
+        transition: transform 3s ease-out; /* avec changement de valeur, propriete tel que : hover (une sorte de condition et changement d etat)
+        a la difference des animtation css avec les keyframes qui s active meme au chargement d une page sans avoir besoin de changement d etat
+      }*/
+    }
+  }
+
+@keyframes slidein {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+
+// Responsiveness
+
 
