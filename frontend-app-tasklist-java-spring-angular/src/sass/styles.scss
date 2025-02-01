@@ -6,7 +6,7 @@ $rose-width: 60px;
 $rose-height: 60px;
 $logo-width: 5rem;
 $logo-height: 5rem;
-$margin-horizontal: 50px;
+$margin-horizontal: 5vw;
 
 body {
    min-height: 100vh;
@@ -47,6 +47,7 @@ main {
 .main-separator {
   display: flex;
   justify-content: center;
+  width: 100vw;
   & .separator-rose {
       height: $rose-height;
       width: $rose-width;
@@ -61,7 +62,12 @@ main {
         transition: transform 3s ease-out; /* avec changement de valeur, propriete tel que : hover (une sorte de condition et changement d etat)
         a la difference des animtation css avec les keyframes qui s active meme au chargement d une page sans avoir besoin de changement d etat
       }*/
+  @media (max-width: 768px) {
+       height: 30px;
+       width: 30px;
     }
+    }
+
   }
 
 @keyframes slidein {

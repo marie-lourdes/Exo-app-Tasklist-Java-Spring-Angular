@@ -10,7 +10,7 @@ import { HomeComponent} from  './home/home.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  iteration = new Array(5);
+  iteration = new Array(6);
   title = 'frontend-app-tasklist-java-spring-angular';
   // lien configuré pour le dossier assets dans angular.json
   path ='./assets/images/logo.png';
