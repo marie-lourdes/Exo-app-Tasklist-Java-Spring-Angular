@@ -25,6 +25,12 @@ span + button {
   }
 }
 
+.task-list {
+  display:flex;
+  justify-content: space-between;
+  width: 75vw;
+  }
+
 .task-list-input:focus {
    color: colors.$primary-color;
    border:0;

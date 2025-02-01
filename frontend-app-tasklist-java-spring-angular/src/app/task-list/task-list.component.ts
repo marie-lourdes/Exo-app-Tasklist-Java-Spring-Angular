@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit, signal, computed } from '@angular/core';
 import { TaskService, Task } from '../service/task.service';
 import {CommonModule} from '@angular/common';
 // pour ngModel!!! le formModule doit etre importe dans le component qui l utilise et pas dans le app.module  selon l exo
@@ -12,6 +12,7 @@ import {FormsModule } from '@angular/forms'; // Importer FormsModule
 })
 export class TaskListComponent implements OnInit{
   tasks : Task[]= [];
+  tasksCompleted: Task[]= [];
 
   //on cree des donne vide et par defaut pour le template a remplir de l ajout d un task
   newTask : Task = {title:'', completed:false};
@@ -20,7 +21,7 @@ export class TaskListComponent implements OnInit{
   constructor( private taskService : TaskService) {}
 
    ngOnInit(): void {
-     this.loadTasks();
+        this.loadTasks();
    }
 
    loadTasks(): void {
@@ -35,15 +36,23 @@ export class TaskListComponent implements OnInit{
    }
 
    updateTask(task: Task): void {
-     this.taskService.updateTask(task).subscribe()
+     this.taskService.updateTask(task).subscribe(() => {
+         this.completedTasksCount();
+         console.log(this.tasks.length);
+        this.loadTasks();});
    }
 
    deleteTask(id: number): void {
      this.taskService.deleteTask(id).subscribe(() => {
        //filter() retourne un nouveau tableau sans les tasks dont l id ne corrspond pas l id du task supprimer
-       this.tasks = this.tasks.filter(task => task.id !== id);
+        this.tasks=this.tasks.filter(task => task.id !== id);
      });
    }
 
+  // Création d'un signal calculé pour le nombre de tâches terminées
+   completedTasksCount = computed(() => {
+     // Logique de calcul du nombre de tâches terminées
+     this.tasks=this.tasks.filter((task) => task.completed);
+   });
 }
 
