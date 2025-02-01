@@ -2,14 +2,11 @@
 //les artials scss ne doit etre configuré dans styles angular.json car non global et non compilé en css
 @use 'colors';
 
-// Variables pour uniformité
+// ****** Variables *******
 $button-margin: 1rem;
-
 $hover-color: color.adjust(colors.$secondary-color, $lightness: -10%);
+//$hover-color: darken($primary-color, 10%);
 
-/*$hover-color: darken($primary-color, 10%);*/
-
-// Style des spans suivis de boutons avec SCSS
 span + button {
   margin-left: $button-margin;
 
@@ -21,7 +18,7 @@ span + button {
   border-radius: 5px;
   cursor: pointer;
 
-  // Effet hover
+  // ******** Effet hover ******
   &:hover {
     background-color: $hover-color;
     transition: background-color 0.2s ease;

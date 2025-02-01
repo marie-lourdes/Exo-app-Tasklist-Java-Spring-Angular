@@ -1,5 +1,5 @@
+<h1>Task List</h1>
 <div>
-  <h2>Task List</h2>
   <ul>
     @for(task of tasks; track task){
     <li>
@@ -7,6 +7,8 @@
       <span [style.color]="task.completed ? 'red' : 'black'">{{ task.title }}</span>
       <button (click)="deleteTask(task.id!)">Delete</button>
     </li>
+    }@empty {
+    <span> Aucune tâche pour le moment!  </span>
     }
    <!-- <li *ngFor="let task of tasks">
       <input type="checkbox" [(ngModel)]="task.completed"   [checked]="task.completed" (change)="updateTask(task)"/>
