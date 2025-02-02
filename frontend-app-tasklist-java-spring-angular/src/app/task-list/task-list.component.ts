@@ -39,10 +39,10 @@ export class TaskListComponent implements OnInit{
    }
 
    loadTasks(): void {
-    this.taskService.getTasks().subscribe((tasks) => {
+     this.taskService.getTasks().subscribe((tasks) => {
       // Mettre à jour le signal avec les tâches chargées
       this.tasks.set(tasks);
-    });
+     });
    }
 
     addTask(): void {
@@ -57,19 +57,19 @@ export class TaskListComponent implements OnInit{
         });
       }
 
-      updateTask(task: Task): void {
-        this.taskService.updateTask(task).subscribe((updatedTask) => {
-          this.tasks.update((tasks) =>
-            tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t))
+    updateTask(task: Task): void {
+      this.taskService.updateTask(task).subscribe((updatedTask) => {
+        this.tasks.update((tasks) =>
+         tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t))
           );
         });
       }
 
-      deleteTask(id: number): void {
-        this.taskService.deleteTask(id).subscribe(() => {
-          this.tasks.update((tasks) => tasks.filter((task) => task.id !== id));
-        });
-      }
+    deleteTask(id: number): void {
+      this.taskService.deleteTask(id).subscribe(() => {
+        this.tasks.update((tasks) => tasks.filter((task) => task.id !== id));
+       });
+     }
 /* *************  ancienne version methodes CRUD sans les signaux signal() et computed() **************** */
 
   /* loadTasks(): void {
