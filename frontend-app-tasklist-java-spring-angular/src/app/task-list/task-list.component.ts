@@ -71,6 +71,7 @@ export class TaskListComponent implements OnInit{
         });
       }
 /* *************  ancienne version methodes CRUD sans les signaux signal() et computed() **************** */
+
   /* loadTasks(): void {
      this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
    }
