@@ -1,24 +1,27 @@
 <h1>Task List</h1>
 <div class="task-list">
-  <h2>Tâches en cours</h2>
+  <section class="tasks-pending">
+    <h2>Tâches en cours</h2>
 
-  <ul>
-    @for(task of tasksPending(); track task.id){
-    <li *ngIf="!task.completed">
-      <input type="checkbox" [(ngModel)]="task.completed"   [checked]="task.completed" (change)="updateTask(task)"/>
-      <span [style.color]="task.completed ? 'red' : 'black'">{{ task.title }}</span>
-      <button (click)="deleteTask(task.id!)">Delete</button>
-    </li>
-    } @empty {
-    <span> Aucune tâche pour le moment!  </span>
-    }
+    <ul>
+      @for(task of tasksPending(); track task.id){
+      <li *ngIf="!task.completed">
+        <input type="checkbox" [(ngModel)]="task.completed"   [checked]="task.completed" (change)="updateTask(task)"/>
+        <span >{{ task.title }}</span>
+        <button (click)="deleteTask(task.id!)" class="btn-delete">Delete</button>
+      </li>
+      } @empty {
+      <span> Aucune tâche pour le moment!  </span>
+      }
 
-   <!-- <li *ngFor="let task of tasks">
-      <input type="checkbox" [(ngModel)]="task.completed"   [checked]="task.completed" (change)="updateTask(task)"/>
-      <span [style.color]="task.completed ? 'red' : 'black'">{{ task.title }}</span>
-      <button (click)="deleteTask(task.id!)">Delete</button>
-    </li>-->
-  </ul>
+      <!-- <li *ngFor="let task of tasks">
+         <input type="checkbox" [(ngModel)]="task.completed"   [checked]="task.completed" (change)="updateTask(task)"/>
+         <span [style.color]="task.completed ? 'red' : 'black'">{{ task.title }}</span>
+         <button (click)="deleteTask(task.id!)">Delete</button>
+       </li>-->
+    </ul>
+  </section>
+  <section class="tasks-pending">
 
   <h2>Tâches terminées</h2>
   <table >
@@ -31,21 +34,23 @@
     </thead>
     <tbody>
     @for(taskCompleted of tasksCompleted(); track taskCompleted.id){
-    <tr *ngIf="taskCompleted.completed">
+    <tr [style.color]="taskCompleted.completed ? 'red' : 'black'"
+        *ngIf="taskCompleted.completed">
       <td>{{taskCompleted.title}}</td>
       <td>done!</td>
       <td>
-        <button (click)="deleteTask(taskCompleted .id!)">Delete</button>
         <input
           type="checkbox"
-          [(ngModel)]="taskCompleted .completed"
+          [(ngModel)]="taskCompleted.completed"
           (change)="updateTask(taskCompleted )"
         />
+        <button (click)="deleteTask(taskCompleted .id!)" class="btn-delete">Delete</button>
       </td>
     </tr>
     }
     </tbody>
   </table>
+  </section>
 </div>
 <div>
   <input class="task-list-input" [(ngModel)]="newTask.title"  placeholder="New task"/>

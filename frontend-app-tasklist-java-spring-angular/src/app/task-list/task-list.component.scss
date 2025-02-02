@@ -7,7 +7,7 @@ $button-margin: 1rem;
 $hover-color: color.adjust(colors.$secondary-color, $lightness: -10%);
 //$hover-color: darken($primary-color, 10%);
 
-span + button {
+.btn-delete {
   margin-left: $button-margin;
 
   // Style de base des boutons
