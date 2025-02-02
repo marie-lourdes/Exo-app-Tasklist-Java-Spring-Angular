@@ -13,43 +13,36 @@
       } @empty {
       <span> Aucune tâche pour le moment!  </span>
       }
-
-      <!-- <li *ngFor="let task of tasks">
-         <input type="checkbox" [(ngModel)]="task.completed"   [checked]="task.completed" (change)="updateTask(task)"/>
-         <span [style.color]="task.completed ? 'red' : 'black'">{{ task.title }}</span>
-         <button (click)="deleteTask(task.id!)">Delete</button>
-       </li>-->
     </ul>
   </section>
   <section class="tasks-pending">
-
   <h2>Tâches terminées</h2>
-  <table >
-    <thead>
-    <tr>
-      <th>Title</th>
-      <th>status</th>
-      <th>action</th>
-    </tr>
-    </thead>
-    <tbody>
-    @for(taskCompleted of tasksCompleted(); track taskCompleted.id){
-    <tr [style.color]="taskCompleted.completed ? 'red' : 'black'"
-        *ngIf="taskCompleted.completed">
-      <td>{{taskCompleted.title}}</td>
-      <td>done!</td>
-      <td>
-        <input
-          type="checkbox"
-          [(ngModel)]="taskCompleted.completed"
-          (change)="updateTask(taskCompleted )"
-        />
-        <button (click)="deleteTask(taskCompleted .id!)" class="btn-delete">Delete</button>
-      </td>
-    </tr>
-    }
-    </tbody>
-  </table>
+    <table >
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>status</th>
+        <th>action</th>
+      </tr>
+      </thead>
+      <tbody>
+      @for(taskCompleted of tasksCompleted(); track taskCompleted.id){
+      <tr [style.color]="taskCompleted.completed ? 'red' : 'black'"
+          *ngIf="taskCompleted.completed">
+        <td>{{taskCompleted.title}}</td>
+        <td>done!</td>
+        <td>
+          <input
+            type="checkbox"
+            [(ngModel)]="taskCompleted.completed"
+            (change)="updateTask(taskCompleted )"
+          />
+          <button (click)="deleteTask(taskCompleted .id!)" class="btn-delete">Delete</button>
+        </td>
+      </tr>
+      }
+      </tbody>
+    </table>
   </section>
 </div>
 <div>

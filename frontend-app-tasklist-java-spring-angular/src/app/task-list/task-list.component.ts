@@ -14,13 +14,8 @@ export class TaskListComponent implements OnInit{
    // Signal contenant toutes les tâches
     tasks = signal<Task[]>([]);
 
-  //tasks : Task[]= [];
-  // tasksCompleted: Task[]= [];
-  // isTaskCompleted = signal(false);
-
   //on cree des donne vide et par defaut pour le template a remplir de l ajout d un task
   newTask : Task = {title:'', completed:false};
-  //color!: string;
 
   // Computed pour filtrer les tâches non terminées
   tasksPending = computed(() =>
@@ -70,44 +65,5 @@ export class TaskListComponent implements OnInit{
         this.tasks.update((tasks) => tasks.filter((task) => task.id !== id));
        });
      }
-/* *************  ancienne version methodes CRUD sans les signaux signal() et computed() **************** */
-
-  /* loadTasks(): void {
-     this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
-   }
-
-   addTask(): void {
-     this.taskService.createTask(this.newTask).subscribe(task => {
-       this.tasks.push(task);
-       this.newTask = { title: '', completed: false };
-     });
-   }
-
-   updateTask(task: Task): void {
-     this.taskService.updateTask(task).subscribe();
-  /*this.markTaskAsCompleted(task);
-        // this.completedTasksCount();
-          console.log(this.completedTasksCount().length);
-   }
-
-   deleteTask(id: number): void {
-     this.taskService.deleteTask(id).subscribe(() => {
-       //filter() retourne un nouveau tableau sans les tasks dont l id ne corrspond pas l id du task supprimer
-        this.tasks=this.tasks.filter(task => task.id !== id);
-     });
-   }*/
-
- /*markTaskAsCompleted (task: Task): void {
-   // Mettre à jour la valeur du signal
-   task.completed = true;
-   this.isTaskCompleted.set(true);
- }
-
-  // Création d'un signal calculé pour le nombre de tâches terminées
-   completedTasksCount = computed(() => {
-     // Logique de calcul du nombre de tâches terminées
-
-    return this.tasks=this.tasks.filter((task) => task.completed);
-   });*/
 }
 
