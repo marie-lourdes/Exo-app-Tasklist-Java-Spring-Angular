@@ -11,6 +11,9 @@ import {FormsModule } from '@angular/forms'; // Importer FormsModule
   styleUrl: './task-list.component.scss'
 })
 export class TaskListComponent implements OnInit{
+
+/* ************* Refactoring method CRUD with reactive programming with signal() computed() ********************** */
+
    // Signal contenant toutes les tâches
     tasks = signal<Task[]>([]);
 
@@ -57,7 +60,7 @@ export class TaskListComponent implements OnInit{
         this.tasks.update((tasks) =>
          tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t))
           );
-         console.log( "number of tasks completed computed:" + this.tasksCompleted().filter(task => task.completed ).length);
+         confirm( "number of tasks completed computed:" + this.tasksCompleted().filter(task => task.completed ).length);
         });
       }
 
