@@ -1,2 +1,12 @@
+<!--
+le decorateur @defer de withIncrementalHydration fontionne avec la syntaxe du selecteur html en une seule balise et non 2 :
+  <app-task-list> </app-task-list>
+  il en est de meme pour le selecteur router outlet
+  qui charge la route de ce composant pour tenir compte de la fonctionnalité @defer
+  -->
 
-<app-task-list></app-task-list>
+@defer(on timer(15s); hydrate on interaction) {
+<app-task-list/>
+} @placeholder {
+<p>Chargement de la liste des taches...</p>
+}
