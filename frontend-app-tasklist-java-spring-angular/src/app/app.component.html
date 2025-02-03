@@ -8,8 +8,17 @@
 </div>
 <!-- ------------------------------ -->
 <main class="content ">
-  <!-- block html dynamique avec routeroutlet-->
   <router-outlet/>
+  <!-- block html dynamique avec routeroutlet-->
+  <!--
+le decorateur @defer de withIncrementalHydration fontionne avec la syntaxe du selecteur html en une seule balise et non 2 :
+  <app-task-list> </app-task-list>
+  -->
+  @defer(on timer(15s); hydrate on interaction) {
+  <app-task-list/>
+  } @placeholder {
+  <p>Chargement de la liste des taches...</p>
+  }
 
 </main>
 <!-- ------------------------------ -->
