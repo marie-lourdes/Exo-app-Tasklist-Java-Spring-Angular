@@ -57,6 +57,7 @@ export class TaskListComponent implements OnInit{
         this.tasks.update((tasks) =>
          tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t))
           );
+         console.log( "number of tasks completed computed:" + this.tasksCompleted().filter(task => task.completed ).length);
         });
       }
 

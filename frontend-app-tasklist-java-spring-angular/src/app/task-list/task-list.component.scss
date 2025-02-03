@@ -9,31 +9,34 @@ $hover-color: color.adjust(colors.$secondary-color, $lightness: -10%);
 
 .btn-delete {
   margin-left: $button-margin;
-
-  // Style de base des boutons
+  border-radius: 5px;
   background-color: colors.$secondary-color;
   color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-
   // ******** Effet hover ******
   &:hover {
     background-color: $hover-color;
     transition: background-color 0.2s ease;
   }
 }
-
+.btn-add {
+  border: 1px solid colors.$primary-color;
+  background-color: #fff;
+  color: colors.$primary-color;
+  }
 .task-list {
   display:flex;
   justify-content: space-between;
   width: 75vw;
   }
 
-.task-list-input:focus {
+.task-list-input {
+  appearance:none;
+  border: 1px solid black;
+  padding: 1rem;
+   &:focus{
    color: colors.$primary-color;
    border:0;
-   outline: 2px solid  colors.$primary-color;
+   outline: 5px ridge  colors.$primary-color;
    transition: border 0.2s ease;
   }
+}
