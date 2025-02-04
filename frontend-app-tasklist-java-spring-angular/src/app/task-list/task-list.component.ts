@@ -1,4 +1,4 @@
-import { Component,OnInit, signal, computed } from '@angular/core';
+import { Component,OnInit, signal, computed,inject } from '@angular/core';
 import { TaskService, Task } from '../service/task.service';
 import {CommonModule} from '@angular/common';
 // pour ngModel!!! le formModule doit etre importe dans le component qui l utilise et pas dans le app.module  selon l exo
@@ -11,6 +11,10 @@ import {FormsModule } from '@angular/forms'; // Importer FormsModule
   styleUrl: './task-list.component.scss'
 })
 export class TaskListComponent implements OnInit{
+
+  //on utilise ici la fonction inject() au lieu d injecter le service dans le constructor rendant ainsi l'héritage plus maniable dans Angular.
+  //cela est possible grace à la configuration dans le provider de app.config.ts
+  taskService = inject(TaskService);
 
 /* ************* Refactoring method CRUD with reactive programming with signal() computed() ********************** */
 
@@ -30,7 +34,7 @@ export class TaskListComponent implements OnInit{
     this.tasks().filter((task) => task.completed)
   );
 
-  constructor( private taskService : TaskService) {}
+ // constructor( private taskService : TaskService) {}
 
    ngOnInit(): void {
         this.loadTasks();
