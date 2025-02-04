@@ -6,7 +6,9 @@
 $button-margin: 1rem;
 $hover-color: color.adjust(colors.$secondary-color, $lightness: -10%);
 //$hover-color: darken($primary-color, 10%);
-
+li{
+  margin-bottom: 1rem;
+  }
 .task-list {
   display:flex;
   justify-content: space-between;
