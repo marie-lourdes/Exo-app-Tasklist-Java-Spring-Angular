@@ -7,22 +7,6 @@ $button-margin: 1rem;
 $hover-color: color.adjust(colors.$secondary-color, $lightness: -10%);
 //$hover-color: darken($primary-color, 10%);
 
-.btn-delete {
-  margin-left: $button-margin;
-  border-radius: 5px;
-  background-color: colors.$secondary-color;
-  color: #fff;
-  // ******** Effet hover ******
-  &:hover {
-    background-color: $hover-color;
-    transition: background-color 0.2s ease;
-  }
-}
-.btn-add {
-  border: 1px solid colors.$primary-color;
-  background-color: #fff;
-  color: colors.$primary-color;
-  }
 .task-list {
   display:flex;
   justify-content: space-between;
@@ -40,3 +24,33 @@ $hover-color: color.adjust(colors.$secondary-color, $lightness: -10%);
    transition: border 0.2s ease;
   }
 }
+
+.all-tasks {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  }
+
+
+.btn-delete {
+  margin-left: $button-margin;
+  border-radius: 5px;
+  background-color: colors.$secondary-color;
+  color: #fff;
+  // ******** Effet hover ******
+  &:hover {
+    background-color: $hover-color;
+    transition: background-color 0.2s ease;
+  }
+}
+.btn-add {
+  border: 1px solid colors.$primary-color;
+  background-color: #fff;
+  color: colors.$primary-color;
+  &:disabled{ //pseudo class
+       background-color: #ebe2ec;
+       color:#fff;
+       border-color: #000;
+     }
+  }

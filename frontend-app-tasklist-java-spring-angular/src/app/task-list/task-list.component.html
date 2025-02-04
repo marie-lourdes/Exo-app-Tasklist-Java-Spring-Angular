@@ -47,7 +47,17 @@
 </div>
 <div>
   <input class="task-list-input" [(ngModel)]="newTask.title"  placeholder="New task"/>
-  <button (click)="addTask()" class="btn-add">Add Task</button>
+  <button (click)="addTask()" [disabled]= "numberTask() >= 10" class="btn-add">Add Task</button>
+</div>
+
+<div class="all-tasks">
+  <h2>Nombre total des tâches (en cours et non terminées)</h2>
+
+  @if (numberTask() >=10){
+   <p> Vous avez atteint  le maximum de tâches, supprimez les tâches terminées ou inutiles</p>
+  }@else {
+  <p>Nombre d'éléments par page : {{ numberTask() }}</p>
+  }
 </div>
 
 

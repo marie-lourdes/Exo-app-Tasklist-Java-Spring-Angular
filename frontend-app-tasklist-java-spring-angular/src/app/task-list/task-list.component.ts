@@ -1,4 +1,4 @@
-import { Component,OnInit, signal, computed,inject } from '@angular/core';
+import { Component,OnInit, signal, computed,inject,linkedSignal } from '@angular/core';
 import { TaskService, Task } from '../service/task.service';
 import {CommonModule} from '@angular/common';
 // pour ngModel!!! le formModule doit etre importe dans le component qui l utilise et pas dans le app.module  selon l exo
@@ -34,6 +34,12 @@ export class TaskListComponent implements OnInit{
     this.tasks().filter((task) => task.completed)
   );
 
+// Test de LinkedSignal qui rend modifiable un Signal et reagit au Signal source: this.tasks
+  numberTask = linkedSignal({
+    source: this.tasks,
+    computation: () => this.tasks().length // Valeur par défaut et initial
+  });
+
  // constructor( private taskService : TaskService) {}
 
    ngOnInit(): void {
@@ -68,10 +74,11 @@ export class TaskListComponent implements OnInit{
         });
       }
 
-    deleteTask(id: number): void {
-      this.taskService.deleteTask(id).subscribe(() => {
-        this.tasks.update((tasks) => tasks.filter((task) => task.id !== id));
-       });
-     }
+     deleteTask(id: number): void {
+          this.taskService.deleteTask(id).subscribe(() => {
+            this.tasks.update((tasks) => tasks.filter((task) => task.id !== id));
+           });
+         }
+
 }
 
