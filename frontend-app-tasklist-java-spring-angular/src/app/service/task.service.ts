@@ -1,4 +1,4 @@
-import { Injectable,OnInit,inject } from '@angular/core';
+import { Injectable,OnInit,Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {BASE_URL_API} from '../../environments/app.token';
@@ -26,10 +26,13 @@ Cela permet de détecter les erreurs potentielles avant l'exécution du code.  *
 })
 export class  TaskService implements OnInit {
   //api vec springboot
-  private apiUrl = inject(BASE_URL_API);
+ // private apiUrl = inject(BASE_URL_API);
 
   // initialisation de l'objet HttpClient
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, @Inject(BASE_URL_API) private apiUrl: string) {
+     console.log('Base URL:', this.apiUrl);
+
+  }
 
  /* L'utilisation de la méthode ngOnInit dans Angular est recommandée pour les opérations d'initialisation qui ne doivent être effectuées qu'une seule fois au cours du cycle de vie d'un composant.
    Cela permet de s'assurer que les données requises pour le composant sont disponibles avant que celui-ci ne soit affiché à l'écran.

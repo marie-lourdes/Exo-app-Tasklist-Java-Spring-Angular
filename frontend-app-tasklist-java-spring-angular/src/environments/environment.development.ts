@@ -1,4 +1,4 @@
-import { BASE_URL_API} from '@angular/core';
+import { BASE_URL_API}from 'app.token';
 
 export const environment = {
   {
