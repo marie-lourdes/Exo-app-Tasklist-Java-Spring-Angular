@@ -15,7 +15,7 @@
       }
     </ul>
   </section>
-  <section class="tasks-pending">
+  <section  *ngIf="tasksCompleted().length !== 0" class="tasks-pending">
   <h2>Tâches terminées</h2>
     <table >
       <thead>
@@ -51,13 +51,17 @@
 </div>
 
 <div class="all-tasks">
+@defer(on interaction) {
   <h2>Nombre total des tâches (en cours et non terminées)</h2>
 
   @if (numberTask() >=10){
-   <p> Vous avez atteint  le maximum de tâches, supprimez les tâches terminées ou inutiles</p>
+  <p> Vous avez atteint  le maximum de tâches, supprimez les tâches terminées ou inutiles</p>
   }@else {
   <p>Nombre de tâches : {{ numberTask() }}</p>
   }
+}@placeholder {
+<button >Voir toutes les tâches</button>
+}
 </div>
 
 
