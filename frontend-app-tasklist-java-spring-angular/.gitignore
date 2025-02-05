@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 #environments
-./src/environments/app.token.ts
+/src/environments/app.token.ts
