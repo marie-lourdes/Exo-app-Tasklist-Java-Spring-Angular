@@ -1,6 +1,7 @@
-import { Injectable,OnInit } from '@angular/core';
+import { Injectable,OnInit,inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {BASE_URL_API} from '../../environments/app.token';
 
 //interface  cree pour l objet Task au lieu d une couche model avec une class Task
 /*Contrat de structure : Une interface définit un contrat que les objets doivent respecter. Cela garantit que les objets ont une structure cohérente,
@@ -25,7 +26,7 @@ Cela permet de détecter les erreurs potentielles avant l'exécution du code.  *
 })
 export class  TaskService implements OnInit {
   //api vec springboot
-  private apiUrl = 'http://localhost:8080/api/tasks';
+  private apiUrl = inject(BASE_URL_API);
 
   // initialisation de l'objet HttpClient
   constructor(private http: HttpClient) { }

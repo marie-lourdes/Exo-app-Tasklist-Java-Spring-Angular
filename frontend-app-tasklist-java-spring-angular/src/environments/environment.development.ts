@@ -1,5 +1,7 @@
+import { BASE_URL_API} from '@angular/core';
+
 export const environment = {
   {
     production: false,
-    apiURL: 'http://localhost:8080/api/tasks'
+    apiURL: BASE_URL_API
     };
