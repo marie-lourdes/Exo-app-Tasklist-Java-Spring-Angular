@@ -1,7 +1,7 @@
 @use 'colors';
 
 .load-spinner {
-  margin:0 auto;
+  margin: 10vh auto;
   height: 100px;
   width: 100px;
   border-radius: 50%;
@@ -11,19 +11,18 @@
   }
 @keyframes spinner {
   0% { transform: rotateZ(0turn);
-    opacity:0.5;
+     opacity:0.5;
      border-top: 5px dotted colors.$primary-color ;
     }
-  25% { //transform: rotateZ(0turn);
+  25% {
         border-right: 5px  solid colors.$primary-color ;
         border-top:0;
     }
-  50% {// transform: rotateZ(0turn);
+  50% {
         border-bottom: 5px  solid colors.$primary-color ;
         border-right:0;
-
     }
-  75% {// transform: rotateZ(0turn);
+  75% {
         border-left: 5px  solid colors.$color-title;
         border-bottom:0;
         opacity:1;
