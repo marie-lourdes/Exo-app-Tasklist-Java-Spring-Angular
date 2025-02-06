@@ -1,0 +1,35 @@
+@use 'colors';
+
+.load-spinner {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin:1rem;
+  animation: 5s ease-in infinite spinner;
+  //background-color: colors.$secondary-color;
+  }
+@keyframes spinner {
+  0% { transform: rotateZ(0turn);
+    opacity:0.2;
+     border-top: 5px dotted colors.$primary-color ;
+    }
+  25% { //transform: rotateZ(0turn);
+        border-right: 5px  dotted colors.$primary-color ;
+        border-top:0;
+    }
+  50% {// transform: rotateZ(0turn);
+        border-bottom: 5px  solid colors.$primary-color ;
+        border-right:0;
+
+    }
+  75% {// transform: rotateZ(0turn);
+        border-left: 5px  solid colors.$color-title;
+        border-bottom:0;
+        opacity:1;
+    }
+  100%{ //transform: rotateZ(1turn);
+        border-top: 5px  dotted colors.$color-title;
+        border-left:0;
+        opacity:0
+    }
+}

@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TaskListComponent} from  './task-list/task-list.component';
+import { LoadSpinnerComponent} from  './load-spinner/load-spinner.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,CommonModule, TaskListComponent],
+  imports: [RouterOutlet,CommonModule, TaskListComponent,LoadSpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
