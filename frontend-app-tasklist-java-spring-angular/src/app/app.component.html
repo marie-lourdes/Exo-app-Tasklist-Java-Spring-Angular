@@ -3,15 +3,16 @@
   <img class="brand-logo" [src]="path" alt="logo" aria-hidden="true"/>
   <p>Welcome to task list app</p>
 </header>
+
 <div class="main-separator" >
   <img src="./assets/images/rose.jpg" class="separator-rose" *ngFor="let element of iteration"/>
 </div>
 <!-- ------------------------------ -->
 <main class="content ">
+  <!-- block html dynamique avec routeroutlet-->
 <router-outlet/>
 </main>
-<!-- ------------------------------ -->
+
 <footer>
  copyright 2025
 </footer>
-<!-- ------------------------------ -->
