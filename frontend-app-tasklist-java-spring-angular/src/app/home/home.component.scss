@@ -1,2 +1,15 @@
+.banner {
+  display:flex;
+  justify-content:center;
+ // transform: translateZ(-5px) scale(0) ;
+  animation: 5s ease-in 1 zoom;
+  }
 
-
+@keyframes zoom {
+ from{
+      transform:  scale(0) translateZ(-500px)  ;
+    }
+  to{
+      transform:  scale(1) translateZ(500px)  ;
+    }
+  }

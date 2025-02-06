@@ -1,4 +1,20 @@
-<div>
+<div class="banner">
   <img src="./assets/images/banner.webp"/>
 </div>
+<!-- block html dynamique avec routeroutlet-->
 
+<!--
+le decorateur @defer de withIncrementalHydration fontionne avec la syntaxe du selecteur html en une seule balise et non 2 :
+<app-task-list> </app-task-list>
+cette fonctionnalité avec l inremental hydratation s applique pas au données statiques,
+mais  s applique par ex  aux  données chargées dynamiquement  depuis la bdd
+-->
+@defer(on timer(5s); hydrate on interaction) {
+<app-task-list/>
+} @placeholder(minimum 1s){
+<p>Chargement de la liste des tâches...</p>
+<app-load-spinner/>
+}@loading(minimum 1s; after 500ms) {
+<app-load-spinner/>
+
+}

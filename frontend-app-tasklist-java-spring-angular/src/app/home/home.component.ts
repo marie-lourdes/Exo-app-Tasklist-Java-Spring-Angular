@@ -1,8 +1,10 @@
 import { Component,OnInit } from '@angular/core';
-//import pour les directive ngfor et autres
+import { TaskListComponent} from  '../task-list/task-list.component';
+import { LoadSpinnerComponent} from  '../load-spinner/load-spinner.component';
 
 @Component({
   selector: 'app-home',
+  imports: [TaskListComponent,LoadSpinnerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
