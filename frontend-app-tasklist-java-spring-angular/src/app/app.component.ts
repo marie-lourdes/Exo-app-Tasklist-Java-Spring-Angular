@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { LoadSpinnerComponent} from  './load-spinner/load-spinner.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,CommonModule],
+  imports: [RouterOutlet,CommonModule, LoadSpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

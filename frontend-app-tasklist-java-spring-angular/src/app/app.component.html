@@ -10,7 +10,21 @@
 <!-- ------------------------------ -->
 <main class="content ">
   <!-- block html dynamique avec routeroutlet-->
-<router-outlet/>
+  <!--
+le decorateur @defer de withIncrementalHydration fontionne avec la syntaxe du selecteur html en une seule balise et non 2 :
+<router-outlet> </router-outlet>
+cette fonctionnalité avec l inremental hydratation s applique pas au données statiques,
+mais  s applique par ex  aux  données chargées dynamiquement  depuis la bdd
+-->
+
+  @defer(on timer(15s); hydrate on interaction) {
+  <router-outlet/>
+  } @placeholder(minimum 1s){
+  <p>Chargement de la liste des tâches...</p>
+  <app-load-spinner/>
+  }@loading(minimum 1s; after 500ms) {
+  <!--<app-load-spinner/>-->
+  }
 </main>
 
 <footer>
