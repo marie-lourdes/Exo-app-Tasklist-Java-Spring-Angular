@@ -10,6 +10,5 @@ import { TaskListComponent} from  '../task-list/task-list.component';
 })
 export class HomeComponent implements OnInit {
 
-  ngOnInit() : void{
-    }
+  ngOnInit() : void{}
 }
