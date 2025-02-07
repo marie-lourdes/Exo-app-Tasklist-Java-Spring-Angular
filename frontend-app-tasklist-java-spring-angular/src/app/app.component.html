@@ -1,9 +1,5 @@
 <!-- block html statique -->
-<header class="brand-name">
-  <img class="brand-logo" [src]="path" alt="logo" aria-hidden="true"/>
-  <p>Welcome to task list app</p>
-</header>
-
+<app-header/>
 <div class="main-separator" >
   <img src="./assets/images/rose.jpg" class="separator-rose" *ngFor="let element of iteration"/>
 </div>
@@ -17,7 +13,7 @@ cette fonctionnalité avec l inremental hydratation s applique pas au données s
 mais  s applique par ex  aux  données chargées dynamiquement  depuis la bdd
 -->
 
-  @defer(on timer(15s); hydrate on interaction) {
+  @defer(on timer(5s); hydrate on interaction) {
   <router-outlet/>
   } @placeholder(minimum 1s){
   <p>Chargement de la liste des tâches...</p>

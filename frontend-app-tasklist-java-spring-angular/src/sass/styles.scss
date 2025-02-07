@@ -4,8 +4,6 @@ Angular charge le fichier css automatiquement grace a la configuration angular.j
 // Définition de variables pour réutilisation
 $rose-width: 60px;
 $rose-height: 60px;
-$logo-width: 10rem;
-$logo-height: 6rem;
 $margin-horizontal: 5vw;
 
 body {
@@ -16,22 +14,6 @@ body {
    }
  }
 
-header {
- display: flex;
- justify-content: flex-start;
- align-items: center;
- color: colors.$primary-color;
- font-size: 1.2rem;
- font-weight: bold;
- //background-color:#f4e0f2;
-}
-
-.brand-logo{
-  width:$logo-width;
-  height:$logo-height;
-  margin:1rem;
-  border-radius: 5px;
- }
 
 main {
     width: 100%;
@@ -54,7 +36,6 @@ h2 {
   }
 ul {
   padding-left: 0;
-  list-style-type: disclosure-open;
   }
 // Application des styles
 
@@ -101,6 +82,6 @@ footer {
 }
 
 
-// Responsiveness
+
 
 
