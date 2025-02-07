@@ -13,7 +13,7 @@ cette fonctionnalité avec l inremental hydratation s applique pas au données s
 mais  s applique par ex  aux  données chargées dynamiquement  depuis la bdd
 -->
 
-  @defer(on timer(5s); hydrate on interaction) {
+  @defer(on timer(10s); hydrate on interaction) {
   <router-outlet/>
   } @placeholder(minimum 1s){
   <p>Chargement de la liste des tâches...</p>
