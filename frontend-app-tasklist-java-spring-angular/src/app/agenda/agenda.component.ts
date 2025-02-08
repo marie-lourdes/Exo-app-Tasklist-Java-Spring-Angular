@@ -1,5 +1,4 @@
-import { Component,ViewChild, AfterViewInit } from '@angular/core';
-import {DayPilot,  DayPilotCalendarComponent,DayPilotModule} from '@daypilot/daypilot-lite-angular';
+import { Component,ViewChild, OnInit  } from '@angular/core';
 import { AgendaService} from '../service/agenda.service';
 
 @Component({
@@ -8,15 +7,12 @@ import { AgendaService} from '../service/agenda.service';
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.scss'
 })
-export class AgendaComponent implements AfterViewInit {
-
-
-
-
-    constructor(private agendaService: AgendaService) {
+export class AgendaComponent implements OnInit {
+  viewDate:Date= new Date();
+  constructor(private agendaService: AgendaService) {
     }
 
-   ngAfterViewInit(): void {
+   ngOnInit(): void {
 
     }
 
