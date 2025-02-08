@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 import { Component,ViewChild, AfterViewInit } from '@angular/core';
 import {DayPilot,  DayPilotCalendarComponent,DayPilotModule} from '@daypilot/daypilot-lite-angular';
 import { AgendaService} from '../service/agenda.service';
@@ -23,4 +21,4 @@ export class AgendaComponent implements AfterViewInit {
     }
 
 }
->>>>>>> Stashed changes
+
