@@ -1,8 +1,30 @@
 .banner {
   display:flex;
   justify-content:center;
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
  // transform: translateZ(-5px) scale(0) ;
   animation: 5s ease-in-out 1 zoom;
+  & img {
+    display: block;
+    width: 100%;
+    }
+  &:hover::after {
+        content: "welcome to task list";
+        position: absolute;
+        color: #000;
+        background-color: rgb(220,208,221,0.4);
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        }
   }
 
 @keyframes zoom {

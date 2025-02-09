@@ -22,6 +22,7 @@ header {
   height:$logo-height;
   margin:1rem;
   border-radius: 5px;
+
  }
 
  nav {
@@ -35,6 +36,9 @@ header {
           text-decoration:none;
            color: colors.$color-title;
          }
+     }
+   & button {
+     padding: 5px;
      }
 
    }

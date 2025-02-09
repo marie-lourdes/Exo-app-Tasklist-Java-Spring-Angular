@@ -9,8 +9,7 @@
   <!--
   le decorateur @defer de withIncrementalHydration fontionne avec la syntaxe du selecteur html en une seule balise et non 2 :
   <router-outlet> </router-outlet>
-  cette fonctionnalité avec l inremental hydratation s applique pas au données statiques,
-  mais  s applique par ex  aux  données chargées dynamiquement  depuis la bdd
+  cette fonctionnalité @defer  hydrate s applique  avec l inremental hydratation
   -->
   @defer(on timer(15s); hydrate on interaction) {
   <router-outlet/>

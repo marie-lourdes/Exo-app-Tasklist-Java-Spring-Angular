@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,  } from '@angular/core';
 import { RouterLink} from '@angular/router';
 
 @Component({
@@ -10,5 +10,7 @@ import { RouterLink} from '@angular/router';
 export class HeaderComponent implements OnInit{
  // lien configuré pour le dossier assets dans angular.json
   path ='./assets/images/logo.png';
+
     ngOnInit(): void {}
+
 }
