@@ -15,9 +15,9 @@ import { AgendaService} from  './service/agenda.service';
 export class AppComponent  implements OnInit {
   iteration = new Array(6);
   title = 'frontend-app-tasklist-java-spring-angular';
+
   constructor(private agenda: AgendaService){}
-    ngOnInit(): void {
-      //test luxon library in aganda service
-       console.log("test luxon date"+this.agenda.firstDayOfActiveMonth().toString());
-       }
+
+  ngOnInit(): void {
+  }
 }
