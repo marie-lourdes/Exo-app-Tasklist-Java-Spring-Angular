@@ -1,4 +1,4 @@
-import { Component,ViewChild, OnInit  } from '@angular/core';
+import { Component,ViewChild, OnInit } from '@angular/core';
 import { AgendaService} from '../service/agenda.service';
 
 @Component({
@@ -8,13 +8,11 @@ import { AgendaService} from '../service/agenda.service';
   styleUrl: './agenda.component.scss'
 })
 export class AgendaComponent implements OnInit {
-  viewDate:Date= new Date();
-  constructor(private agendaService: AgendaService) {
-    }
 
-   ngOnInit(): void {
+  constructor( private agenda: AgendaService ){}
 
-    }
+  ngOnInit(): void {
 
+  }
 }
 

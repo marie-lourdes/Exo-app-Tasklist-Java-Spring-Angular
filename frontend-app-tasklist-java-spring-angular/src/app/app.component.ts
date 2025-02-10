@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { LoadSpinnerComponent} from  './load-spinner/load-spinner.component';
 import { HeaderComponent} from  './header/header.component';
+import { AgendaService} from  './service/agenda.service';
 
 
 @Component({
@@ -14,5 +15,9 @@ import { HeaderComponent} from  './header/header.component';
 export class AppComponent  implements OnInit {
   iteration = new Array(6);
   title = 'frontend-app-tasklist-java-spring-angular';
-    ngOnInit(): void {}
+  constructor(private agenda: AgendaService){}
+    ngOnInit(): void {
+      //test luxon library in aganda service
+       console.log("test luxon date"+this.agenda.firstDayOfActiveMonth().toString());
+       }
 }

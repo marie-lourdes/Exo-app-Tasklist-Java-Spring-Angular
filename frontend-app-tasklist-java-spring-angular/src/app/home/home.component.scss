@@ -11,7 +11,7 @@
     width: 100%;
     }
   &:hover::after {
-        content: "welcome to task list";
+        content: "Welcome to task list";
         position: absolute;
         color: #000;
         background-color: rgb(220,208,221,0.4);
@@ -32,6 +32,6 @@
       transform:  scale(0) translateZ(-800px) translateX(-800px)   ;
     }
   to{
-      transform:  scale(1.5) translateZ(0px) translateX(0px)  ;
+      transform:  scale(1.2) translateZ(0px) translateX(0px)  ;
     }
   }

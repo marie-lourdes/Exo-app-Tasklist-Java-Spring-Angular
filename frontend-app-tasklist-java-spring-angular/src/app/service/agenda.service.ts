@@ -1,16 +1,16 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject,signal,WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TaskService, Task } from './task.service';
+import { DateTime } from "luxon";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AgendaService {
-  taskService = inject(TaskService);
+
+   today = signal<DateTime>(DateTime.local());
+    firstDayOfActiveMonth: WritableSignal<DateTime> = signal(
+      this.today().startOf('month'));
  // resources: DayPilot.ResourceData[] = [];
   constructor() { }
 
-  getResources(): Observable<any[]> {
-    return this.taskService.getTasks();
-    }
 }
