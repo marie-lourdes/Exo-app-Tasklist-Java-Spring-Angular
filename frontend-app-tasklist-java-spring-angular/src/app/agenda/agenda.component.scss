@@ -1,3 +1,6 @@
+@use 'sass:color';
+@use 'colors';
+
 section {
   width: 80vw;
   display: flex;
@@ -31,12 +34,15 @@ section {
           thead {
             th {
             padding: 1rem;
+            background-color: rgb(colors.$primary-color,0.4);
             }
           }
           th, td  {
             border: 1px solid gray;
-             font-weight: normal;
-             text-align:  center;
+            font-weight: normal;
+            text-align:  center;
+            background-color:rgb(colors.$color-title,0.4);
+            border-color: #f1ddf3;
 
             }
          }
