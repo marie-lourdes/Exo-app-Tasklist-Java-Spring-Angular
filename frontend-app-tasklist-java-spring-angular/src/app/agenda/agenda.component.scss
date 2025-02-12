@@ -3,22 +3,36 @@ section {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   }
+
 .agenda-container {
   display: flex;
-  }
-.agenda {
-   display: flex;
-   justify-content: center;
-   width: 100%;
-  }
-.agenda-healine {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width:100%;
-    & .agenda-healine_month {
+  flex-direction : column;
+  width: 100%;
+  & .agenda {
+       display: flex;
+       justify-content: space-evenly;
+       flex-direction : column;
+       width: 100%;
+       min-height: 10vh;
+       .agenda-healine,.agenda-week-grid  {
+           display: flex;
+           align-items: center;
+           width:100%;
+         }
+       .agenda-healine {
+          font-weight: bold;
+         .agenda-healine_month {
+           margin-right: 2rem;
+           }
+         }
+       .agenda-week-grid {
+          justify-content: space-evenly;
+         }
 
       }
-
   }
+
+
+

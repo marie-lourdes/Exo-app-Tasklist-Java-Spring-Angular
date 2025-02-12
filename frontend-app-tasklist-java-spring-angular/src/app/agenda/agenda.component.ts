@@ -1,10 +1,11 @@
 import { Component,OnInit,signal,WritableSignal,Signal, computed } from '@angular/core';
+import {UpperCasePipe} from '@angular/common';
 import { AgendaService} from '../service/agenda.service';
 import { DateTime,Info,Interval } from "luxon";
 
 @Component({
   selector: 'app-agenda',
-  imports: [],
+  imports: [UpperCasePipe],
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.scss'
 })

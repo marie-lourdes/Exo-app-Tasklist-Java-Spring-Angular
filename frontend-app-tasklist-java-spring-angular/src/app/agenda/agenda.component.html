@@ -15,7 +15,15 @@
           <span class="agenda-healine-control">"</span>
         </div>
       </div>
+      <div class="agenda-week-grid">
+        <!-- $index pour des donnée static -->
+        @for( weekday of weekDays(); track $index){
+        <div class="agenda-week-cell"> {{weekday | uppercase}}</div>
+        }
+
+      </div>
     </div>
+
   </div>
 </section>
 
