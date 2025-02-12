@@ -1,4 +1,21 @@
-<div >
+<section>
   <h2>Agenda</h2>
-</div>
+  <div class="agenda-container">
+    <div class="agenda">
+      <div class="agenda-healine">
+        <div class="agenda-healine_month">
+          {{ firstDayOfActiveMonth().monthShort}}
+          {{ firstDayOfActiveMonth().year}}
+        </div>
+        <div class="agenda-healine-controls">
+          <span class="agenda-healine-control">"</span>
+          <span class="agenda-healine-control agenda-healine-control--today">
+            Today
+          </span>
+          <span class="agenda-healine-control">"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 

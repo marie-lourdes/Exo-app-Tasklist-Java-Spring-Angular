@@ -11,15 +11,14 @@
   <router-outlet> </router-outlet>
   cette fonctionnalité @defer  hydrate s applique  avec l inremental hydratation
   -->
-  @defer(on timer(10s); hydrate on interaction) {
+  @defer(on timer(15s); hydrate on interaction) {
   <router-outlet/>
-  } @placeholder(minimum 1s){
+  } @placeholder{
   <p>Chargement de la liste des tâches...</p>
   <app-load-spinner/>
-  }@loading(minimum 1s; after 500ms) {
+  }@loading {
   <!--<app-load-spinner/>-->
   }
-
 </main>
 <footer>
  copyright 2025
