@@ -15,13 +15,35 @@
           <span class="agenda-healine-control">"</span>
         </div>
       </div>
-      <div class="agenda-week-grid">
-        <!-- $index pour des donnée static -->
-        @for( weekday of weekDays(); track $index){
-        <div class="agenda-week-cell"> {{weekday | uppercase}}</div>
-        }
 
-      </div>
+        <table  class="agenda-week-table" >
+          <thead>
+          <tr>
+            @for( weekday of weekDays(); track $index){
+            <th scope="col" class="agenda-week-cell"> {{weekday | uppercase}}</th>
+            }
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td >...</td>
+            <td>...</td>
+            <td>...</td>
+            <td >...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- $index pour des donnée static -->
+      <!-- <div class="agenda-week-grid">
+       @for( weekday of weekDays(); track $index){
+        <div class="agenda-week-cell"> {{weekday | uppercase}}</div>
+         </div>
+        }-->
+
+
     </div>
 
   </div>
