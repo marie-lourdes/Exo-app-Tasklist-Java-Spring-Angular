@@ -1,5 +1,7 @@
 package com.TaskList.backend_app_tasklist_java_spring_angular.model;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,4 +16,5 @@ public class Task {
       private Long id;
       private String title;
       private boolean completed;
+      private Date date;
 }
