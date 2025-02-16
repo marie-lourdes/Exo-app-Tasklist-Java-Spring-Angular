@@ -5,4 +5,4 @@ title VARCHAR(150),
 date DATE  
 );
 
-INSERT INTO task(completed,title,date ) VALUES (false, 'test bdd', '16-02-2025');
+INSERT INTO task(completed,title,date ) VALUES (false, 'test bdd', '2025-02-16');

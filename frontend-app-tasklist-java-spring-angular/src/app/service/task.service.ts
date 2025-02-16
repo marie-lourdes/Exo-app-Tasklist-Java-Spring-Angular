@@ -13,6 +13,7 @@ Cela permet de détecter les erreurs potentielles avant l'exécution du code.  *
      id?: number;
      title: string;
      completed: boolean;
+     date: Date;
    }
 
  // providedIn signifie a angular qu il sera charge a la racine de l application avec une seule et unique instance
