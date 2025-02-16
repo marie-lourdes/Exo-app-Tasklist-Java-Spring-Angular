@@ -25,24 +25,22 @@
           </tr>
           </thead>
           <tbody>
+          @for( week of daysInWeeks(); track week){
           <tr>
-            <td >...</td>
-            <td>...</td>
-            <td>...</td>
-            <td >...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
+            @for( day of  week; track $index){
+            <td >{{day.day}} </td>
+            }
           </tr>
+          }
           </tbody>
         </table>
+
         <!-- $index pour des donnée static -->
       <!-- <div class="agenda-week-grid">
        @for( weekday of weekDays(); track $index){
         <div class="agenda-week-cell"> {{weekday | uppercase}}</div>
          </div>
         }-->
-
 
     </div>
 

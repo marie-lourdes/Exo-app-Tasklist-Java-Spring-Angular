@@ -29,7 +29,7 @@
       @for(taskCompleted of tasksCompleted(); track taskCompleted.id){
       <tr [style.color]="taskCompleted.completed ? 'red' : 'black'"
           *ngIf="taskCompleted.completed">
-        <td>{{taskCompleted.title}} {{ taskCompleted.completed }}</td>
+        <td>{{taskCompleted.title}}</td>
         <td>done!</td>
         <td>
           <input
