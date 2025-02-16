@@ -1,0 +1,49 @@
+<section>
+  <h2>Agenda</h2>
+  <div class="agenda-container">
+    <div class="agenda">
+      <div class="agenda-healine">
+        <div class="agenda-healine_month">
+          {{ firstDayOfActiveMonth().monthShort}}
+          {{ firstDayOfActiveMonth().year}}
+        </div>
+        <div class="agenda-healine-controls">
+          <span class="agenda-healine-control">"</span>
+          <span class="agenda-healine-control agenda-healine-control--today">
+              {{ today().toFormat('yyyy-LLL-dd')}}
+          </span>
+          <span class="agenda-healine-control">"</span>
+        </div>
+      </div>
+
+        <table  class="agenda-week-table" >
+          <thead>
+          <tr>
+            @for( weekday of weekDays(); track $index){
+            <th scope="col" class="agenda-week-cell"> {{weekday | uppercase}}</th>
+            }
+          </tr>
+          </thead>
+          <tbody>
+          @for( week of daysInWeeks(); track week){
+          <tr>
+            @for( day of  week; track $index){
+            <td >{{day.day}} </td>
+            }
+          </tr>
+          }
+          </tbody>
+        </table>
+
+        <!-- $index pour des donnée static -->
+      <!-- <div class="agenda-week-grid">
+       @for( weekday of weekDays(); track $index){
+        <div class="agenda-week-cell"> {{weekday | uppercase}}</div>
+         </div>
+        }-->
+
+    </div>
+
+  </div>
+</section>
+

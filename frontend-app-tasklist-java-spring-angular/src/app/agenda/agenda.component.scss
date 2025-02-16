@@ -1,0 +1,57 @@
+@use 'sass:color';
+@use 'colors';
+
+section {
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  }
+
+.agenda-container {
+  display: flex;
+  flex-direction : column;
+  width: 100%;
+  & .agenda {
+       display: flex;
+       justify-content: space-evenly;
+       flex-direction : column;
+       width: 100%;
+       min-height: 15vh;
+       .agenda-healine {
+          display: flex;
+          align-items: center;
+          width:100%;
+          font-weight: bold;
+         .agenda-healine_month {
+           margin-right: 2rem;
+           }
+         }
+       .agenda-week-table {
+          justify-content: space-evenly;
+          border-collapse: collapse;
+          thead th {
+            padding: 1rem;
+            background-color: rgb(colors.$primary-color,0.4);
+            }
+          th, td  {
+            border: 1px solid gray;
+            font-weight: normal;
+            text-align: center;
+            background-color: rgb(colors.$color-title,0.4);
+            border-color: #f1ddf3;
+            padding: 2rem;
+
+            }
+          td:hover {
+             background-color: rgb(colors.$color-title,0.8);
+             color: #fff;
+            }
+         }
+
+      }
+  }
+
+
+

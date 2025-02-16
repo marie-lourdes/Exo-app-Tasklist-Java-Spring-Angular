@@ -13,6 +13,7 @@ Cela permet de détecter les erreurs potentielles avant l'exécution du code.  *
      id?: number;
      title: string;
      completed: boolean;
+     date: string; // Format: YYYY-MM-DD
    }
 
  // providedIn signifie a angular qu il sera charge a la racine de l application avec une seule et unique instance
@@ -42,10 +43,6 @@ export class  TaskService implements OnInit {
    this.getTasks().subscribe();
   }
 
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl);
-  }
-
   createTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.apiUrl, task);
   }
@@ -56,6 +53,13 @@ export class  TaskService implements OnInit {
 
   deleteTask(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+  getTasksByDate(date: string): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.apiUrl}/${date}`);
+  }
+
+  getTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(this.apiUrl);
   }
 
 }
