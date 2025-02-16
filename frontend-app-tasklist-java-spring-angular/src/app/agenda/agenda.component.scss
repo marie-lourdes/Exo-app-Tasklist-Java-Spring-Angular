@@ -31,19 +31,22 @@ section {
        .agenda-week-table {
           justify-content: space-evenly;
           border-collapse: collapse;
-          thead {
-            th {
+          thead th {
             padding: 1rem;
             background-color: rgb(colors.$primary-color,0.4);
             }
-          }
           th, td  {
             border: 1px solid gray;
             font-weight: normal;
-            text-align:  center;
-            background-color:rgb(colors.$color-title,0.4);
+            text-align: center;
+            background-color: rgb(colors.$color-title,0.4);
             border-color: #f1ddf3;
+            padding: 2rem;
 
+            }
+          td:hover {
+             background-color: rgb(colors.$color-title,0.8);
+             color: #fff;
             }
          }
 
