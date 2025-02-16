@@ -55,7 +55,7 @@ export class  TaskService implements OnInit {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
   getTasksByDate(date: string): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.baseUrl}/${date}`);
+    return this.http.get<Task[]>(`${this.apiUrl}/${date}`);
   }
 
   getTasks(): Observable<Task[]> {

@@ -49,10 +49,11 @@ export class AgendaComponent implements OnInit {
     ngOnInit(): void {
     //test luxon library  and method DateTime.local().startOf('month') in agenda service
     console.log("test luxon date: " + this.firstDayOfActiveMonth().toString());
-    console.log("test luxon Info.weekDays: "+ this.weekDays());
-    // console.log("test luxon Interval : "+ this. dayOfMonth().length); --> '35' element, 7 jours * 5 semaine plus generalement representé dans un agenda comprenant souvent le mois d avant et celui d apres
-    console.log("test luxon Interval : "+ this. daysOfMonth());
-   // console.log("test luxon Interval slice : "+ this. sliceAgenda());
+    console.log("test luxon Info.weekDays: " + this.weekDays());
+    console.log("nombre de jours du mois : " + this.daysOfMonth().length); //--> '35' element, 7 jours * 5 semaine plus generalement representé dans un agenda comprenant souvent le mois d avant et celui d apres
+    console.log("nombre de semaine du mois courant: " + this.daysInWeeks().length);
+    console.log("jours du mois courant : " + this.daysOfMonth());
+    console.log("semaine du mois courant: " + this.daysInWeeks());
 
     }
 

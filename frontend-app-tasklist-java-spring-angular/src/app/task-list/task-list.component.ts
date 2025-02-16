@@ -22,7 +22,7 @@ export class TaskListComponent implements OnInit{
     tasks = signal<Task[]>([]);
 
   //on cree des donne vide et par defaut pour le template a remplir de l ajout d un task
-  newTask : Task = {title:'', completed:false};
+  newTask : Task = {title:'', completed:false, date:''};
 
   // Computed pour filtrer les tâches non terminées
   tasksPending = computed(() =>
@@ -61,7 +61,7 @@ export class TaskListComponent implements OnInit{
 
         this.taskService.createTask(this.newTask).subscribe((task) => {
           this.tasks.update((currentTasks) => [...currentTasks, task]);
-          this.newTask = { title: '', completed: false }; // Réinitialiser la tâche
+          this.newTask = { title: '', completed: false, date:'' }; // Réinitialiser la tâche
         });
       }
 
