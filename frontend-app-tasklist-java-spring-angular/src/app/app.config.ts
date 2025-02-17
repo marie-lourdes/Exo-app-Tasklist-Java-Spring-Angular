@@ -5,6 +5,7 @@ import { provideClientHydration, withEventReplay,withIncrementalHydration } from
 import { routes } from './app.routes';
 import { TaskService } from './service/task.service';
 import {BASE_URL_API,URL_API} from '../environments/app.token';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 //retrait du fichier  app module et l'import  HttpClientModule, BrowserModule  et ajout du provideHttpClient dans app config
 export const appConfig: ApplicationConfig = {
@@ -15,6 +16,6 @@ export const appConfig: ApplicationConfig = {
     withIncrementalHydration()),
     provideHttpClient(withFetch()),
     { provide: BASE_URL_API, useValue:URL_API },
-    TaskService
+    TaskService, provideAnimationsAsync()
     ]
   }

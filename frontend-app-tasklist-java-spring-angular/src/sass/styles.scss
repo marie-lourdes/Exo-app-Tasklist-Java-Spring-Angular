@@ -6,9 +6,12 @@ $rose-width: 60px;
 $rose-height: 60px;
 $margin-horizontal: 5vw;
 
+html, body { min-height: 100vh; }
+
 body {
-   min-height: 100vh;
   // display:flex;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
    @media (max-width: 768px) {
      font-size: 1rem;
    }
@@ -80,6 +83,7 @@ footer {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
 }
+
 
 
 

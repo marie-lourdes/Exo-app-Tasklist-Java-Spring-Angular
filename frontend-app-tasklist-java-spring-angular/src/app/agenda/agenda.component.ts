@@ -1,5 +1,7 @@
 import { Component,OnInit,signal,WritableSignal,Signal, computed } from '@angular/core';
 import {UpperCasePipe} from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
 import { AgendaService} from '../service/agenda.service';
 import { DateTime,Info,Interval } from "luxon";
 
@@ -43,8 +45,12 @@ export class AgendaComponent implements OnInit {
        return weeks;
      });
 
+  /* MatDialog:
+        - C'est un service pour ouvrir et gérer globalement les dialogues.
+        - Fournit des méthodes comme `open()` et `closeAll()`.*/
 
-    constructor( private agenda: AgendaService ){}
+    constructor( private agenda: AgendaService,private dialog: MatDialog
+ ){}
 
     ngOnInit(): void {
     //test luxon library  and method DateTime.local().startOf('month') in agenda service
@@ -55,6 +61,17 @@ export class AgendaComponent implements OnInit {
     console.log("jours du mois courant : " + this.daysOfMonth());
     console.log("semaine du mois courant: " + this.daysInWeeks());
 
+    }
+
+  openModal(date:number) : void {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width:'400px',
+      data: { date:date} // passe la date selectionné depuis le template agenda
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('le modal a été fermé', result);
+      });
     }
 
 }
