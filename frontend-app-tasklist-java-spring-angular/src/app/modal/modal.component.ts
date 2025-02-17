@@ -4,12 +4,12 @@ import { MAT_DIALOG_DATA, MatDialogRef,MatDialogModule} from '@angular/material/
 
 @Component({
   selector: 'app-modal',
-  imports: [MAT_DIALOG_DATA, MatDialogRef,MatDialogModule],
+  imports: [MatDialogModule],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
-  /* MatDialogRef
+  /* MatDialogRef:
         - C'est une instance spécifique pour interagir avec un dialogue particulier.
         - Fournit des fonctionnalités comme `close()` et `afterClosed()`.
      `MAT_DIALOG_DATA`
@@ -23,7 +23,7 @@ export class ModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef <ModalComponent>,
-     @Inject(MAT_DIALOG_DATA) public data:{date:string}
+     @Inject(MAT_DIALOG_DATA) public data:{date:number}){
     }
 
     onClose(): void {

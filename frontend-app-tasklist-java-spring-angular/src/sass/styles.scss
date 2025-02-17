@@ -6,14 +6,12 @@ $rose-width: 60px;
 $rose-height: 60px;
 $margin-horizontal: 5vw;
 
-html, body { min-height: 100vh }
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  }
+html, body { min-height: 100vh; }
 
 body {
   // display:flex;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
    @media (max-width: 768px) {
      font-size: 1rem;
    }
