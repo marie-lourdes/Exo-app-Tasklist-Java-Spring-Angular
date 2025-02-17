@@ -28,7 +28,8 @@
           @for( week of daysInWeeks(); track week){
           <tr>
             @for( day of  week; track $index){
-            <td >{{day.day}} </td>
+            <td (click)="openModal({{day.day}})"
+            >{{day.day}} </td>
             }
           </tr>
           }
