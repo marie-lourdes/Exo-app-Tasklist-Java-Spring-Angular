@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogRef,MatDialogModule} from '@angular/material/
   selector: 'app-modal',
   imports: [MatDialogModule],
   templateUrl: './modal.component.html',
-  styleUrl: './modal.component.css'
+  styleUrl: './modal.component.scss'
 })
 export class ModalComponent {
   /* MatDialogRef:
@@ -22,7 +22,7 @@ export class ModalComponent {
         */
 
   constructor(
-    public dialogRef: MatDialogRef <ModalComponent>,
+    public dialogRef: MatDialogRef<ModalComponent>,
      @Inject(MAT_DIALOG_DATA) public data:{date:number}){
     }
 

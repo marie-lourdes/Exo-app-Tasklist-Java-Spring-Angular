@@ -1,10 +1,9 @@
 @use 'sass:color';
-//les artials scss ne doit etre configuré dans styles angular.json car non global et non compilé en css
+//les partials _scss ne doit etre configuré dans styles angular.json car non global et non compilé en css
 @use 'colors';
 
 // ****** Variables *******
 $button-margin: 1rem;
-$hover-color: color.adjust(colors.$secondary-color, $lightness: -10%);
 //$hover-color: darken($primary-color, 10%);
 ul{
     list-style-type: disclosure-open;
@@ -45,7 +44,7 @@ li{
   color: #fff;
   // ******** Effet hover ******
   &:hover {
-    background-color: $hover-color;
+    background-color: colors.$hover-color;
     transition: background-color 0.2s ease;
   }
 }
