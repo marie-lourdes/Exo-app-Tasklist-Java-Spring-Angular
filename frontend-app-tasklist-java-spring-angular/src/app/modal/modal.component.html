@@ -1,1 +1,8 @@
-<p>modal works!</p>
+<h2 mat-dialog-title>Détails du jour</h2>
+<mat-dialog-content>
+  <p>Vous avez sélectionné la date : {{ data.date }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onClose()">Fermer</button>
+</mat-dialog-actions>
+
