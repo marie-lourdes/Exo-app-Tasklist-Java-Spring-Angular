@@ -27,6 +27,8 @@ Cela permet de détecter les erreurs potentielles avant l'exécution du code.  *
   providedIn: 'root'
 })
 export class  TaskService implements OnInit {
+  /* TO DO: remplacer les données task par les Signal Angular et evite des fuites de memoire
+
   //api vec springboot
  // private apiUrl = inject(BASE_URL_API);
 

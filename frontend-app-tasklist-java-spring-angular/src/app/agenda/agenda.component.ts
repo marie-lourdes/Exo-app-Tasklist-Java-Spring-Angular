@@ -12,6 +12,8 @@ import { DateTime,Info,Interval } from "luxon";
   styleUrl: './agenda.component.scss'
 })
 export class AgendaComponent implements OnInit {
+  //TODO: utiliser la méthode `getTasksByDate(date)` du service **TaskService** pour récupérer les tâches associées à une date spécifique, puis les afficher dans une liste au sein de votre agenda
+
   today = signal<DateTime>(DateTime.local());
 
   // Récupérer le premier jour du mois actif
