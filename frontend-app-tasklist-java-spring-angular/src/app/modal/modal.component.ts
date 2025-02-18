@@ -32,8 +32,6 @@ export class ModalComponent {
        }
 
 
-
-
     onClose(): void {
       this.dialogRef.close();
     }

@@ -13,6 +13,8 @@ import { DateTime,Info,Interval } from "luxon";
 })
 export class AgendaComponent implements OnInit {
   today = signal<DateTime>(DateTime.local());
+
+  // Récupérer le premier jour du mois actif
   firstDayOfActiveMonth: WritableSignal<DateTime> = signal(
       this.today().startOf('month'));
 
@@ -63,10 +65,19 @@ export class AgendaComponent implements OnInit {
 
     }
 
-  openModal(date:string) : void {
+  openModal(day:number) : void {
+    // Récupérer le premier jour du mois actif
+    const currentMonthYear = this.firstDayOfActiveMonth();
+
+    // Reformater 'day' en une date complète (yyyy-MM-dd)
+    const fullDate = DateTime.local(currentMonthYear.year, currentMonthYear.month, day).toFormat('yyyy-MM-dd');
+
+    console.log('Date complète :', fullDate);
+
+
     const dialogRef = this.dialog.open(ModalComponent, {
       width:'400px',
-      data: { date:date} // passe la date selectionné depuis le template agenda
+      data: { date:fullDate} // passe la date selectionné depuis le template agenda
       });
 
     dialogRef.afterClosed().subscribe(result => {
