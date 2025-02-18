@@ -63,7 +63,7 @@ export class AgendaComponent implements OnInit {
 
     }
 
-  openModal(date:number) : void {
+  openModal(date:string) : void {
     const dialogRef = this.dialog.open(ModalComponent, {
       width:'400px',
       data: { date:date} // passe la date selectionné depuis le template agenda

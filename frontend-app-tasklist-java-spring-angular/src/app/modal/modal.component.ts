@@ -1,6 +1,6 @@
 import { Component,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialogModule} from '@angular/material/dialog';
-import { TaskService, Task } from '../services/task.service';
+import { TaskService, Task } from '../service/task.service';
 
 @Component({
   selector: 'app-modal',
@@ -9,6 +9,9 @@ import { TaskService, Task } from '../services/task.service';
   styleUrl: './modal.component.scss'
 })
 export class ModalComponent {
+
+  task: Task;
+
   /* MatDialogRef:
         - C'est une instance spécifique pour interagir avec un dialogue particulier.
         - Fournit des fonctionnalités comme `close()` et `afterClosed()`.
@@ -23,10 +26,12 @@ export class ModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-     @Inject(MAT_DIALOG_DATA) public data:{date:number}?
-     private taskService: TaskService){}
+     @Inject(MAT_DIALOG_DATA) public data:{date:string},
+     private taskService: TaskService){
+         this.task= {title:'',completed:false,description:'', date: data.date};
+       }
 
-     this.task= {title:'',}
+
 
 
     onClose(): void {
