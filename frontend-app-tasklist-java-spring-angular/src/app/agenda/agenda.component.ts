@@ -36,7 +36,6 @@ export class AgendaComponent implements OnInit {
        });
       });
 
-
     // Divise les jours en semaines (table de 7 jours par ligne)
       daysInWeeks: Signal<DateTime[][]> = computed(() => {
        const days = this.daysOfMonth();
