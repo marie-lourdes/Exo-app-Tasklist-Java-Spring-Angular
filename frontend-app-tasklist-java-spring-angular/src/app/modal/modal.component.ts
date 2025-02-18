@@ -12,7 +12,7 @@ import { TaskService, Task } from '../service/task.service';
   imports: [
     FormsModule,
     MatDialogModule,
-    BrowserAnimationsModule, // Nécessaire pour utiliser Angular Material
+   // BrowserAnimationsModule, // Nécessaire pour utiliser Angular Material mais semble provoquer des bug et le modal ne s affiche pas
     MatFormFieldModule,
     MatInputModule,
     ],

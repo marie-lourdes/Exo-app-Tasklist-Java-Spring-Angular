@@ -85,6 +85,7 @@ export class AgendaComponent implements OnInit {
       });
 
     dialogRef.afterClosed().subscribe(result => {
+
       console.log('le modal a été fermé', result);
       });
     }
