@@ -1,16 +1,27 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { Component,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialogModule} from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 import { TaskService, Task } from '../service/task.service';
 
 @Component({
   selector: 'app-modal',
-  imports: [MatDialogModule],
+  imports: [
+    FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule, // Nécessaire pour utiliser Angular Material
+    MatFormFieldModule,
+    MatInputModule,
+    ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'
 })
 export class ModalComponent {
 
-  private task: Task;
+  public task: Task;
 
   /* MatDialogRef:
         - C'est une instance spécifique pour interagir avec un dialogue particulier.
@@ -30,8 +41,9 @@ export class ModalComponent {
      private taskService: TaskService){
          this.task= {title:'', completed:false, description:'', date: data.date};
        }
+
      onSubmit(): void {
-        this.taskService.addTask(this.task).subscribe({
+        this.taskService.createTask(this.task).subscribe({
           //objet next, error, complete passé en parametre de subscribe au lieu de la fonction callback qui recupere par defaut l objet next (la valeur emise par l observable)
           next: result => {
             console.log('Tâche ajoutée', result);
@@ -40,6 +52,7 @@ export class ModalComponent {
           error: err => console.error('Erreur lors de l\'ajout de la tâche', err)
           //complete: ()=>{}
         });
+     }
 
     onClose(): void {
       this.dialogRef.close();
