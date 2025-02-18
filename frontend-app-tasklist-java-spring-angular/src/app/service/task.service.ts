@@ -13,6 +13,7 @@ Cela permet de détecter les erreurs potentielles avant l'exécution du code.  *
      id?: number;
      title: string;
      completed: boolean;
+     description?: string;
      date: string; // Format: YYYY-MM-DD
    }
 

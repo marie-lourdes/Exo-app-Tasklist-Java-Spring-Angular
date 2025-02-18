@@ -1,6 +1,6 @@
 import { Component,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialogModule} from '@angular/material/dialog';
-
+import { TaskService, Task } from '../services/task.service';
 
 @Component({
   selector: 'app-modal',
@@ -23,8 +23,11 @@ export class ModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-     @Inject(MAT_DIALOG_DATA) public data:{date:number}){
-    }
+     @Inject(MAT_DIALOG_DATA) public data:{date:number}?
+     private taskService: TaskService){}
+
+     this.task= {title:'',}
+
 
     onClose(): void {
       this.dialogRef.close();
