@@ -28,9 +28,8 @@ export class ModalComponent {
     public dialogRef: MatDialogRef<ModalComponent>,
      @Inject(MAT_DIALOG_DATA) public data:{date:string},
      private taskService: TaskService){
-         this.task= {title:'',completed:false,description:'', date: data.date};
+         this.task= {title:'', completed:false, description:'', date: data.date};
        }
-
 
     onClose(): void {
       this.dialogRef.close();

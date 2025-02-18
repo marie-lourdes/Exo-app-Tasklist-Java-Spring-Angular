@@ -67,9 +67,13 @@ export class AgendaComponent implements OnInit {
 
   openModal(day:number) : void {
     // Récupérer le premier jour du mois actif
+    //Méthode pour obtenir le mois (`month`) et l'année (`year`) de la date en cours.
+
     const currentMonthYear = this.firstDayOfActiveMonth();
 
     // Reformater 'day' en une date complète (yyyy-MM-dd)
+    // Combinerle mois/année actuel avec `day` pour créer un objet Luxon représentant la date complète.
+
     const fullDate = DateTime.local(currentMonthYear.year, currentMonthYear.month, day).toFormat('yyyy-MM-dd');
 
     console.log('Date complète :', fullDate);
