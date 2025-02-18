@@ -12,7 +12,6 @@ Dans le DOM la balise mat-dialog-container est monté, et encapsule app-modal, n
   //background-color: colors.$hover-color;
   border-radius: 2rem;
   & .mat-mdc-dialog-surface{
-      background-color: rgba(92,152,201,0.6);
       padding: 2rem;
     }
 }

@@ -1,8 +1,20 @@
-<h2 mat-dialog-title>Détails du jour</h2>
+<h2 mat-dialog-title>Ajouter une tâche</h2>
 <mat-dialog-content>
-  <p>Vous avez sélectionné la date : {{ data.date }}</p>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="onClose()">Fermer</button>
-</mat-dialog-actions>
+  <form #taskForm="ngForm" (ngSubmit)="onSubmit()">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Titre</mat-label>
+      <input matInput placeholder="Titre de la tâche" required [(ngModel)]="task.title" name="title" />
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description" rows="3" [(ngModel)]="task.description" name="description"></textarea>
+    </mat-form-field>
+
+    <p>Date sélectionnée : <strong>{{ task.date }}</strong></p>
+
+    <button type="submit" mat-raised-button color="primary" [disabled]="!taskForm.valid">Ajouter</button>
+    <button type="button" mat-button (click)="onClose()">Annuler</button>
+  </form>
+
 
