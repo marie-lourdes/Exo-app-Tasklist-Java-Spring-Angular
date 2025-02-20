@@ -24,18 +24,31 @@ export class AgendaComponent implements OnInit {
 
   /* splitBy divise  l interval ci dessus en en petite interval de 1 jour : en calculant d abord le  premier jour  du mois courant et le debut de la semaine dans lequel se situe le 1er jour du mois
    //jusqu à la fin du mois et le dernier jour de la semaine dans lequel se situe le dernier du mois et retourne un tableau*/
-    daysOfMonth: Signal<DateTime[]> = computed( ()=> {
-    return Interval.fromDateTimes(
-       this.firstDayOfActiveMonth().startOf('week'),
-       this.firstDayOfActiveMonth().endOf('month').endOf('week')
-       )
-     .splitBy({day:1})
-     .map((day) => {
-       if( day.start === null ){
-         throw new Error('Wrong dates');
-         }
-       return day.start; // retourne  le start de l interval courant ,dans le tableau  chaque index contient les valeur "start" et "end" des petit intervales
-       });
+    daysOfMonth: Signal<DateTime[]> = computed(() => {
+      return Interval.fromDateTimes(
+        this.firstDayOfActiveMonth().startOf('week'),
+        this.firstDayOfActiveMonth().endOf('month').endOf('week')
+        )
+      .splitBy({ day: 1 })
+      .map((interval) => interval.start!)
+
+
+      .filter((date) => !!date);
+      /*start! : -Dit explicitement à TypeScript qu'une valeur n'est **ni `null` ni `undefined`.**
+                 -| Supprime les vérifications de sécurité automatiques pour `null` et `undefined`.
+                  */
+
+      /* l operateur !! force une valeur pure booleenne au lieu du simple ! qui inverse la valeur
+      L'opérateur `!!` est une manière concise de convertir toute valeur en un **booléen** (true/false) en JavaScript/TypeScript.
+        - La première **négation (`!`)** transforme une valeur en son opposé booléen :
+            - Une valeur "truthy" devient `false`.
+            - Une valeur "falsy" devient `true`.
+
+        - La seconde **négation (`!`)** inverse à nouveau cette valeur, la ramenant à son équivalent booléen d'origine :
+            - Une valeur "truthy" redevient `true`.
+            - Une valeur "falsy" redevient `false`.
+        toute les dates pure truthy seront conservé, DateTime<boolean>*/
+
       });
 
     // Divise les jours en semaines (table de 7 jours par ligne)
