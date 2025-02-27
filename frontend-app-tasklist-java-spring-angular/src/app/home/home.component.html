@@ -1,8 +1,15 @@
+@defer(on timer(15s); hydrate on interaction) {
 <div class="banner">
   <img src="./assets/images/banner.webp"/>
 </div>
-
 <app-task-list/>
+} @placeholder{
+<p>Chargement de la liste des tâches...</p>
+<app-load-spinner/>
+}@loading {
+<!--<app-load-spinner/>-->
+}
+
 
 
 
