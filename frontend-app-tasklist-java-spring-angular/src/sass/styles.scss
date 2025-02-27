@@ -12,6 +12,7 @@ body {
   // display:flex;
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    position: relative;
    @media (max-width: 768px) {
      font-size: 1rem;
    }
@@ -74,6 +75,26 @@ button {
   padding: 0.5rem 1rem;
   cursor: pointer;
   }
+
+.container-link-agenda {
+  display: flex;
+  position: absolute;
+  right:0;
+  bottom:5vh;
+  & .link-agenda {
+        background-color: colors.$color-title;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height:50px;
+        border-radius: 50%;
+        margin-right: 2rem;
+        color: #fff;
+        text-decoration: none;
+
+      }
+    }
 
 footer {
   display: flex;
