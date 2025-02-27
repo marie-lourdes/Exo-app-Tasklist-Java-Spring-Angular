@@ -3,15 +3,16 @@ import { TaskService, Task } from '../service/task.service';
 import {CommonModule} from '@angular/common';
 // pour ngModel!!! le formModule doit etre importe dans le component qui l utilise et pas dans le app.module  selon l exo
 import {FormsModule } from '@angular/forms'; // Importer FormsModule
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-task-list',
-  imports: [CommonModule,FormsModule ],
+  imports: [CommonModule,FormsModule,MatIconModule],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss'
 })
 export class TaskListComponent implements OnInit{
-
+  iconDeleteStyles = '#3498db';
   //on utilise ici la fonction inject() au lieu d injecter le service dans le constructor rendant ainsi l'héritage plus maniable dans Angular.
   //cela est possible grace à la configuration dans le provider de app.config.ts
   taskService = inject(TaskService);
