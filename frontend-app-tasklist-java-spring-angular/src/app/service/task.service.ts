@@ -1,4 +1,4 @@
-import { Injectable,OnInit,Inject } from '@angular/core';
+import { Injectable,OnInit,Inject,WritableSignal, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {BASE_URL_API} from '../../environments/app.token';
@@ -75,7 +75,7 @@ export class  TaskService implements OnInit {
     this.http.delete<void>(`${this.apiUrl}/${id}`).subscribe(
       ()=> {
         this.tasks.update((tasks) => tasks.filter((t)=>
-          task.id !== id));
+          t.id !== id));
     });
   }
 
@@ -99,7 +99,7 @@ export class  TaskService implements OnInit {
 
 
 // Charger à partir du backend et setter dans le signal
-  loadTasks(): void {
+  private loadTasks(): void {
     this.http.get<Task[]>(this.apiUrl).subscribe(
       (tasks)=> {
         this.tasks.set(tasks); // Mettre à jour le contenu du signal

@@ -19,8 +19,9 @@ export class TaskListComponent implements OnInit{
 
 /* ************* Refactoring method CRUD with reactive programming with signal() computed() ********************** */
 
-   // Signal contenant toutes les tâches
-    tasks = signal<Task[]>([]);
+  // Signal contenant toutes les tâches (directement obtenu depuis le service)
+  tasks = this.taskService.getTasks();
+
 
   //on cree des donne vide et par defaut pour le template a remplir de l ajout d un task
   newTask : Task = {title:'', completed:false, date:''};
@@ -41,44 +42,37 @@ export class TaskListComponent implements OnInit{
     computation: () => this.tasks().length // Valeur par défaut et initial
   });
 
- // constructor( private taskService : TaskService) {}
-
    ngOnInit(): void {
-        this.loadTasks();
+     // Les tâches sont déjà chargées initialement via le service
+     //this.loadTasks();
    }
 
-   loadTasks(): void {
+  /* loadTasks(): void {
      this.taskService.getTasks().subscribe((tasks) => {
       // Mettre à jour le signal avec les tâches chargées
       this.tasks.set(tasks);
      });
-   }
+   }*/
 
+// Ajouter une tâche
     addTask(): void {
         if (!this.newTask.title.trim()) {
           alert('Le titre de la tâche ne peut pas être vide.');
           return;
         }
+        this.taskService.createTask(this.newTask);
+        this.newTask = { title: '', completed: false, date:'' }; // Réinitialiser la tâche
 
-        this.taskService.createTask(this.newTask).subscribe((task) => {
-          this.tasks.update((currentTasks) => [...currentTasks, task]);
-          this.newTask = { title: '', completed: false, date:'' }; // Réinitialiser la tâche
-        });
       }
+// Mettre à jour une tâche
 
     updateTask(task: Task): void {
-      this.taskService.updateTask(task).subscribe((updatedTask) => {
-        this.tasks.update((tasks) =>
-         tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t))
-          );
-         confirm( "number of tasks completed computed:" + this.tasksCompleted().filter(task => task.completed ).length);
-        });
+      this.taskService.updateTask(task);
+      confirm( "number of tasks completed computed:" + this.tasksCompleted().length);
       }
 
-     deleteTask(id: number): void {
-          this.taskService.deleteTask(id).subscribe(() => {
-            this.tasks.update((tasks) => tasks.filter((task) => task.id !== id));
-           });
-         }
+    deleteTask(id: number): void {
+      this.taskService.deleteTask(id);
+      }
 }
 
