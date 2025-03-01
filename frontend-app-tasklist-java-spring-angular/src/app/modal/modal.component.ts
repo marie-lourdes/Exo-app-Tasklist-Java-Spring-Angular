@@ -43,14 +43,8 @@ export class ModalComponent {
        }
 
      onSubmit(): void {
-        this.taskService.createTask(this.task).subscribe({
-          //objet next, error, complete passé en parametre de subscribe au lieu de la fonction callback qui recupere par defaut l objet next (la valeur emise par l observable)
-          next: result => {
-            console.log('Tâche ajoutée', result);
-            this.dialogRef.close(result); // Fermer le modal avec le résultat
-          },
-          error: err => console.error('Erreur lors de l\'ajout de la tâche', err)
-          //complete: ()=>{}
+        this.taskService.createTask(this.task);
+        this.dialogRef.close(); //
         });
      }
 

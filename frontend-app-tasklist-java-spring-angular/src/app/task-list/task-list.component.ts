@@ -36,13 +36,13 @@ export class TaskListComponent implements OnInit{
     this.tasks().filter((task) => task.completed)
   );
 
-// Test de LinkedSignal qui rend modifiable un Signal et reagit au Signal source: this.tasks
+  // Test de LinkedSignal qui rend modifiable un Signal et reagit au Signal source: this.tasks
   numberTask = linkedSignal({
     source: this.tasks,
     computation: () => this.tasks().length // Valeur par défaut et initial
   });
 
-   ngOnInit(): void {
+  ngOnInit(): void {
      // Les tâches sont déjà chargées initialement via le service
      //this.loadTasks();
    }
@@ -54,25 +54,25 @@ export class TaskListComponent implements OnInit{
      });
    }*/
 
-// Ajouter une tâche
-    addTask(): void {
-        if (!this.newTask.title.trim()) {
-          alert('Le titre de la tâche ne peut pas être vide.');
+  // Ajouter une tâche
+  addTask(): void {
+    if (!this.newTask.title.trim()) {
+      alert('Le titre de la tâche ne peut pas être vide.');
           return;
-        }
+          }
         this.taskService.createTask(this.newTask);
         this.newTask = { title: '', completed: false, date:'' }; // Réinitialiser la tâche
 
       }
-// Mettre à jour une tâche
 
-    updateTask(task: Task): void {
-      this.taskService.updateTask(task);
-      confirm( "number of tasks completed computed:" + this.tasksCompleted().length);
-      }
+ // Mettre à jour une tâche
+  updateTask(task: Task): void {
+    this.taskService.updateTask(task);
+    confirm( "number of tasks completed computed:" + this.tasksCompleted().length);
+    }
 
-    deleteTask(id: number): void {
-      this.taskService.deleteTask(id);
-      }
+  deleteTask(id: number): void {
+    this.taskService.deleteTask(id);
+    }
 }
 
