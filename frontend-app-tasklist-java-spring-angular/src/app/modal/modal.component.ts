@@ -44,8 +44,7 @@ export class ModalComponent {
 
      onSubmit(): void {
         this.taskService.createTask(this.task);
-        this.dialogRef.close(); //
-        });
+        this.dialogRef.close(); //Fermer le modal
      }
 
     onClose(): void {
