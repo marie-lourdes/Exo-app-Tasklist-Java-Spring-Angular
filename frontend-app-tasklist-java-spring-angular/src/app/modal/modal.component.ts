@@ -4,7 +4,6 @@ import { Component,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialogModule} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
 import { TaskService, Task } from '../service/task.service';
 
 @Component({
@@ -50,6 +49,5 @@ export class ModalComponent {
     onClose(): void {
       this.dialogRef.close();
     }
-
 
 }
