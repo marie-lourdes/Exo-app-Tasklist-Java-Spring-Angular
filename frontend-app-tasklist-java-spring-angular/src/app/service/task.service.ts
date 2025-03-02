@@ -58,7 +58,9 @@ export class  TaskService implements OnInit {
       });
   }
 
-  updateTask(task: Task): void {
+/* refactoring: déplacer l'appel `confirm` directement dans l'abonnement `subscribe` du service
+via un call back en parametre de la methode update et garder un affichage des taches completed reactif */
+  updateTask(task: Task,onComplete: () => void) : void {
     this.http.put<Task>(`${this.apiUrl}/${task.id}`, task).subscribe(
        (updatedTask)=> {
          /*- Attention il s agit de la méthode native **JavaScript Array.map()**.
@@ -68,6 +70,9 @@ export class  TaskService implements OnInit {
          this.tasks.update((tasks)=>
            tasks.map((t)=> (t.id === updatedTask.id ? updatedTask : t ))
          );
+         // Appeler le callback après la mise à jour
+           onComplete();
+
        });
   }
 
@@ -99,7 +104,7 @@ export class  TaskService implements OnInit {
 
 
 // Charger à partir du backend et setter dans le signal
-  private loadTasks(): void {
+   loadTasks(): void {
     this.http.get<Task[]>(this.apiUrl).subscribe(
       (tasks)=> {
         this.tasks.set(tasks); // Mettre à jour le contenu du signal

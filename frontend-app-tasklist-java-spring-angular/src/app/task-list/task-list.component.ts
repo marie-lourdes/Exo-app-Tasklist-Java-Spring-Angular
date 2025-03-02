@@ -31,7 +31,7 @@ export class TaskListComponent implements OnInit{
     this.tasks().filter((task) => !task.completed)
   );
 
-  // Computed pour filtrer les tâches terminées
+ // Computed pour filtrer les tâches terminées
   tasksCompleted = computed(() =>
     this.tasks().filter((task) => task.completed)
   );
@@ -44,7 +44,7 @@ export class TaskListComponent implements OnInit{
 
   ngOnInit(): void {
      // Les tâches sont déjà chargées initialement via le service
-     //this.loadTasks();
+     //this.taskService.loadTasks();
    }
 
   /* loadTasks(): void {
@@ -67,8 +67,11 @@ export class TaskListComponent implements OnInit{
 
  // Mettre à jour une tâche
   updateTask(task: Task): void {
-    this.taskService.updateTask(task);
-    confirm( "number of tasks completed computed:" + this.tasksCompleted().length);
+    // Appeler la méthode updateTask du service pour mettre à jour l'état signal source
+    // refactoring: le signal computed reagira au changement au signal this.tasks via le call back dans la subscription du l 'observable ds taskservice'
+   this.taskService.updateTask(task, () => {
+     confirm("number of tasks completed computed:" + this.tasksCompleted().length);
+     });
     }
 
   deleteTask(id: number): void {
