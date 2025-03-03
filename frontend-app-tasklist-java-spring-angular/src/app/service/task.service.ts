@@ -31,7 +31,6 @@ export class  TaskService implements OnInit {
   // Signal contenant toutes les tâches
   private tasks: WritableSignal<Task[]> = signal([]);
 
-
  /* -L'utilisation de la méthode ngOnInit dans Angular est recommandée pour les opérations d'initialisation qui ne doivent être effectuées qu'une seule fois au cours du cycle de vie d'un composant.
    Cela permet de s'assurer que les données requises pour le composant sont disponibles avant que celui-ci ne soit affiché à l'écran.
   En faisant la requête dans la méthode ngOnInit, vous pouvez être sûr que les données sont chargées avant que le composant ne soit rendu, ce qui évite des erreurs potentielles lors de l'affichage de données manquantes ou non actualisées. Cela peut également aider à améliorer les performances en évitant d'exécuter des opérations inutiles ou coûteuses en temps d'exécution.
