@@ -59,7 +59,9 @@ export class  TaskService implements OnInit {
   }
 
 /* refactoring: déplacer l'appel `confirm` directement dans l'abonnement `subscribe` du service
-via un call back en parametre de la methode update et garder un affichage des taches completed reactif */
+via un call back en parametre de la methode update et garder un affichage reactif du nombre de taches completed
+Permet de s assurer les mises à jour asynchrones ont été effectuées avant d'informer le composant ou l'utilisateur des changements.
+*/
   updateTask(task: Task,onComplete: () => void) : void {
     this.http.put<Task>(`${this.apiUrl}/${task.id}`, task).subscribe(
        (updatedTask)=> {
