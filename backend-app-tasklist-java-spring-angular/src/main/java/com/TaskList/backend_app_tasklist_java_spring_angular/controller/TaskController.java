@@ -45,11 +45,11 @@ public class TaskController {
 		taskService.deleteOneTaskById(id);
 	}
 
-	@GetMapping("/{id}")
-	public Task getTaskDetails(@PathVariable Long id) {
+	/*@GetMapping("/{id}")
+	public Task getTaskById(@PathVariable Long id) {
 		return taskService.findOneTaskById(id);
 
-	}
+	}*/
 
 	@GetMapping("/{date}")
 	public List<Task> getTasksByDate(@PathVariable String date) {

@@ -29,12 +29,12 @@ public class TaskService {
 		taskRepository.deleteById(id);
 	}
 
-	public Task findOneTaskById(Long id) {
+	/*public Task findOneTaskById(Long id) {
 		// lamethode retour un objet Optional<Task> mais avec la methode .get() ou ici
 		// la methode orElseTrow(), il recupere l objet task contenu dans un objet
 		// Optional
 		return taskRepository.findById(id).orElseThrow(() -> new NullPointerException("task not found"));
-	}
+	}*/
 	
 	public List<Task> findTasksByDate(String date) {
 		return taskRepository.findByDate(LocalDate.parse(date));
