@@ -2,7 +2,7 @@ import { Component,OnInit,signal,WritableSignal,Signal, computed } from '@angula
 import {UpperCasePipe} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
-import { AgendaService} from '../service/agenda.service';
+import { TaskService, Task } from '../service/task.service';
 import { DateTime,Info,Interval } from "luxon";
 
 @Component({
@@ -61,12 +61,16 @@ export class AgendaComponent implements OnInit {
        return weeks;
      });
 
+    // Signal pour gérer les listes de tâches par date
+    tasksByDate = signal<Map<string, Task[]>>(new Map());
+
+
+
   /* MatDialog:
         - C'est un service pour ouvrir et gérer globalement les dialogues.
         - Fournit des méthodes comme `open()` et `closeAll()`.*/
 
-    constructor( private agenda: AgendaService,private dialog: MatDialog
- ){}
+    constructor( private taskService: TaskService,private dialog: MatDialog){}
 
     ngOnInit(): void {
     //test luxon library  and method DateTime.local().startOf('month') in agenda service
@@ -79,8 +83,9 @@ export class AgendaComponent implements OnInit {
 
     }
 
-  openModal(day:number) : void {
-    // Récupérer le premier jour du mois actif
+  openModal(day:DateTime) : void {
+
+    /*// Récupérer le premier jour du mois actif
     //Méthode pour obtenir le mois (`month`) et l'année (`year`) de la date en cours.
 
     const currentMonthYear = this.firstDayOfActiveMonth();
@@ -90,18 +95,44 @@ export class AgendaComponent implements OnInit {
 
     const fullDate = DateTime.local(currentMonthYear.year, currentMonthYear.month, day).toFormat('yyyy-MM-dd');
 
-    console.log('Date complète :', fullDate);
+    console.log('Date complète :', fullDate);*/
+
+    /*En JavaScript natif, pour un objet `Date`,
+    vous pouvez obtenir une date ISO complète avec `toISOString()`,
+    mais cela inclut aussi l'heure et le décalage horaire
+    La méthode `toISODate()` appartient à **Luxon** et non au JavaScript natif.*/
+
+    const selectedDate = day.toISODate(); // Format YYYY-MM-DD
 
 
     const dialogRef = this.dialog.open(ModalComponent, {
       width:'400px',
-      data: { date:fullDate} // passe la date selectionné depuis le template agenda
+      data: { date:selectedDate} // passe la date selectionné depuis le template agenda
       });
 
+    // Mise à jour des tâches après la fermeture du modal
     dialogRef.afterClosed().subscribe(() => {
       console.log('le modal a été fermé');
+      this.loadTasksByDate(selectedDate);
+
       });
     }
+
+   // Charger toutes les tâches pour une date donnée et mettre à jour la signal
+    private loadTasksByDate(date: string): void {
+      this.taskService.getTasksByDate(date).subscribe((tasks) => {
+        const tasksMap = this.tasksByDate();
+        tasksMap.set(date, tasks);
+        this.tasksByDate.set(tasksMap);
+      });
+    }
+
+   // Récupérer les tâches d'une date sous forme de tableau (pour afficher dans l'agenda)
+    getTasksForDate(date: DateTime): Task[] {
+      return this.tasksByDate().get(date.toISODate()) || [];
+    }
+
+
 
 }
 
