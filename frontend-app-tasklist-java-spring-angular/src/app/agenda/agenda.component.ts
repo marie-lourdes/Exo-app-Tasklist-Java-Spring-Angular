@@ -98,9 +98,8 @@ export class AgendaComponent implements OnInit {
       data: { date:fullDate} // passe la date selectionné depuis le template agenda
       });
 
-    dialogRef.afterClosed().subscribe(result => {
-
-      console.log('le modal a été fermé', result);
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('le modal a été fermé');
       });
     }
 

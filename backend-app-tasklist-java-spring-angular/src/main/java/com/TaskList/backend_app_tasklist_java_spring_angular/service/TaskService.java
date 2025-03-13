@@ -4,9 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.TaskList.backend_app_tasklist_java_spring_angular.model.Task;
 import com.TaskList.backend_app_tasklist_java_spring_angular.repository.TaskRepository;
@@ -29,12 +27,12 @@ public class TaskService {
 		taskRepository.deleteById(id);
 	}
 
-	/*public Task findOneTaskById(Long id) {
+	public Task findOneTaskById(Long id) {
 		// lamethode retour un objet Optional<Task> mais avec la methode .get() ou ici
 		// la methode orElseTrow(), il recupere l objet task contenu dans un objet
 		// Optional
 		return taskRepository.findById(id).orElseThrow(() -> new NullPointerException("task not found"));
-	}*/
+	}
 	
 	public List<Task> findTasksByDate(String date) {
 		return taskRepository.findByDate(LocalDate.parse(date));

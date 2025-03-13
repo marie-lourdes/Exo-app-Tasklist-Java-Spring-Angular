@@ -51,7 +51,7 @@ export class  TaskService implements OnInit {
   }
 
   createTask(task: Task): void {
-     this.http.post<Task>(this.apiUrl, task).subscribe(
+     this.http.post<Task>(`${this.apiUrl}/save`, task).subscribe(
       (newTask) =>{
         this.tasks.update((tasks) => [...tasks, newTask]);
       });
@@ -62,7 +62,7 @@ via un call back en parametre de la methode update et garder un affichage reacti
 Permet de s assurer les mises à jour asynchrones ont été effectuées avant d'informer le composant ou l'utilisateur des changements.
 */
   updateTask(task: Task,onComplete: () => void) : void {
-    this.http.put<Task>(`${this.apiUrl}/${task.id}`, task).subscribe(
+    this.http.put<Task>(`${this.apiUrl}/update/${task.id}`, task).subscribe(
        (updatedTask)=> {
          /*- Attention il s agit de la méthode native **JavaScript Array.map()**.
            - Elle itère sur chaque element du  tableau (les tâches, `Task[]`) pour les  transformer et retourner un nouveau tableau.
@@ -78,7 +78,7 @@ Permet de s assurer les mises à jour asynchrones ont été effectuées avant d'
   }
 
   deleteTask(id: number): void {
-    this.http.delete<void>(`${this.apiUrl}/${id}`).subscribe(
+    this.http.delete<void>(`${this.apiUrl}/delete/${id}`).subscribe(
       ()=> {
         this.tasks.update((tasks) => tasks.filter((t)=>
           t.id !== id));
@@ -89,7 +89,7 @@ Permet de s assurer les mises à jour asynchrones ont été effectuées avant d'
     // Créer un signal pour contenir les tâches par date
     const tasksByDate: WritableSignal<Task[]> = signal([]);
    // Effectuer la requête HTTP et mettre à jour le Signal
-   this.http.get<Task[]>(`${this.apiUrl}/${date}`).subscribe({
+   this.http.get<Task[]>(`${this.apiUrl}/details/${date}`).subscribe({
      next: (tasks) => tasksByDate.set(tasks),
      error: (err) => console.error('Error fetching tasks by date:', err)
    });

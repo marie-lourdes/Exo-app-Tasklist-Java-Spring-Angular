@@ -27,12 +27,12 @@ public class TaskController {
 	@Autowired
 	TaskService taskService;
 
-	@PostMapping
+	@PostMapping("/save")
 	public Task createTask(@RequestBody Task task) {
 		return taskService.saveOneTask(task);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("update/{id}")
 	public Task updateTask(@PathVariable Long id, @RequestBody Task taskDetails) {
 		Task taskUpdated = taskService.findOneTaskById(id);
 		taskUpdated.setTitle(taskDetails.getTitle());
@@ -40,18 +40,18 @@ public class TaskController {
 		return taskService.updateOneTaskById(taskUpdated);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("delete/{id}")
 	public void deleteTask(@PathVariable Long id) {
 		taskService.deleteOneTaskById(id);
 	}
 
-	/*@GetMapping("/{id}")
+	/*@GetMapping("details/{id}")
 	public Task getTaskById(@PathVariable Long id) {
 		return taskService.findOneTaskById(id);
 
 	}*/
 
-	@GetMapping("/{date}")
+	@GetMapping("details/{date}")
 	public List<Task> getTasksByDate(@PathVariable String date) {
 		return taskService.findTasksByDate(date);	
 	}
