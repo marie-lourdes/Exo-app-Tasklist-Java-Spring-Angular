@@ -80,6 +80,21 @@ export class AgendaComponent implements OnInit {
     console.log("nombre de semaine du mois courant: " + this.daysInWeeks().length);
     console.log("jours du mois courant : " + this.daysOfMonth());
     console.log("semaine du mois courant: " + this.daysInWeeks());
+    // Charger toutes les tâches au démarrage et les organiser par date
+     this.taskService.getTasks().subscribe((tasks) => {
+              const tasksMap = new Map<string, Task[]>();
+
+              // Grouper les tâches par date
+              tasks.forEach((task) => {
+                const date = task.date;
+                if (!tasksMap.has(date)) {
+                  tasksMap.set(date, []);
+                }
+                tasksMap.get(date)?.push(task);
+              });
+
+              this.tasksByDate.set(tasksMap);
+            });
 
     }
 
