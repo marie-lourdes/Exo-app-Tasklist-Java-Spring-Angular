@@ -13,6 +13,8 @@ import { DateTime,Info,Interval } from "luxon";
 })
 export class AgendaComponent implements OnInit {
   //TODO: utiliser la méthode `getTasksByDate(date)` du service **TaskService** pour récupérer les tâches associées à une date spécifique, puis les afficher dans une liste au sein de votre agenda
+  //TODO: implementer une fonctionalité pour naviguer du mois precedent au suivant pour acceder à l historique des taches des dates precedents
+
   taskService = inject(TaskService);
   today = signal<DateTime>(DateTime.local());
 
