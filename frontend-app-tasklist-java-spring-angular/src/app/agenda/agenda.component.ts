@@ -1,5 +1,5 @@
 import { Component,OnInit,inject,signal,WritableSignal,Signal, computed } from '@angular/core';
-import {UpperCasePipe} from '@angular/common';
+import {CommonModule,UpperCasePipe} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { TaskService, Task } from '../service/task.service';
@@ -7,7 +7,7 @@ import { DateTime,Info,Interval } from "luxon";
 
 @Component({
   selector: 'app-agenda',
-  imports: [UpperCasePipe],
+  imports: [CommonModule],
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.scss'
 })
@@ -127,11 +127,15 @@ export class AgendaComponent implements OnInit {
     La méthode `toISODate()` appartient à **Luxon** et non au JavaScript natif.*/
 
     const selectedDate = day.toISODate(); // Format YYYY-MM-DD
+    const tasksForDate = this.taskService.getTasksByDate(day.toFormat('yyyy-MM-dd'));
 
 
     const dialogRef = this.dialog.open(ModalComponent, {
       width:'400px',
-      data: { date:selectedDate} // passe la date selectionné depuis le template agenda
+      data: {
+        date: selectedDate,
+        tasks: tasksForDate
+        } // passe la date selectionné depuis le template agenda
       });
 
     // Mise à jour des tâches après la fermeture du modal
@@ -166,7 +170,7 @@ export class AgendaComponent implements OnInit {
 
    // Récupérer les tâches d'une date sous forme de tableau (pour afficher dans l'agenda)
     getTasksForDate(date: DateTime| null): Task[] {
-      return this.tasksByDate().get(date?.toISODate() ?? '') || [];
+      return this.groupedTasksByDate().get(date?.toISODate() ?? '') || [];
 
     }
 

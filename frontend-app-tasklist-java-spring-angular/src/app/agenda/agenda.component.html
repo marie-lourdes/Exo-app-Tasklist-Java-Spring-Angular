@@ -29,19 +29,7 @@
           <tr>
             @for( day of  week; track $index){
             <!-- day.day renvoit la date , ex: 15, day renvoit la date complete 15/04/2025 avec DateTime de Luxon-->
-            <td (click)="openModal(day)">
-              <div>{{day.day}}</div>
-
-              <!-- Liste des tâches pour chaque jour -->
-              <ul class="task-list">
-                @for(taskByDate of getTasksForDate(day); track taskByDate){
-                <li>
-                  {{ taskByDate.title }}
-                </li>
-                }
-              </ul>
-
-            </td>
+            <td (click)="openModal(day)"> {{day.day}}</td>
             }
           </tr>
           }
@@ -57,6 +45,26 @@
 
     </div>
 
+  </div>
+</section>
+<section class="liste de taches">
+  <div>
+    <!-- Liste des tâches pour chaque jour -->
+    <ul class="task-list">
+      <!-- Utilisez groupedTasksByDate pour générer toutes les tâches par date -->
+      <!-- Le pipe `| keyvalue` dans Angular est un outil pratique qui permet de parcourir les **objets**
+       ou les **maps** dans les templates, en les transformant en une liste de paires clé-valeur,
+       que vous pouvez itérer avec `*ngFor`.
+       Il est particulièrement utile lorsque vous souhaitez afficher des données structurées
+       sous forme d'objets ou `Map` dans le DOM.-->
+      <li *ngFor="let entry of groupedTasksByDate() | keyvalue">
+        <h4>{{ entry.key }}</h4>
+        <ul>
+          <li *ngFor="let task of entry.value">{{ task.title }}</li>
+        </ul>
+
+      </li>
+    </ul>
   </div>
 </section>
 

@@ -21,6 +21,9 @@ import { TaskService, Task } from '../service/task.service';
 export class ModalComponent {
 
   public task: Task;
+  public date: string;
+  public tasks: Task[];
+
 
   /* MatDialogRef:
         - C'est une instance spécifique pour interagir avec un dialogue particulier.
@@ -36,9 +39,12 @@ export class ModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-     @Inject(MAT_DIALOG_DATA) public data:{date:string},
+     @Inject(MAT_DIALOG_DATA) public data:{date: string; tasks: Task[]},
      private taskService: TaskService){
          this.task= {title:'', completed:false, description:'', date: data.date};
+         this.date = data.date;
+         this.tasks = data.tasks; // Tâches passées par AgendaComponent
+
        }
 
      onSubmit(): void {

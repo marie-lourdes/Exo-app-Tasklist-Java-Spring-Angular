@@ -2,6 +2,8 @@
  le decorateur @defer de withIncrementalHydration fontionne avec la syntaxe du selecteur html en une seule balise et non 2 :
  <app-task-list> </app-task-list>
  cette fonctionnalité @defer  hydrate s applique  avec l inremental hydratation
+ l attente ne fonctionne qu avec un event (on interaction) ,
+ ici le clic sur l onglet home mais au chargement de la page home, pas d attente et de spinner
  -->
 @defer(on timer(10s); hydrate on interaction) {
 <div class="banner">
