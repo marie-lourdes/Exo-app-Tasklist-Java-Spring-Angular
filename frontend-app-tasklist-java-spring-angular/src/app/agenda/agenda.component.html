@@ -29,7 +29,19 @@
           <tr>
             @for( day of  week; track $index){
             <!-- day.day renvoit la date , ex: 15, day renvoit la date complete 15/04/2025 avec DateTime de Luxon-->
-            <td (click)="openModal(day.day)">{{day.day}} </td>
+            <td (click)="openModal(day)">
+              <div>{{day}}</div>
+
+              <!-- Liste des tâches pour chaque jour -->
+              <ul class="task-list">
+                @for(taskByDate of getTasksForDate(day); track taskByDate){
+                <li>
+                  {{ taskByDate.title }}
+                </li>
+                }
+              </ul>
+
+            </td>
             }
           </tr>
           }

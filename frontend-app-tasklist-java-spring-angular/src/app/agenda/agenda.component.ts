@@ -1,4 +1,4 @@
-import { Component,OnInit,signal,WritableSignal,Signal, computed } from '@angular/core';
+import { Component,OnInit,inject,signal,WritableSignal,Signal, computed } from '@angular/core';
 import {UpperCasePipe} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
@@ -13,7 +13,7 @@ import { DateTime,Info,Interval } from "luxon";
 })
 export class AgendaComponent implements OnInit {
   //TODO: utiliser la méthode `getTasksByDate(date)` du service **TaskService** pour récupérer les tâches associées à une date spécifique, puis les afficher dans une liste au sein de votre agenda
-
+  taskService = inject(TaskService);
   today = signal<DateTime>(DateTime.local());
 
   // Récupérer le premier jour du mois actif
@@ -64,13 +64,32 @@ export class AgendaComponent implements OnInit {
     // Signal pour gérer les listes de tâches par date
     tasksByDate = signal<Map<string, Task[]>>(new Map());
 
+     // ComputedSignal pour grouper les tâches par date
+      groupedTasksByDate: Signal<Map<string, Task[]>> = computed(() => {
+        const tasks = this.taskService.getTasks(); // Obtient toutes les tâches
+        const grouped = new Map<string, Task[]>();
+
+        tasks().forEach((task) => {
+          if (!grouped.has(task.date)) {
+            grouped.set(task.date, []);// Initialiser un tableau de tâches pour cette date
+
+          }
+          grouped.get(task.date)?.push(task);// Ajouter la tâche à la date correspondante
+
+        });
+
+        return grouped; // Retourne une Map où chaque clé est une date, et chaque valeur est un tableau de tâches
+
+      });
+
+
 
 
   /* MatDialog:
         - C'est un service pour ouvrir et gérer globalement les dialogues.
         - Fournit des méthodes comme `open()` et `closeAll()`.*/
 
-    constructor( private taskService: TaskService,private dialog: MatDialog){}
+    constructor(private dialog: MatDialog){}
 
     ngOnInit(): void {
     //test luxon library  and method DateTime.local().startOf('month') in agenda service
@@ -81,20 +100,8 @@ export class AgendaComponent implements OnInit {
     console.log("jours du mois courant : " + this.daysOfMonth());
     console.log("semaine du mois courant: " + this.daysInWeeks());
     // Charger toutes les tâches au démarrage et les organiser par date
-     this.taskService.getTasks().subscribe((tasks) => {
-              const tasksMap = new Map<string, Task[]>();
+    this.groupedTasksByDate();
 
-              // Grouper les tâches par date
-              tasks.forEach((task) => {
-                const date = task.date;
-                if (!tasksMap.has(date)) {
-                  tasksMap.set(date, []);
-                }
-                tasksMap.get(date)?.push(task);
-              });
-
-              this.tasksByDate.set(tasksMap);
-            });
 
     }
 
@@ -128,24 +135,45 @@ export class AgendaComponent implements OnInit {
     // Mise à jour des tâches après la fermeture du modal
     dialogRef.afterClosed().subscribe(() => {
       console.log('le modal a été fermé');
-      this.loadTasksByDate(selectedDate);
+      //this.loadTasksByDate(selectedDate);
 
       });
     }
 
-   // Charger toutes les tâches pour une date donnée et mettre à jour la signal
+/* *******Apres refactoring avec le computedSignal  groupedTasksByDate:************
+ La méthode `loadTasksByDate` n'est **pas nécessaire** dans le contexte actuel,
+  car les nouvelles méthodologies basées sur **signals** et les **computed signals** rendent ces types de méthodes gestionnaires superflues. Analysons pourquoi.
+  ### **1. Appel de `getTasksForDate` dans `ngOnInit`**
+  Appeler directement `getTasksForDate` dans `ngOnInit` n'est **pas nécessaire** non plus. Voici pourquoi :
+  - La méthode **`getTasksForDate`** est une méthode "d'accès" aux tâches déjà regroupées par date, grâce à votre `tasksByDate` signal (ou `groupedTasksByDate`).
+  La méthode retourne simplement les données lorsque vous en avez besoin.
+  - Les données collectées sont dépendantes des `signals`.
+  La collection (ou "fetch data") se fait automatiquement via votre service et l'utilisation des `computed signals`.
+
+
+  // Charger toutes les tâches pour une date donnée et mettre à jour la signal
     private loadTasksByDate(date: string): void {
+       return this.tasksByDate().get(date) || [];
+
       this.taskService.getTasksByDate(date).subscribe((tasks) => {
         const tasksMap = this.tasksByDate();
         tasksMap.set(date, tasks);
         this.tasksByDate.set(tasksMap);
       });
-    }
+    }*/
 
    // Récupérer les tâches d'une date sous forme de tableau (pour afficher dans l'agenda)
-    getTasksForDate(date: DateTime): Task[] {
-      return this.tasksByDate().get(date.toISODate()) || [];
+    getTasksForDate(date: DateTime| null): Task[] {
+      return this.tasksByDate().get(date?.toISODate() ?? '') || [];
+
     }
+
+    /*1. **La clé n'existe pas dans la `Map`** :
+        - Lorsque `tasksByDate` ne contient aucune entrée pour la clé correspondant à la date donnée (`toISODate`), l'appel à `.get()` renverra `undefined`.
+
+    2. **Assurer un comportement prévisible :**
+        - En utilisant `|| []`, vous renvoyez toujours un tableau, ce qui est plus facile à manipuler en aval dans la logique métier ou le template.
+        - **Exemple dans un template Angular :***/
 
 
 
