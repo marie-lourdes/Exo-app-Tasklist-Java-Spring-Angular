@@ -13,6 +13,7 @@ import { DateTime,Info,Interval } from "luxon";
 })
 export class AgendaComponent implements OnInit {
   //TODO: utiliser la méthode `getTasksByDate(date)` du service **TaskService** pour récupérer les tâches associées à une date spécifique, puis les afficher dans une liste au sein de votre agenda
+  //TODO: Creer une fonctionnalité qui au clic  sur une date donnée affiche uniquement la liste de taches de cette date
   //TODO: implementer une fonctionalité pour naviguer du mois precedent au suivant pour acceder à l historique des taches des dates precedents
 
   taskService = inject(TaskService);
@@ -76,6 +77,22 @@ export class AgendaComponent implements OnInit {
             grouped.set(task.date, []);// Initialiser un tableau de tâches pour cette date
 
           }
+        /*Le type `Map` est une collection clé-valeur native en JavaScript. Elle fournit des méthodes standards comme :
+          - `.set(key, value)` : Pour insérer une paire clé-valeur.
+          - `.get(key)` : Pour récupérer la valeur associée à une clé donnée.
+          - `.has(key)` : Pour vérifier si une clé existe.
+          on obtient la valeur de la cle date correspondante qui est un tableau et on push les  taches dans le tableau
+
+        l'opérateur `?.` retourne directement `undefined` au lieu de lancer une exception, si la valeur avant l'accès est `null` ou `undefined`.
+        L'opérateur `?.` (Optional Chaining) est une manière sécurisée d'accéder à :
+        - Des propriétés d'objets.
+        - Des éléments de tableaux.
+        - D'appeler des méthodes. ... **tout en évitant des erreurs si une partie de la chaîne est `null` ou `undefined`.**
+
+        Il permet d'écrire un code plus propre et plus concis, sans avoir besoin de multiples conditions `if`.
+        Avec l'opérateur `?.`, aucun risque d'avoir l'erreur undefined lors de l execution , car date est undefined, la methode push n est pas appelé:
+
+         */
           grouped.get(task.date)?.push(task);// Ajouter la tâche à la date correspondante
 
         });
@@ -103,8 +120,6 @@ export class AgendaComponent implements OnInit {
     console.log("semaine du mois courant: " + this.daysInWeeks());
     // Charger toutes les tâches au démarrage et les organiser par date
     this.groupedTasksByDate();
-
-
     }
 
   openModal(day:DateTime) : void {
@@ -179,7 +194,19 @@ export class AgendaComponent implements OnInit {
 
     2. **Assurer un comportement prévisible :**
         - En utilisant `|| []`, vous renvoyez toujours un tableau, ce qui est plus facile à manipuler en aval dans la logique métier ou le template.
-        - **Exemple dans un template Angular :***/
+        - **Exemple dans un template Angular :**
+
+    3.### Différence entre `??` et `||` (Opérateur logique OU)
+      L'opérateur `||` retourne la première valeur **"falsy"** (fausse) dans JavaScript, ce qui inclut :
+      - `null`
+      - `undefined`
+      - `false`
+      - `0` (zéro)
+      - `""` (chaîne vide)
+
+    4. En revanche, `??` ne considère que **`null` ou `undefined`** comme "falsy". Les autres valeurs "falsy" (comme `false`, `0`, ou `""`) sont considérées comme valides par `??`.
+      Si une variable peut être `undefined` ou `null`, vous pouvez garantir une valeur par défaut pour éviter les erreurs.
+    */
 
 
 
