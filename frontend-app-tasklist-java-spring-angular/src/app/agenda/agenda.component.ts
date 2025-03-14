@@ -206,6 +206,6 @@ export class AgendaComponent implements OnInit {
 
     4. En revanche, `??` ne considère que **`null` ou `undefined`** comme "falsy". Les autres valeurs "falsy" (comme `false`, `0`, ou `""`) sont considérées comme valides par `??`.
       Si une variable peut être `undefined` ou `null`, vous pouvez garantir une valeur par défaut pour éviter les erreurs.
-
+    */
 }
 
