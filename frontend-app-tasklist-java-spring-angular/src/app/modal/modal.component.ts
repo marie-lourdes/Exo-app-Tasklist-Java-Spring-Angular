@@ -44,7 +44,6 @@ export class ModalComponent {
          this.task= {title:'', completed:false, description:'', date: data.date};
          this.date = data.date;
          this.tasks = data.tasks; // Tâches passées par AgendaComponent
-
        }
 
      onSubmit(): void {
