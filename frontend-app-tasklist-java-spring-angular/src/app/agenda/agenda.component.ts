@@ -98,9 +98,6 @@ export class AgendaComponent implements OnInit {
 
       });
 
-
-
-
   /* MatDialog:
         - C'est un service pour ouvrir et gérer globalement les dialogues.
         - Fournit des méthodes comme `open()` et `closeAll()`.*/
