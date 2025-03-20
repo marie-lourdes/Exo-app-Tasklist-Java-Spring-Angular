@@ -64,9 +64,6 @@ export class AgendaComponent implements OnInit {
        return weeks;
      });
 
-    // Signal pour gérer les listes de tâches par date
-    tasksByDate = signal<Map<string, Task[]>>(new Map());
-
      // ComputedSignal pour grouper les tâches par date
       groupedTasksByDate: Signal<Map<string, Task[]>> = computed(() => {
         const tasks = this.taskService.getTasks(); // Obtient toutes les tâches
@@ -142,7 +139,7 @@ export class AgendaComponent implements OnInit {
     La méthode `toISODate()` appartient à **Luxon** et non au JavaScript natif.*/
 
     const selectedDate = day.toISODate(); // Format YYYY-MM-DD
-    const tasksForDate = this.taskService.getTasksByDate(day.toFormat('yyyy-MM-dd'));
+    const tasksForDate = this.taskService.getTasksByDate(selectedDate);
 
 
     const dialogRef = this.dialog.open(ModalComponent, {

@@ -85,7 +85,7 @@ Permet de s assurer les mises à jour asynchrones ont été effectuées avant d'
     });
   }
 
-  getTasksByDate(date: string): WritableSignal<Task[]> {
+  getTasksByDate(date: string | null): WritableSignal<Task[]> {
     // Créer un signal pour contenir les tâches par date
     const tasksByDate: WritableSignal<Task[]> = signal([]);
    // Effectuer la requête HTTP et mettre à jour le Signal

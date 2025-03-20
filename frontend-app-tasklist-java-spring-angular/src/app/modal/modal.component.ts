@@ -1,14 +1,17 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { Component,Inject } from '@angular/core';
+import { Component,Inject,WritableSignal } from '@angular/core';
+import {CommonModule} from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialogModule} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TaskService, Task } from '../service/task.service';
 
+
 @Component({
   selector: 'app-modal',
   imports: [
+    CommonModule,
     FormsModule,
     MatDialogModule,
     //BrowserAnimationsModule, // Nécessaire pour utiliser Angular Material mais semble provoquer des bug et le modal ne s affiche pas
@@ -22,7 +25,8 @@ export class ModalComponent {
 
   public task: Task;
   public date: string;
-  public tasks: Task[];
+  public tasks: WritableSignal<Task[]>
+;
 
 
   /* MatDialogRef:
@@ -39,11 +43,12 @@ export class ModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-     @Inject(MAT_DIALOG_DATA) public data:{date: string; tasks: Task[]},
+     @Inject(MAT_DIALOG_DATA) public data:{date: string; tasks: WritableSignal<Task[]>
+},
      private taskService: TaskService){
          this.task= {title:'', completed:false, description:'', date: data.date};
          this.date = data.date;
-         this.tasks = data.tasks; // Tâches passées par AgendaComponent
+         this.tasks = data.tasks; // Tâches passées par AgendaComponent, Signal des tâches injectées
        }
 
      onSubmit(): void {
