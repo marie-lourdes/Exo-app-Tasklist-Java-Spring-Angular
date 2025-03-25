@@ -47,33 +47,43 @@ public class TaskController {
 		taskService.deleteOneTaskById(id);
 	}
 
-	/*@GetMapping("details/{id}")
-	public Task getTaskById(@PathVariable Long id) {
-		return taskService.findOneTaskById(id);
-
-	}*/
+	/*
+	 * @GetMapping("details/{id}") public Task getTaskById(@PathVariable Long id) {
+	 * return taskService.findOneTaskById(id);
+	 * 
+	 * }
+	 */
 
 	@GetMapping("details/{date}")
 	public List<Task> getTasksByDate(@PathVariable String date) {
-		return taskService.findTasksByDate(date);	
+		return taskService.findTasksByDate(date);
 	}
-	
-	 // Ajout d'un nouvel endpoint pour filtrer les tâches par date
-    @GetMapping
-    public List<Task> getTasksBetweenDates(
-            @RequestParam(name = "start") String start, // paramètre "start"
-            @RequestParam(name = "end") String end      // paramètre "end"
-    ) {
-        // Conversion des paramètres en LocalDate
-        LocalDate startDate = LocalDate.parse(start);
-        LocalDate endDate = LocalDate.parse(end);
 
-        // Obtenir les tâches pour la plage de dates
-        return  taskService.getTasksBetweenDates(startDate, endDate);
-    }
+
+	/*Récupérer les tâches entre deux dates du debut du mois actif à la fin du mois acttif lors de la navigation entre les mois dans l interface
+	 * avec l endpoint /api/tasks?start=2025-02-15&end=2025-02-17 par exemple
+	 * - Les Query Parameters peuvent être **optionnels**, ce qui est idéal pour
+	 * implémenter une API plus flexible. 
+	 * - Si l' API doit retourner toutes les
+	 * tâches (sans filtrer par dates) lorsque les paramètres `start` ou `end` ne
+	 * sont pas fournis, avec `@RequestParam`, il est possible de définir des
+	 * valeurs par défaut :
+	 */
 
 	@GetMapping
-	public List<Task> getAllTask() {
-		return taskService.findAllTasks();
+	public List<Task> getAllTaskByDate(@RequestParam(required = false) String start,
+			@RequestParam(required = false) String end) {
+		
+		// Conversion des paramètres en LocalDate
+		/*LocalDate startDate = LocalDate.parse(start);
+		LocalDate endDate = LocalDate.parse(end);*/
+		
+		if (start == null && end == null) {
+			return taskService.findAllTasks();
+		} else {
+			// Obtenir les tâches pour la plage de dates
+			return taskService.findTasksBetweenDates(start, end);
+		}
+
 	}
 }
