@@ -177,14 +177,14 @@ export class AgendaComponent implements OnInit {
       });
     }*/
 
-   // Récupérer les tâches d'une date sous forme de tableau (pour afficher dans l'agenda)
+  /* // Récupérer les tâches d'une date sous forme de tableau (pour afficher dans l'agenda)
     getTasksForDate(date: DateTime| null): Task[] {
       return this.groupedTasksByDate().get(date?.toISODate() ?? '') || [];
 
     }
 
-    /*1. **La clé n'existe pas dans la `Map`** :
-        - Lorsque `tasksByDate` ne contient aucune entrée pour la clé correspondant à la date donnée (`toISODate`), l'appel à `.get()` renverra `undefined`.
+    1. **La clé n'existe pas dans la `Map`** :
+        - Lorsque `groupedTasksByDate` ne contient aucune entrée pour la clé correspondant à la date donnée (`toISODate`), l'appel à `.get()` renverra `undefined`.
 
     2. **Assurer un comportement prévisible :**
         - En utilisant `|| []`, vous renvoyez toujours un tableau, ce qui est plus facile à manipuler en aval dans la logique métier ou le template.
