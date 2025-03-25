@@ -1,5 +1,6 @@
 package com.TaskList.backend_app_tasklist_java_spring_angular.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.TaskList.backend_app_tasklist_java_spring_angular.model.Task;
@@ -55,6 +57,20 @@ public class TaskController {
 	public List<Task> getTasksByDate(@PathVariable String date) {
 		return taskService.findTasksByDate(date);	
 	}
+	
+	 // Ajout d'un nouvel endpoint pour filtrer les tâches par date
+    @GetMapping
+    public List<Task> getTasksBetweenDates(
+            @RequestParam(name = "start") String start, // paramètre "start"
+            @RequestParam(name = "end") String end      // paramètre "end"
+    ) {
+        // Conversion des paramètres en LocalDate
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+
+        // Obtenir les tâches pour la plage de dates
+        return  taskService.getTasksBetweenDates(startDate, endDate);
+    }
 
 	@GetMapping
 	public List<Task> getAllTask() {
