@@ -64,7 +64,7 @@
        Il est particulièrement utile lorsque vous souhaitez afficher des données structurées
        sous forme d'objets ou `Map` dans le DOM.
        entry.key est un String date et entry.value represente un tableau de taches sur lequel on boucle avec *ngfor-->
-      <li *ngFor="let entry of loadedTasks() | keyvalue">
+      <li *ngFor="let entry of  groupedTasksByDate()| keyvalue">
         <h4>{{ entry.key }}</h4>
         <ul>
           <li *ngFor="let task of entry.value">{{ task.title }}</li>
