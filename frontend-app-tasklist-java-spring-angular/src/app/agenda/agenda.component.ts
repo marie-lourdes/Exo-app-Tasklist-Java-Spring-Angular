@@ -17,13 +17,17 @@ export class AgendaComponent implements OnInit {
   //TODO: implementer une fonctionalité pour naviguer du mois precedent au suivant pour acceder à l historique des taches des dates precedents
 
   taskService = inject(TaskService);
+  // Signal pour la date actuelle
   today = signal<DateTime>(DateTime.local());
 
   // Récupérer le premier jour du mois actif
   firstDayOfActiveMonth: WritableSignal<DateTime> = signal(
-      this.today().startOf('month'));
+      DateTime.local().startOf('month'));
 
   weekDays:Signal<string[]>= signal(Info.weekdays('short'));
+  // Tâches chargées : carte contenant les dates (clé) et leur tableau de tâches (valeur)
+  loadedTasks: Signal<Map<string, Task[]>> = signal(new Map());
+
 
   /* splitBy divise  l interval ci dessus en en petite interval de 1 jour : en calculant d abord le  premier jour  du mois courant et le debut de la semaine dans lequel se situe le 1er jour du mois
    //jusqu à la fin du mois et le dernier jour de la semaine dans lequel se situe le dernier du mois et retourne un tableau*/
@@ -64,6 +68,7 @@ export class AgendaComponent implements OnInit {
        return weeks;
      });
 
+/*
      // ComputedSignal pour grouper les tâches par date
       groupedTasksByDate: Signal<Map<string, Task[]>> = computed(() => {
         const tasks = this.taskService.getTasks(); // Obtient toutes les tâches
@@ -96,7 +101,7 @@ export class AgendaComponent implements OnInit {
 
         return grouped; // Retourne une Map où chaque clé est une date, et chaque valeur est un tableau de tâches
 
-      });
+      });*/
 
   /* MatDialog:
         - C'est un service pour ouvrir et gérer globalement les dialogues.
@@ -115,6 +120,45 @@ export class AgendaComponent implements OnInit {
     // Charger toutes les tâches au démarrage et les organiser par date
     this.groupedTasksByDate();
     }
+
+// Charger les tâches pour le mois actif
+  loadTasksForCurrentMonth(): void {
+    const currentMonth = this.firstDayOfActiveMonth();
+    const startOfMonth = currentMonth.startOf('month').toISODate(); // Date au format `YYYY-MM-DD`
+    const endOfMonth = currentMonth.endOf('month').toISODate();
+
+    // Requête pour récupérer les tâches entre `startOfMonth` et `endOfMonth`
+    this.taskService.getTasksForMonth(startOfMonth, endOfMonth).subscribe((tasks) => {
+      const updatedTasks = new Map(this.loadedTasks());
+      tasks.forEach((task) => {
+        if (!updatedTasks.has(task.date)) {
+          updatedTasks.set(task.date, []);
+        }
+        updatedTasks.get(task.date)!.push(task);
+      });
+      (this.loadedTasks as WritableSignal<Map<string, Task[]>>).set(updatedTasks);
+    });
+  }
+
+  // Naviguer vers le mois précédent
+  navigateToPreviousMonth(): void {
+    this.firstDayOfActiveMonth.update((current) =>
+      current.minus({ months: 1 }).startOf('month')
+    );
+    this.loadTasksForCurrentMonth();
+  }
+
+  // Naviguer vers le mois suivant
+  navigateToNextMonth(): void {
+    this.firstDayOfActiveMonth.update((current) =>
+      current.plus({ months: 1 }).startOf('month')
+    );
+      this.loadTasksForCurrentMonth();
+  }
+
+
+
+  // Ouvrir un modal pour ajouter une tâche à une date donnée
 
   openModal(day:DateTime) : void {
 
@@ -143,16 +187,22 @@ export class AgendaComponent implements OnInit {
       width:'400px',
       data: {
         date: selectedDate,
-        tasks: tasksForDate
+        tasks: this.loadedTasks as WritableSignal<Task[]>
         } // passe la date selectionné depuis le template agenda
       });
 
     // Mise à jour des tâches après la fermeture du modal
     dialogRef.afterClosed().subscribe(() => {
       console.log('le modal a été fermé');
-      //this.loadTasksByDate(selectedDate);
-
+      this.loadTasksForCurrentMonth(); // Recharger les tâches après la fermeture du modal
       });
+    }
+
+  // Charger les tâches pour le mois actif
+  loadTasksForCurrentMonth(): void {
+    const startOfMonth = this.firstDayOfActiveMonth().toISODate(); // Date au format `YYYY-MM-DD`
+    const endOfMonth = this.firstDayOfActiveMonth().endOf('month').toISODate();
+
     }
 
 /* *******Apres refactoring avec le computedSignal  groupedTasksByDate:************

@@ -39,7 +39,7 @@ public class TaskService {
 		
 	}
 	
-	// Récupérer les tâches entre deux dates du debut du mois actif à la fin du mois acttif lors de la navigation entre les mois dans l interface
+
     public List<Task> findTasksBetweenDates(String startDate, String endDate) {
         return taskRepository.findByDateBetween(LocalDate.parse(startDate), LocalDate.parse(endDate));
     }

@@ -10,16 +10,18 @@
           {{ firstDayOfActiveMonth().monthShort}}
           {{ firstDayOfActiveMonth().year}}
         </div>
+        <!-- Contrôles de navigation -->
         <div class="agenda-healine-controls">
-          <span class="agenda-healine-control">"</span>
+          <button (click)="navigateToPreviousMonth()">&#8592; Mois précédent</button>
           <span class="agenda-healine-control agenda-healine-control--today">
-              {{ today().toFormat('yyyy-LLL-dd')}}
-          </span>
-          <span class="agenda-healine-control">"</span>
+              {{ today().toFormat('yyyy-LL-dd') }}
+            </span>
+          <button (click)="navigateToNextMonth()">Mois suivant &#8594;</button>
         </div>
       </div>
 
-        <table  class="agenda-week-table" >
+
+      <table  class="agenda-week-table" >
           <thead>
           <tr>
             @for( weekday of weekDays(); track $index){
@@ -62,7 +64,7 @@
        Il est particulièrement utile lorsque vous souhaitez afficher des données structurées
        sous forme d'objets ou `Map` dans le DOM.
        entry.key est un String date et entry.value represente un tableau de taches sur lequel on boucle avec *ngfor-->
-      <li *ngFor="let entry of groupedTasksByDate() | keyvalue">
+      <li *ngFor="let entry of loadedTasks() | keyvalue">
         <h4>{{ entry.key }}</h4>
         <ul>
           <li *ngFor="let task of entry.value">{{ task.title }}</li>
