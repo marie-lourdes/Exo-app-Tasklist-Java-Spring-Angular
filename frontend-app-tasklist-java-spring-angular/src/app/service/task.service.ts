@@ -98,6 +98,13 @@ Permet de s assurer les mises à jour asynchrones ont été effectuées avant d'
 
   }
 
+ //obtenir les tâches par mois.
+ getTasksForMonth(startOfMonth: string, endOfMonth: string): Observable<Task[]> {
+   return this.http.get<Task[]>(
+     `${this.apiUrl}/tasks?start=${startOfMonth}&end=${endOfMonth}`
+   );
+ }
+
 // Obtenez les tâches sous forme de signal
   getTasks(): WritableSignal<Task[]> {
     return this.tasks;
@@ -112,4 +119,57 @@ Permet de s assurer les mises à jour asynchrones ont été effectuées avant d'
         });
   }
 
+
+
+/************************************!!!!!!!!!!!!!!!!*************************************
+ ### Utilisation d'un Observable d un writableSignal dans la methode getTasksForMonth(startOfMonth: string, endOfMonth: string)
+ (et pas un Signal)**
+ #### **1. Rôle attendu de `getTasksForMonth`**
+ La méthode `getTasksForMonth` semble être conçue comme **un point de récupération ponctuelle (stateless)** :
+ - Elle retourne les tâches correspondant à des dates spécifiques (`startOfMonth`, `endOfMonth`) à partir de l'API backend.
+ - Elle **ne maintient pas les données en mémoire** dans le service et les laisse au choix du consommateur de garder ou non cet état.
+
+ Un signal ici serait inutile si le but est **uniquement de récupérer un sous-ensemble de tâches** sans gérer leur conservation à long terme.
+ #### **2. Gestion d'un contexte local (localized state)**
+ Lorsqu'on veut juste afficher les tâches d'un mois donné dans un composant, il est plus logique de :
+ 1. Récupérer les données avec un `Observable`.
+ 2. Laisser le **composant consommateur** décider de stocker ces données localement (ou non).
+
+ Implémentation typique :
+ ``` typescript
+ this.loading = true;
+ this.taskService.getTasksForMonth(start, end).subscribe({
+   next: (tasks) => {
+     this.monthTasks = tasks; // Stockage local ou affichage
+     this.loading = false;
+   },
+   error: () => {
+     this.loading = false;
+     // Gestion d'erreurs
+   }
+ });
+ ```
+ Dans ce cas, utiliser un `signal` au niveau du service demanderait d'imposer une gestion globale de l'état que tous les composants devraient respecter — ce qui peut être inutilement complexe si ce n'est pas partagé entre plusieurs parties de l'application.
+ #### **3. Quand un Observable est plus flexible**
+ Un Observable permet :
+ - **De ne pas centraliser les données dans le service** si ce n'est pas nécessaire.
+ - **De gérer des appels spécifiques** : Récupérer différents ensembles de tâches sans impact sur l'état global.
+
+ Par exemple :
+ ``` typescript
+ this.tasksMonday$ = this.taskService.getTasksForMonth('2023-11-01', '2023-11-30');
+ this.tasksSunday$ = this.taskService.getTasksForMonth('2023-12-01', '2023-12-31');
+ ```
+ Avec un `Signal` partagé, ces deux appels modifieraient **le même état partagé**, ce qui rendrait la gestion des tâches par contexte plus difficile.
+ ### **Pourquoi et quand utiliser un Signal à la place**
+ Cependant, un `Signal` pourrait être une bonne alternative si :
+ 1. **Les données des tâches du mois actuel/de l'application doivent être partagées entre plusieurs composants.**
+     - Par exemple, si plusieurs vues doivent accéder **en temps réel** aux mêmes tâches filtrées via une navigation mensuelle.
+
+ 2. **Tu veux centraliser et conserver une copie réactive des tâches à long terme.**
+     - Le `Signal` fonctionne comme un cache local qui évite de répéter les appels au backend.
+
+ 3. **Tu veux une interface utilisateur réactive (unbinding automatique).**
+     - Par exemple, si les tâches du mois changent dynamiquement en fonction des modifications de date ou de vue.
+*/
 }

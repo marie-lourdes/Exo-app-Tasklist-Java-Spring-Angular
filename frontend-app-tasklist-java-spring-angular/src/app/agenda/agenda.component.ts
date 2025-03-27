@@ -94,7 +94,7 @@ export class AgendaComponent implements OnInit {
         Il permet d'écrire un code plus propre et plus concis, sans avoir besoin de multiples conditions `if`.
         Avec l'opérateur `?.`, aucun risque d'avoir l'erreur undefined lors de l execution , car date est undefined, la methode push n est pas appelé:
 
-         */
+
           grouped.get(task.date)?.push(task);// Ajouter la tâche à la date correspondante
 
         });
@@ -117,15 +117,15 @@ export class AgendaComponent implements OnInit {
     console.log("nombre de semaine du mois courant: " + this.daysInWeeks().length);
     console.log("jours du mois courant : " + this.daysOfMonth());
     console.log("semaine du mois courant: " + this.daysInWeeks());
-    // Charger toutes les tâches au démarrage et les organiser par date
-    this.groupedTasksByDate();
+    // Charger toutes les tâches au démarrage et les organiser par mois et date
+     this.loadTasksForCurrentMonth();
+
     }
 
 // Charger les tâches pour le mois actif
   loadTasksForCurrentMonth(): void {
-    const currentMonth = this.firstDayOfActiveMonth();
-    const startOfMonth = currentMonth.startOf('month').toISODate(); // Date au format `YYYY-MM-DD`
-    const endOfMonth = currentMonth.endOf('month').toISODate();
+    const startOfMonth = this.firstDayOfActiveMonth().toISODate(); // Date au format `YYYY-MM-DD`
+    const endOfMonth =this.firstDayOfActiveMonth().endOf('month').toISODate();
 
     // Requête pour récupérer les tâches entre `startOfMonth` et `endOfMonth`
     this.taskService.getTasksForMonth(startOfMonth, endOfMonth).subscribe((tasks) => {
@@ -198,12 +198,6 @@ export class AgendaComponent implements OnInit {
       });
     }
 
-  // Charger les tâches pour le mois actif
-  loadTasksForCurrentMonth(): void {
-    const startOfMonth = this.firstDayOfActiveMonth().toISODate(); // Date au format `YYYY-MM-DD`
-    const endOfMonth = this.firstDayOfActiveMonth().endOf('month').toISODate();
-
-    }
 
 /* *******Apres refactoring avec le computedSignal  groupedTasksByDate:************
  La méthode `loadTasksByDate` n'est **pas nécessaire** dans le contexte actuel,
