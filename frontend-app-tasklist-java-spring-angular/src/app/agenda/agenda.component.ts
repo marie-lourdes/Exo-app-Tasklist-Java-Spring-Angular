@@ -15,6 +15,7 @@ export class AgendaComponent implements OnInit {
   //TODO: utiliser la méthode `getTasksByDate(date)` du service **TaskService** pour récupérer les tâches associées à une date spécifique, puis les afficher dans une liste au sein de votre agenda
   //TODO: Creer une fonctionnalité qui au clic  sur une date donnée affiche uniquement la liste de taches de cette date
   //TODO: implementer une fonctionalité pour naviguer du mois precedent au suivant pour acceder à l historique des taches des dates precedents
+  //TODO: modifier la fonctionnalité de la liste de taches pour afficher uniquement par mois de maniere reactive et non toutes les tâches
 
   taskService = inject(TaskService);
   // Signal pour la date actuelle
