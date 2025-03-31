@@ -7,3 +7,7 @@ import { TaskService } from './app/service/task.service';
 
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
+
+/*  ancienne implementation avec AppModule:
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));*/

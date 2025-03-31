@@ -33,21 +33,12 @@
           @for( week of daysInWeeks(); track week){
           <tr>
             @for( day of  week; track $index){
-            <!-- day.day renvoit la date , ex: 15, day renvoit la date complete 15/04/2025 avec DateTime de Luxon-->
             <td (click)="openModal(day)"> {{day.day}}</td>
             }
           </tr>
           }
           </tbody>
         </table>
-
-        <!-- $index pour des donnée static -->
-      <!-- <div class="agenda-week-grid">
-       @for( weekday of weekDays(); track $index){
-        <div class="agenda-week-cell"> {{weekday | uppercase}}</div>
-         </div>
-        }-->
-
     </div>
 
   </div>
@@ -56,14 +47,6 @@
   <div>
     <!-- Liste des tâches pour chaque jour -->
     <ul class="task-list">
-      <!-- Utilisez groupedTasksByDate pour générer toutes les tâches par date -->
-      <!-- Le pipe `| keyvalue` dans Angular est un outil pratique qui permet de parcourir les **objets**
-       ou les **maps** dans les templates, en les transformant en une liste de paires clé-valeur,`{key, value}`
-       que vous pouvez itérer avec `*ngFor`et facilement afficher.
-
-       Il est particulièrement utile lorsque vous souhaitez afficher des données structurées
-       sous forme d'objets ou `Map` dans le DOM.
-       entry.key est un String date et entry.value represente un tableau de taches sur lequel on boucle avec *ngfor-->
       <li *ngFor="let entry of  groupedTasksByDate()| keyvalue">
         <h4>{{ entry.key }}</h4>
         <ul>

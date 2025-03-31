@@ -8,5 +8,4 @@ export const routes: Routes = [
     {  path: 'tasks', component: TaskListComponent},
     {  path: 'agenda', component: AgendaComponent},
     { path: '**', redirectTo: '/' }, // Redirige les erreurs 404 vers Home
-
   ];

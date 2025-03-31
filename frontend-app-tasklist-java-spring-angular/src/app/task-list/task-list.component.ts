@@ -17,8 +17,6 @@ export class TaskListComponent implements OnInit{
   //cela est possible grace à la configuration dans le provider de app.config.ts
   taskService = inject(TaskService);
 
-/* ************* Refactoring method CRUD with reactive programming with signal() computed() ********************** */
-
   // Signal contenant toutes les tâches (directement obtenu depuis le service)
   tasks = this.taskService.getTasks();
 
@@ -43,16 +41,8 @@ export class TaskListComponent implements OnInit{
   });
 
   ngOnInit(): void {
-     // Les tâches sont déjà chargées initialement via le service
-     //this.taskService.loadTasks();
-   }
 
-  /* loadTasks(): void {
-     this.taskService.getTasks().subscribe((tasks) => {
-      // Mettre à jour le signal avec les tâches chargées
-      this.tasks.set(tasks);
-     });
-   }*/
+   }
 
   // Ajouter une tâche
   addTask(): void {
@@ -68,7 +58,8 @@ export class TaskListComponent implements OnInit{
  // Mettre à jour une tâche
   updateTask(task: Task): void {
     // Appeler la méthode updateTask du service pour mettre à jour l'état signal source
-    // refactoring: le signal computed reagira au changement au signal this.tasks via le call back dans la subscription du l 'observable ds taskservice'
+    /*le signal computed tasksCompleted() reagira au changement au signal this.tasks
+    via le call back dans la subscription du l 'observable ds taskservice' et affiche dans une pop le nombre de tâches complétée de manière reactive*/
    this.taskService.updateTask(task, () => {
      confirm("number of tasks completed computed:" + this.tasksCompleted().length);
      });
