@@ -1,7 +1,7 @@
 This is a training session and not a real project, with a Spring Boot back-end and Angular.ts front-end part.
 That's under development...
 
-# Frontend-App TaskList (Angular & Spring Boot)
+# App web and API TaskList (Angular & Spring Boot)
 ## Description
 Ce projet est une application de gestion de tâches combinant un **Frontend sous Angular** avec un **Backend sous Spring Boot**. Elle permet aux utilisateurs de créer, modifier, supprimer et afficher des tâches à travers une interface utilisateur moderne et réactive.
 ## 🛠️ **Technologies utilisées**
