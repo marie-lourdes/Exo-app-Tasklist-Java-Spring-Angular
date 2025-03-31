@@ -26,10 +26,6 @@ export class AgendaComponent implements OnInit {
       DateTime.local().startOf('month'));
 
   weekDays:Signal<string[]>= signal(Info.weekdays('short'));
-  // Tâches chargées : carte contenant les dates (clé) et leur tableau de tâches (valeur)
-  loadedTasks:Signal<Map<string, Task[]>> = signal(new Map<string, Task[]>());
-
-
 
   /* splitBy divise  l interval ci dessus en en petite interval de 1 jour : en calculant d abord le  premier jour  du mois courant et le debut de la semaine dans lequel se situe le 1er jour du mois
    //jusqu à la fin du mois et le dernier jour de la semaine dans lequel se situe le dernier du mois et retourne un tableau*/
