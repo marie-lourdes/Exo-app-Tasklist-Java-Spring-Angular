@@ -15,18 +15,16 @@ export interface Task {
   providedIn: 'root'
 })
 export class  TaskService implements OnInit {
-  // TO DO: remplacer les données task par les Signal Angular et evite des fuites de memoire
   // Signal contenant toutes les tâches
   private tasks: WritableSignal<Task[]> = signal([]);
 
-  // initialisation de l'objet HttpClient
   constructor(private http: HttpClient, @Inject(BASE_URL_API) private apiUrl: string) {
      console.log('Base URL:', this.apiUrl);
      this.loadTasks(); // Charger les tâches initiales
   }
 
   ngOnInit () {
-   //this.loadTasks();
+
   }
 
   createTask(task: Task): void {
@@ -59,12 +57,10 @@ export class  TaskService implements OnInit {
   getTasksByDate(date: string | null): WritableSignal<Task[]> {
     // Créer un signal pour contenir les tâches par date
     const tasksByDate: WritableSignal<Task[]> = signal([]);
-   // Effectuer la requête HTTP et mettre à jour le Signal
    this.http.get<Task[]>(`${this.apiUrl}/details/${date}`).subscribe({
      next: (tasks) => tasksByDate.set(tasks),
      error: (err) => console.error('Error fetching tasks by date:', err)
    });
-  // Retourner le Signal pour utiliser dans le composant Agenda
    return tasksByDate;
 
   }
@@ -80,7 +76,6 @@ export class  TaskService implements OnInit {
   getTasks(): WritableSignal<Task[]> {
     return this.tasks;
   }
-
 
 // Charger à partir du backend et setter dans le signal
    loadTasks(): void {
