@@ -4,7 +4,6 @@
   position: relative;
   width: 80%;
   margin: 0 auto;
- // transform: translateZ(-5px) scale(0) ;
   animation: 5s ease-in-out 1 zoom;
   & img {
     display: block;
@@ -22,8 +21,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
-
         }
   }
 

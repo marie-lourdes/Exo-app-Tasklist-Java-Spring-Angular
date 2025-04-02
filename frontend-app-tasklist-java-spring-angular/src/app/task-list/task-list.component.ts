@@ -13,8 +13,6 @@ import {MatIconModule} from '@angular/material/icon';
 })
 export class TaskListComponent implements OnInit{
   iconDeleteStyles = '#3498db';
-  //on utilise ici la fonction inject() au lieu d injecter le service dans le constructor rendant ainsi l'héritage plus maniable dans Angular.
-  //cela est possible grace à la configuration dans le provider de app.config.ts
   taskService = inject(TaskService);
 
   // Signal contenant toutes les tâches (directement obtenu depuis le service)
@@ -37,7 +35,7 @@ export class TaskListComponent implements OnInit{
   // Test de LinkedSignal qui rend modifiable un Signal et reagit au Signal source: this.tasks
   numberTask = linkedSignal({
     source: this.tasks,
-    computation: () => this.tasks().length // Valeur par défaut et initial
+    computation: () => this.tasks().length
   });
 
   ngOnInit(): void {
@@ -57,7 +55,6 @@ export class TaskListComponent implements OnInit{
 
  // Mettre à jour une tâche
   updateTask(task: Task): void {
-    // Appeler la méthode updateTask du service pour mettre à jour l'état signal source
     /*le signal computed tasksCompleted() reagira au changement au signal this.tasks
     via le call back dans la subscription du l 'observable ds taskservice' et affiche dans une pop le nombre de tâches complétée de manière reactive*/
    this.taskService.updateTask(task, () => {

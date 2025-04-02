@@ -1,15 +1,6 @@
 @use 'colors';
 
-/*### **`::ng-deep`**
-  Le pseudo-sélecteur `::ng-deep` est utilisé lorsqu' on souhaite que les styles d'un composant affectent :
-  - **les enfants d'un composant spécifique** (dans un autre composant Angular), ou
-  - **les styles profonds, même après View Encapsulation.**
- `::ng-deep` supprime temporairement l'encapsulation des styles pour permettre aux styles de traverser les limites du composant.
-Dans le DOM la balise mat-dialog-container est monté, et encapsule app-modal, noeud enfant dans le DOM
-*/
-
 ::ng-deep mat-dialog-container {
-  //background-color: colors.$hover-color;
   border-radius: 2rem;
   & .mat-mdc-dialog-surface{
       padding: 2rem;

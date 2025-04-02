@@ -110,8 +110,6 @@ export class AgendaComponent implements OnInit {
       this.loadTasksForCurrentMonth();
   }
 
-
-
   // Ouvrir un modal pour ajouter une tâche à une date donnée
 
   openModal(day:DateTime) : void {

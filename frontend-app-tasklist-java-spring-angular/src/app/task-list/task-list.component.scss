@@ -1,16 +1,16 @@
 @use 'sass:color';
-//les partials _scss ne doit etre configuré dans styles angular.json car non global et non compilé en css
 @use 'colors';
 
-// ****** Variables *******
 $button-margin: 1rem;
-//$hover-color: darken($primary-color, 10%);
-ul{
+
+ul {
     list-style-type: disclosure-open;
   }
-li{
+
+li {
   margin-bottom: 1rem;
   }
+
 .task-list {
   display:flex;
   justify-content: space-between;
@@ -36,18 +36,17 @@ li{
   align-items: center;
   }
 
-
 .btn-delete {
   margin-left: $button-margin;
   border-radius: 5px;
   background-color: colors.$secondary-color;
   color: #fff;
-  // ******** Effet hover ******
   &:hover {
     background-color: colors.$hover-color;
     transition: background-color 0.2s ease;
   }
 }
+
 .btn-add {
   border: 1px solid colors.$primary-color;
   background-color: #fff;

@@ -8,9 +8,7 @@ import { RouterLink} from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit{
- // lien configuré pour le dossier assets dans angular.json
   path ='./assets/images/logo.png';
-
-    ngOnInit(): void {}
+  ngOnInit(): void {}
 
 }

@@ -7,8 +7,8 @@
   border-radius: 50%;
   transform: rotateZ(0turn);
   animation: 5s ease-in infinite spinner;
-  //background-color: colors.$secondary-color;
   }
+
 @keyframes spinner {
   0% { transform: rotateZ(0turn);
      opacity:0.5;

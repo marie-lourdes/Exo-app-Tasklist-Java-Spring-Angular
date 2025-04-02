@@ -10,19 +10,18 @@ header {
  color: colors.$primary-color;
  font-size: 1.2rem;
  font-weight: bold;
- //background-color:#f4e0f2;
 }
 
 .brand-name {
   display: flex;
   align-items: center;
   }
+
 .brand-logo{
   width:$logo-width;
   height:$logo-height;
   margin:1rem;
   border-radius: 5px;
-
  }
 
  nav {
