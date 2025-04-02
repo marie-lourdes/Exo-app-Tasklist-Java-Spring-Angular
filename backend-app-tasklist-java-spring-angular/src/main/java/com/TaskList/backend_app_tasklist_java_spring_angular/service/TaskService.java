@@ -2,10 +2,7 @@ package com.TaskList.backend_app_tasklist_java_spring_angular.service;
 
 import java.time.LocalDate;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.TaskList.backend_app_tasklist_java_spring_angular.model.Task;
 import com.TaskList.backend_app_tasklist_java_spring_angular.repository.TaskRepository;
 
