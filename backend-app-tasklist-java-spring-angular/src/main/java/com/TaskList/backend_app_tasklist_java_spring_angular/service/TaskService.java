@@ -10,9 +10,12 @@ import com.TaskList.backend_app_tasklist_java_spring_angular.model.Task;
 import com.TaskList.backend_app_tasklist_java_spring_angular.repository.TaskRepository;
 
 @Service
-public class TaskService {
-	@Autowired
-	TaskRepository taskRepository;
+public class TaskService {	
+	private TaskRepository taskRepository;
+	
+	public TaskService (TaskRepository taskRepository) {
+		this.taskRepository= taskRepository;
+	}
 
 	public Task saveOneTask(Task task) {
 		return taskRepository.save(task);
@@ -28,9 +31,6 @@ public class TaskService {
 	}
 
 	public Task findOneTaskById(Long id) {
-		// lamethode retour un objet Optional<Task> mais avec la methode .get() ou ici
-		// la methode orElseTrow(), il recupere l objet task contenu dans un objet
-		// Optional
 		return taskRepository.findById(id).orElseThrow(() -> new NullPointerException("task not found"));
 	}
 	
