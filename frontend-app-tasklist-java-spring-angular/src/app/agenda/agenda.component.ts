@@ -2,17 +2,21 @@ import { Component,OnInit,inject,signal,WritableSignal,Signal, computed } from '
 import {CommonModule,UpperCasePipe} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
+import { LoadSpinnerComponent} from '../load-spinner/load-spinner.component';
 import { TaskService, Task } from '../service/task.service';
 import { DateTime,Info,Interval } from "luxon";
+import {Observable, interval, tap, take} from 'rxjs';
 
 @Component({
   selector: 'app-agenda',
-  imports: [CommonModule],
+  imports: [CommonModule,LoadSpinnerComponent],
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.scss'
 })
 export class AgendaComponent implements OnInit {
   taskService = inject(TaskService);
+  tasksForMonth$!: Observable<Task[]>;
+
   // Signal pour la date actuelle
   today = signal<DateTime>(DateTime.local());
 
@@ -68,8 +72,7 @@ export class AgendaComponent implements OnInit {
     constructor(private dialog: MatDialog){}
 
     ngOnInit(): void {
-     this.loadTasksForCurrentMonth();
-
+      this.loadTasksForCurrentMonth();
     }
 
 // Charger les tâches pour le mois actif
@@ -77,7 +80,8 @@ export class AgendaComponent implements OnInit {
     const startOfMonth = this.firstDayOfActiveMonth().toISODate(); // Date au format `YYYY-MM-DD`
     const endOfMonth =this.firstDayOfActiveMonth().endOf('month').toISODate();
     const startOfMonthSafe = startOfMonth || '';
-    const endOfMonthSafe = endOfMonth || '';
+    const endOfMonthSafe  = endOfMonth || '';
+    this.tasksForMonth$ = this.taskService.getTasksForMonth(startOfMonthSafe , endOfMonthSafe );
 
 
     // Requête pour récupérer les tâches entre `startOfMonth` et `endOfMonth`

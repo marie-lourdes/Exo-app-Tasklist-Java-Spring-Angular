@@ -46,7 +46,7 @@
 <section class="list-tasks">
   <div>
     <!-- Liste des tâches pour chaque jour -->
-    <ul class="task-list">
+    <ul *ngIf="groupedTasksByDate().size !==0; else loading" class="task-list">
       <li *ngFor="let entry of  groupedTasksByDate()| keyvalue">
         <h4>{{ entry.key }}</h4>
         <ul>
@@ -55,6 +55,11 @@
       </li>
     </ul>
   </div>
+  <ng-template #loading>
+    <app-load-spinner></app-load-spinner>
+    <p>Chargement des tâches...</p>
+  </ng-template>
 </section>
 </div>
+
 
