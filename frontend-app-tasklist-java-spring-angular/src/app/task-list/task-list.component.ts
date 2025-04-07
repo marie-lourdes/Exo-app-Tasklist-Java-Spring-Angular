@@ -1,5 +1,5 @@
 import { Component,OnInit, signal, computed,inject,linkedSignal } from '@angular/core';
-import { TaskService, Task } from '../service/task.service';
+import { TaskService, Task } from '../service/api-task.service';
 import {CommonModule} from '@angular/common';
 // pour ngModel!!! le formModule doit etre importe dans le component qui l utilise et pas dans le app.module  selon l exo
 import {FormsModule } from '@angular/forms'; // Importer FormsModule

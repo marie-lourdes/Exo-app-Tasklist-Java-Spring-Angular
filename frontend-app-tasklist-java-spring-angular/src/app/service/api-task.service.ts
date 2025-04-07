@@ -2,6 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {BASE_URL_API} from '../../environments/app.token';
 
+export interface Task {
+   id?: number;
+   title: string;
+   completed: boolean;
+   description?: string;
+   date: string; // Format: YYYY-MM-DD
+   }
+
+/*### **Gestion des appels HTTP** */
 @Injectable({
   providedIn: 'root'
 })
