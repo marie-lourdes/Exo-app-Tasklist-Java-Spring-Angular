@@ -1,7 +1,6 @@
 import { Injectable,OnInit,Inject,WritableSignal, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {BASE_URL_API} from '../../environments/app.token';
+
 
 export interface Task {
      id?: number;
@@ -14,17 +13,13 @@ export interface Task {
 @Injectable({
   providedIn: 'root'
 })
-export class  TaskService implements OnInit {
+export class  TaskService {
   // Signal contenant toutes les tâches
   private tasks: WritableSignal<Task[]> = signal([]);
 
-  constructor(private http: HttpClient, @Inject(BASE_URL_API) private apiUrl: string) {
+  constructor() {
      console.log('Base URL:', this.apiUrl);
      this.loadTasks(); // Charger les tâches initiales
-  }
-
-  ngOnInit () {
-
   }
 
   createTask(task: Task): void {
