@@ -1,6 +1,7 @@
-import { Injectable,OnInit,Inject,WritableSignal, signal } from '@angular/core';
+import { Injectable,OnInit,Inject,WritableSignal, signal, computed } from '@angular/core';
+import {Observable, tap} from 'rxjs';
 import { ApiTaskService } from './api-task.service';
-import {  ApiTaskService,Task } from './api-task.service';
+import {  Task } from '../model/task';
 
 
 /*1. **Gérer la logique métier des tâches** (organiser les tâches, grouper par date, gérer les `Signal` Angular).
@@ -15,27 +16,26 @@ export class  TaskService {
   private tasks: WritableSignal<Task[]> = signal([]);
 
   constructor(private apiTaskService: ApiTaskService) {
-     console.log('Base URL:', this.apiUrl);
      this.loadTasks(); // Charger les tâches initiales
      }
 
   // Charger les tâches depuis le backend et les insérer dans le signal `tasks`
   loadTasks(): void {
-    this.apiTaskService.getTasks.subscribe(
-      (tasks)=> {
+    this.apiTaskService.getTasks().subscribe(
+      (tasks) => {
         this.tasks.set(tasks);
         });
       }
 
   createTask(task: Task): void {
     this.apiTaskService.createTask(task).subscribe(
-      (newTask) =>{
+      (newTask) => {
         this.tasks.update((tasks) => [...tasks, newTask]);
         });
       }
 
   updateTask(task: Task,onComplete: () => void) : void {
-    this.apiTaskService.updateTask(task).subscribe(
+    this.apiTaskService.updateTask(task,onComplete).subscribe(
       (updatedTask)=> {
         this.tasks.update((tasks)=>
         tasks.map((t)=> (t.id === updatedTask.id ? updatedTask : t ))
@@ -54,20 +54,26 @@ export class  TaskService {
       }
 
   getTasksByDate(date: string | null): WritableSignal<Task[]> {
-    // Créer un signal pour contenir les tâches par date
-     const tasksByDate = computed(() =>
-          this.tasks().filter((task) => task.date === date)
-        );
-      return tasksByDate;
+     // Créer un signal de tâches par date modifiable
+      const tasksByDate = signal<Task[]>([]);
+
+      // Observer les changements dans `tasks` et mettre à jour le signal `tasksByDate`
+      computed(() => {
+        const filteredTasks = this.tasks()
+          .filter((task) => task.date === date);
+        tasksByDate.set(filteredTasks); // Met à jour les tâches filtrées
+      });
+
+      return tasksByDate; // Retourne un WritableSignal<Task[]>
+
      }
 
    //obtenir les tâches par mois.
-  getTasksForMonth(startOfMonth: string, endOfMonth: string): void {
-    this.apiTaskService.getTasksForMonth(startOfMonth, endOfMonth).subscribe(
-      (tasks) => {
-         this.tasks.set(tasks); // Remplace les tâches dans l'état local avec le résultat du backend
-        });
-      )
+  getTasksForMonth(startOfMonth: string, endOfMonth: string): Observable<Task[]> {
+    return this.apiTaskService.getTasksForMonth(startOfMonth, endOfMonth).pipe(
+      // Utiliser `tap` pour gérer les effets secondaires (mettre à jour le signal de tâches)
+      tap((tasks) => this.tasks.set(tasks))
+      );
     }
 
   // Obtenez les tâches sous forme de signal

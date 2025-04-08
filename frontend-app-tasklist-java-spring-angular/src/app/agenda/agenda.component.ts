@@ -3,7 +3,8 @@ import {CommonModule,UpperCasePipe} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { LoadSpinnerComponent} from '../load-spinner/load-spinner.component';
-import { TaskService, Task } from '../service/task.service';
+import { TaskService } from '../service/task.service';
+import {  Task } from '../model/task';
 import { DateTime,Info,Interval } from "luxon";
 import {Observable, interval, tap, take} from 'rxjs';
 
@@ -14,6 +15,7 @@ import {Observable, interval, tap, take} from 'rxjs';
   styleUrl: './agenda.component.scss'
 })
 export class AgendaComponent implements OnInit {
+  //TODO: fixer erreur pour les taches qui ne sont plus enregistrer ou lu dans les cellules taskbydate ?
   taskService = inject(TaskService);
   tasksForMonth$!: Observable<Task[]>;
 
@@ -73,6 +75,7 @@ export class AgendaComponent implements OnInit {
 
     ngOnInit(): void {
       this.loadTasksForCurrentMonth();
+
     }
 
 // Charger les tâches pour le mois actif
