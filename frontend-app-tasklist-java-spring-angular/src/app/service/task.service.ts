@@ -16,7 +16,7 @@ export class  TaskService {
   private tasks: WritableSignal<Task[]> = signal([]);
 
   constructor(private apiTaskService: ApiTaskService) {
-     this.loadTasks(); // Charger les tâches initiales
+     this.loadTasks(); // Charger les tâches  à l initialisation
      }
 
   // Charger les tâches depuis le backend et les insérer dans le signal `tasks`
@@ -54,18 +54,16 @@ export class  TaskService {
       }
 
   getTasksByDate(date: string | null): WritableSignal<Task[]> {
-     // Créer un signal de tâches par date modifiable
-      const tasksByDate = signal<Task[]>([]);
+    // Créer un signal de tâches par date modifiable
+    const tasksByDate = signal<Task[]>([]);
 
-      // Observer les changements dans `tasks` et mettre à jour le signal `tasksByDate`
-      computed(() => {
-        const filteredTasks = this.tasks()
-          .filter((task) => task.date === date);
-        tasksByDate.set(filteredTasks); // Met à jour les tâches filtrées
-      });
+    const filteredTasks = this.tasks().filter((task) => {
+        //const taskDate = task.date;.split('T')[0]; // Supprime la partie horodatée
+         return task.date === date; // Compare uniquement la date (YYYY-MM-DD)
+       });
 
-      return tasksByDate; // Retourne un WritableSignal<Task[]>
-
+       tasksByDate.set(filteredTasks);
+       return tasksByDate; // Retourne un WritableSignal<Task[]>
      }
 
    //obtenir les tâches par mois.

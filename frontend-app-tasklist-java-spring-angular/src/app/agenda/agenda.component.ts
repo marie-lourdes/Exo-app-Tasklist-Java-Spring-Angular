@@ -18,7 +18,6 @@ export class AgendaComponent implements OnInit {
   //TODO: fixer erreur pour les taches qui ne sont plus enregistrer ou lu dans les cellules, le modal ,
   // TODO:fixer le stockage du computed avec taskbydate dans la methode getTaskByDate de Taskservice ?
   taskService = inject(TaskService);
-  tasksForMonth$!: Observable<Task[]>;
 
   // Signal pour la date actuelle
   today = signal<DateTime>(DateTime.local());
@@ -85,8 +84,6 @@ export class AgendaComponent implements OnInit {
     const endOfMonth =this.firstDayOfActiveMonth().endOf('month').toISODate();
     const startOfMonthSafe = startOfMonth || '';
     const endOfMonthSafe  = endOfMonth || '';
-    this.tasksForMonth$ = this.taskService.getTasksForMonth(startOfMonthSafe , endOfMonthSafe );
-
 
     // Requête pour récupérer les tâches entre `startOfMonth` et `endOfMonth`
     this.taskService.getTasksForMonth(startOfMonthSafe, endOfMonthSafe).subscribe((tasks) => {
@@ -96,10 +93,7 @@ export class AgendaComponent implements OnInit {
           updatedTasks.set(task.date, []);
         }
         updatedTasks.get(task.date)!.push(task);
-        console.log('test getTaskformonth'+ updatedTasks.get(task.date))
-
       });
-
     });
   }
 
@@ -124,6 +118,8 @@ export class AgendaComponent implements OnInit {
   openModal(day:DateTime) : void {
     const selectedDate = day.toISODate(); // Format YYYY-MM-DD
     const tasksForDate = this.taskService.getTasksByDate(selectedDate);
+    console.log('Tâches pour la date', selectedDate, tasksForDate());
+
 
     const dialogRef = this.dialog.open(ModalComponent, {
       width:'400px',
