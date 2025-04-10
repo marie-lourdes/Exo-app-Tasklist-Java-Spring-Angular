@@ -59,7 +59,7 @@ export class  TaskService {
 
     const filteredTasks = this.tasks().filter((task) => {
         //const taskDate = task.date;.split('T')[0]; // Supprime la partie horodatée
-         return task.date === date; // Compare uniquement la date (YYYY-MM-DD)
+         return task.date === date; // Compare filtre les taches et verifie le format de date  uniquement la date (YYYY-MM-DD)
        });
 
        tasksByDate.set(filteredTasks);
