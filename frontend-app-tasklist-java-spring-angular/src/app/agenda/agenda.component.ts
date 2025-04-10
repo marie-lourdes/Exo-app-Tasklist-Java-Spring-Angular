@@ -15,7 +15,8 @@ import {Observable, interval, tap, take} from 'rxjs';
   styleUrl: './agenda.component.scss'
 })
 export class AgendaComponent implements OnInit {
-  //TODO: fixer erreur pour les taches qui ne sont plus enregistrer ou lu dans les cellules taskbydate ?
+  //TODO: fixer erreur pour les taches qui ne sont plus enregistrer ou lu dans les cellules, le modal ,
+  // TODO:fixer le stockage du computed avec taskbydate dans la methode getTaskByDate de Taskservice ?
   taskService = inject(TaskService);
   tasksForMonth$!: Observable<Task[]>;
 
@@ -95,6 +96,7 @@ export class AgendaComponent implements OnInit {
           updatedTasks.set(task.date, []);
         }
         updatedTasks.get(task.date)!.push(task);
+        console.log('test getTaskformonth'+ updatedTasks.get(task.date))
 
       });
 

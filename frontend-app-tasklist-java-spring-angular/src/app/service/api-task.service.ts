@@ -31,8 +31,10 @@ export class ApiTaskService {
       }
 
     getTasksForMonth(startOfMonth: string, endOfMonth: string): Observable<Task[]> {
+      console.log(`URL appelée : ${this.apiUrl}?start=${startOfMonth}&end=${endOfMonth}`);
+
       return this.http.get<Task[]>(
-        `${this.apiUrl}/tasks?start=${startOfMonth}&end=${endOfMonth}`
+        `${this.apiUrl}?start=${startOfMonth}&end=${endOfMonth}`
        );
       }
     // Charger à partir du backend et setter dans le signal
