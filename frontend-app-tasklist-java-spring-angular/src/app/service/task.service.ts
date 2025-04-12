@@ -11,6 +11,8 @@ import {  Task } from '../model/task';
   providedIn: 'root'
 })
 export class  TaskService {
+  //TODO: decoupler les services avec la creation de Agenda service ,
+  //TODO:deplacer les methodes et signaux liés au  taskbydate, taskbymonth dans agenda service dont dependra l'agendacomponent car tres fort couplage avec le taskservice
 
   // Signal contenant toutes les tâches
   private tasks: WritableSignal<Task[]> = signal([]);
