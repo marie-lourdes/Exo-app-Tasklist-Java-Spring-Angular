@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AgendaService } from '../service/agenda.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,13 +31,19 @@ export class AgendaService {
       });
     }
 
-   //obtenir les tâches par mois.
-  getTasksForMonth(startOfMonth: string, endOfMonth: string): Observable<Task[]> {
-    return this.taskService.getTasksForMonth(startOfMonth, endOfMonth).pipe(
-      // Utiliser `tap` pour gérer les effets secondaires (mettre à jour le signal de tâches)
-      tap((tasks) => this.tasks.set(tasks))
-      );
+  // Retourne un Signal des tâches pour un mois donné
+  getTasksForMonth(startOfMonth: string, endOfMonth: string): Signal<Task[]> {
+    const tasks = this.taskService.getTasks();
+    return computed(() => {
+      const start = new Date(startOfMonth);
+      const end = new Date(endOfMonth);
+      return tasks().filter((task) => {
+        const taskDate = new Date(task.date);
+        return taskDate >= start && taskDate <= end;
+        });
+      });
     }
+
 
 
 

@@ -3,7 +3,7 @@ import {CommonModule,UpperCasePipe} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { LoadSpinnerComponent} from '../load-spinner/load-spinner.component';
-import { TaskService } from '../service/task.service';
+import { AgendaService } from '../service/agenda.service';
 import {  Task } from '../model/task';
 import { DateTime,Info,Interval } from "luxon";
 import {Observable, interval, tap, take} from 'rxjs';
@@ -17,7 +17,7 @@ import {Observable, interval, tap, take} from 'rxjs';
 export class AgendaComponent implements OnInit {
   //TODO: fixer erreur pour les taches qui ne sont plus enregistrer ou lu dans les cellules, le modal ,
   // TODO:fixer le stockage du computed avec taskbydate dans la methode getTaskByDate de Taskservice ?
-  taskService = inject(TaskService);
+  agendaService = inject(AgendaService);
 
   // Signal pour la date actuelle
   today = signal<DateTime>(DateTime.local());
@@ -52,6 +52,8 @@ export class AgendaComponent implements OnInit {
        return weeks;
      });
 
+   groupedTasksByDate = this.agendaService.groupedTasksByDate();
+
     constructor(private dialog: MatDialog){}
 
     ngOnInit(): void {
@@ -67,7 +69,7 @@ export class AgendaComponent implements OnInit {
     const endOfMonthSafe  = endOfMonth || '';
 
     // Requête pour récupérer les tâches entre `startOfMonth` et `endOfMonth`
-    this.taskService.getTasksForMonth(startOfMonthSafe, endOfMonthSafe).subscribe((tasks) => {
+    this.agendaService.getTasksForMonth(startOfMonthSafe, endOfMonthSafe).subscribe((tasks) => {
       const updatedTasks = new Map<string, Task[]>();
       tasks.forEach((task) => {
         if (!updatedTasks.has(task.date)) {
@@ -98,7 +100,7 @@ export class AgendaComponent implements OnInit {
 
   openModal(day:DateTime) : void {
     const selectedDate = day.toISODate(); // Format YYYY-MM-DD
-    const tasksForDate = this.taskService.getTasksByDate(selectedDate);
+    const tasksForDate = this.agendaService.getTasksByDate(selectedDate);
     console.log('Tâches pour la date', selectedDate, tasksForDate());
 
 
