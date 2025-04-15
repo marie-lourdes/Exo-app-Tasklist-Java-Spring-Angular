@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, computed,Signal, WritableSignal  } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AgendaService } from '../service/agenda.service';
+import {  Task } from '../model/task';
+import { TaskService } from '../service/task.service';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ export class AgendaService {
   constructor(private taskService: TaskService) {}
 
   // Récupère un signal réactif contenant les tâches pour une date spécifique
-  getTasksByDate(date: string | null): WritableSignal<Task[]> {
+  getTasksByDate(date: string | null): Signal<Task[]> {
     const tasks = this.taskService.getTasks();
     return computed(() => tasks().filter((task) => task.date === date));
     }
@@ -32,21 +33,16 @@ export class AgendaService {
     }
 
   // Retourne un Signal des tâches pour un mois donné
-  getTasksForMonth(startOfMonth: string, endOfMonth: string): Signal<Task[]> {
+ /* getTasksForMonth(startOfMonth: string, endOfMonth: string): Signal<Task[]> {
     const tasks = this.taskService.getTasks();
     return computed(() => {
+      const grouped = new Map<string, Task[]>();
       const start = new Date(startOfMonth);
       const end = new Date(endOfMonth);
-      return tasks().filter((task) => {
+       tasks().filter((task) => {
         const taskDate = new Date(task.date);
         return taskDate >= start && taskDate <= end;
         });
       });
-    }
-
-
-
-
-
-
+    }*/
 }

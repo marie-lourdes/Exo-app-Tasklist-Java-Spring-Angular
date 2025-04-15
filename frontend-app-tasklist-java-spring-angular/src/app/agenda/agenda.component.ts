@@ -15,8 +15,6 @@ import {Observable, interval, tap, take} from 'rxjs';
   styleUrl: './agenda.component.scss'
 })
 export class AgendaComponent implements OnInit {
-  //TODO: fixer erreur pour les taches qui ne sont plus enregistrer ou lu dans les cellules, le modal ,
-  // TODO:fixer le stockage du computed avec taskbydate dans la methode getTaskByDate de Taskservice ?
   agendaService = inject(AgendaService);
 
   // Signal pour la date actuelle
@@ -28,64 +26,38 @@ export class AgendaComponent implements OnInit {
 
   weekDays:Signal<string[]>= signal(Info.weekdays('short'));
 
-  /* splitBy divise  l interval ci dessus en en petite interval de 1 jour : en calculant d abord le  premier jour  du mois courant et le debut de la semaine dans lequel se situe le 1er jour du mois
-   //jusqu à la fin du mois et le dernier jour de la semaine dans lequel se situe le dernier du mois et retourne un tableau*/
-    daysOfMonth: Signal<DateTime[]> = computed(() => {
-      return Interval.fromDateTimes(
-        this.firstDayOfActiveMonth().startOf('week'),
-        this.firstDayOfActiveMonth().endOf('month').endOf('week')
-        )
+  daysOfMonth: Signal<DateTime[]> = computed(() => {
+    return Interval.fromDateTimes(
+      this.firstDayOfActiveMonth().startOf('week'),
+      this.firstDayOfActiveMonth().endOf('month').endOf('week'))
       .splitBy({ day: 1 })
       .map((interval) => interval.start!)
-
-
       .filter((date) => !!date);
       });
 
-    // Divise les jours en semaines (table de 7 jours par ligne)
-      daysInWeeks: Signal<DateTime[][]> = computed(() => {
-       const days = this.daysOfMonth();
-       const weeks: DateTime[][] = [];
-       for (let i = 0; i < days.length; i += 7) {
-         weeks.push(days.slice(i, i + 7)); // Regroupe par 7 jours
-       }
-       return weeks;
-     });
 
-   groupedTasksByDate = this.agendaService.groupedTasksByDate();
-
-    constructor(private dialog: MatDialog){}
-
-    ngOnInit(): void {
-      this.loadTasksForCurrentMonth();
-
-    }
-
-// Charger les tâches pour le mois actif
-  loadTasksForCurrentMonth(): void {
-    const startOfMonth = this.firstDayOfActiveMonth().toISODate(); // Date au format `YYYY-MM-DD`
-    const endOfMonth =this.firstDayOfActiveMonth().endOf('month').toISODate();
-    const startOfMonthSafe = startOfMonth || '';
-    const endOfMonthSafe  = endOfMonth || '';
-
-    // Requête pour récupérer les tâches entre `startOfMonth` et `endOfMonth`
-    this.agendaService.getTasksForMonth(startOfMonthSafe, endOfMonthSafe).subscribe((tasks) => {
-      const updatedTasks = new Map<string, Task[]>();
-      tasks.forEach((task) => {
-        if (!updatedTasks.has(task.date)) {
-          updatedTasks.set(task.date, []);
-        }
-        updatedTasks.get(task.date)!.push(task);
-      });
+  // Divise les jours en semaines (table de 7 jours par ligne)
+  daysInWeeks: Signal<DateTime[][]> = computed(() => {
+    const days = this.daysOfMonth();
+    const weeks: DateTime[][] = [];
+    for (let i = 0; i < days.length; i += 7) {
+      weeks.push(days.slice(i, i + 7)); // Regroupe par 7 jours
+      }
+    return weeks;
     });
-  }
+
+  groupedTasksByDate = this.agendaService.groupedTasksByDate();
+
+  constructor(private dialog: MatDialog){}
+
+  ngOnInit(): void {
+    }
 
   // Naviguer vers le mois précédent
   navigateToPreviousMonth(): void {
     this.firstDayOfActiveMonth.update((current) =>
       current.minus({ months: 1 }).startOf('month')
     );
-    this.loadTasksForCurrentMonth();
   }
 
   // Naviguer vers le mois suivant
@@ -93,7 +65,6 @@ export class AgendaComponent implements OnInit {
     this.firstDayOfActiveMonth.update((current) =>
       current.plus({ months: 1 }).startOf('month')
     );
-      this.loadTasksForCurrentMonth();
   }
 
   // Ouvrir un modal pour ajouter une tâche à une date donnée
@@ -102,7 +73,6 @@ export class AgendaComponent implements OnInit {
     const selectedDate = day.toISODate(); // Format YYYY-MM-DD
     const tasksForDate = this.agendaService.getTasksByDate(selectedDate);
     console.log('Tâches pour la date', selectedDate, tasksForDate());
-
 
     const dialogRef = this.dialog.open(ModalComponent, {
       width:'400px',
@@ -115,7 +85,6 @@ export class AgendaComponent implements OnInit {
     // Mise à jour des tâches après la fermeture du modal
     dialogRef.afterClosed().subscribe(() => {
       console.log('le modal a été fermé');
-      this.loadTasksForCurrentMonth(); // Recharger les tâches après la fermeture du modal
       });
     }
 }
