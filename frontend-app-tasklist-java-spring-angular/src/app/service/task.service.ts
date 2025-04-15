@@ -55,14 +55,6 @@ export class  TaskService {
         });
       }
 
-   //obtenir les tâches par mois.
-  getTasksForMonth(startOfMonth: string, endOfMonth: string): Observable<Task[]> {
-    return this.apiTaskService.getTasksForMonth(startOfMonth, endOfMonth).pipe(
-      // Utiliser `tap` pour gérer les effets secondaires (mettre à jour le signal de tâches)
-      tap((tasks) => this.tasks.set(tasks))
-      );
-    }
-
   // Obtenez les tâches sous forme de signal
   getTasks(): WritableSignal<Task[]> {
     return this.tasks;

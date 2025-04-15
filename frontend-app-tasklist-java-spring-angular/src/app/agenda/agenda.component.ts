@@ -52,25 +52,6 @@ export class AgendaComponent implements OnInit {
        return weeks;
      });
 
-
-     // ComputedSignal pour grouper les tâches par date
-      groupedTasksByDate: Signal<Map<string, Task[]>> = computed(() => {
-        const tasks = this.taskService.getTasks(); // Obtient toutes les tâches
-        const grouped = new Map<string, Task[]>();
-
-        tasks().forEach((task) => {
-          if (!grouped.has(task.date)) {
-            grouped.set(task.date, []);// Initialiser un tableau de tâches pour cette date
-
-          }
-          grouped.get(task.date)?.push(task);// Ajouter la tâche à la date correspondante
-
-        });
-
-        return grouped; // Retourne une Map où chaque clé est une date, et chaque valeur est un tableau de tâches
-
-      });
-
     constructor(private dialog: MatDialog){}
 
     ngOnInit(): void {
