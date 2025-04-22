@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { LoadSpinnerComponent } from './components/load-spinner/load-spinner.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LoadSpinnerComponent
+    ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    // Exporté pour être utilisé par d'autres modules comme AgendaModule et HomeModule
+    LoadSpinnerComponent
   ]
 })
 export class SharedModule { }
