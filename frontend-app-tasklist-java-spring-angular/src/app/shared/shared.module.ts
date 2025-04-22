@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { LoadSpinnerComponent } from './components/load-spinner/load-spinner.component';
 
 @NgModule({
-  declarations: [
+ /* declarations: [
     LoadSpinnerComponent
-    ],
+  ],*/
   imports: [
-    CommonModule
+    CommonModule,
+    LoadSpinnerComponent
   ],
   exports: [
+     CommonModule,
     // Exporté pour être utilisé par d'autres modules comme AgendaModule et HomeModule
     LoadSpinnerComponent
   ]

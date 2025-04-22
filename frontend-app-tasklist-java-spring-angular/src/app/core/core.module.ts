@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { ApiTaskService } from './services/api-task.service';
 import { TaskService } from './services/task.service';
-//ajout routermodule pour les directive router link dans le headercomponent
+
 
 @NgModule({
   declarations: [
     HeaderComponent, // Composant global
     ],
   imports: [
-    CommonModule
+    CommonModule,
+   RouterModule //ajout routermodule pour les directive router link dans le headercomponent
   ],
   exports: [
     HeaderComponent, // Exporté pour être réutilisé directement dans AppComponent
