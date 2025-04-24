@@ -4,8 +4,10 @@ import { AgendaComponent} from  './agenda/agenda.component';
 import { TaskListComponent} from  './task-list/task-list.component';
 
 export const routes: Routes = [
-    {  path: '', component: HomeComponent},
-    {  path: 'tasks', component: TaskListComponent},
-    {  path: 'agenda', component: AgendaComponent},
-    { path: '**', redirectTo: '/' }, // Redirige les erreurs 404 vers Home
+    {
+      path: '',
+      loadChildren: () => import('./features/features.module')
+            .then(m => m.FeaturesModule)
+    },
+    { path: '**', redirectTo: '/' }// Redirige les erreurs 404 vers Home
   ];
