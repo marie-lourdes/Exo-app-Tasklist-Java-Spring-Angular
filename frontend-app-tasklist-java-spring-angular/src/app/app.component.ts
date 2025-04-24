@@ -1,12 +1,11 @@
 import { Component,OnInit } from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { RouterOutlet, RouterLink } from '@angular/router';
-import { HeaderComponent} from  './header/header.component';
-import { AgendaComponent} from  './agenda/agenda.component';
+import { RouterOutlet } from '@angular/router';
+import { CoreModule } from './core/core.module';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink,CommonModule, HeaderComponent],
+  imports: [RouterOutlet, CoreModule  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

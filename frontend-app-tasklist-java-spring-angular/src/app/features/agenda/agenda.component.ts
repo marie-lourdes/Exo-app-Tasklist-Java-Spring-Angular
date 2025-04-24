@@ -1,16 +1,16 @@
 import { Component,OnInit,inject,signal,WritableSignal,Signal, computed } from '@angular/core';
-import {CommonModule,UpperCasePipe} from '@angular/common';
+import {UpperCasePipe} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalComponent } from '../modal/modal.component';
-import { LoadSpinnerComponent} from '../load-spinner/load-spinner.component';
-import { AgendaService } from '../service/agenda.service';
-import {  Task } from '../model/task';
+import { ModalComponent } from './modal/modal.component';
+import { LoadSpinnerComponent} from '../../shared/components/load-spinner/load-spinner.component';
+import { AgendaService } from './services/agenda.service';
+import {  Task } from '../../shared/model/task';
 import { DateTime,Info,Interval } from "luxon";
 import {Observable, interval, tap, take} from 'rxjs';
 
 @Component({
   selector: 'app-agenda',
-  imports: [CommonModule,LoadSpinnerComponent],
+  imports: [CommonModule,LoadSpinnerComponent,ModalComponent],
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.scss'
 })

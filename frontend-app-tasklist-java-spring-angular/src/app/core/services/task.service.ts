@@ -1,7 +1,7 @@
 import { Injectable,OnInit,Inject,WritableSignal, signal, computed } from '@angular/core';
 import {Observable, tap} from 'rxjs';
 import { ApiTaskService } from './api-task.service';
-import {  Task } from '../model/task';
+import {  Task } from '../../shared/model/task';
 
 
 /*1. **Gérer la logique métier des tâches** (organiser les tâches, grouper par date, gérer les `Signal` Angular).

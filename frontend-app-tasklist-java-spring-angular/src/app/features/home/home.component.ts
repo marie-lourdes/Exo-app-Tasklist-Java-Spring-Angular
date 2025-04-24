@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
-import { TaskListComponent} from  '../task-list/task-list.component';
-import { LoadSpinnerComponent} from  '../load-spinner/load-spinner.component';
+import { TaskListComponent} from  '../../features/task-list/task-list.component';
+import { LoadSpinnerComponent} from  '../../shared/components/load-spinner/load-spinner.component';
 
 
 @Component({

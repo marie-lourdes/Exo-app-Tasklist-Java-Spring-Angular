@@ -13,9 +13,8 @@ import { AgendaRoutingModule } from './agenda-routing.module';
   ],*/
   imports: [
     SharedModule,
-    AgendaRoutingModule
+    AgendaRoutingModule,
     AgendaComponent,// Composant principal de l'agenda
-    ModalComponent // Le modal de l'agenda
   ],
   providers: [
     AgendaService

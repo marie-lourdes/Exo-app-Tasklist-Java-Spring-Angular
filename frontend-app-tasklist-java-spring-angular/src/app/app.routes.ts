@@ -1,7 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent} from  './home/home.component';
-import { AgendaComponent} from  './agenda/agenda.component';
-import { TaskListComponent} from  './task-list/task-list.component';
 
 export const routes: Routes = [
     {
