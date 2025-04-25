@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {BASE_URL_API} from '../../../environments/app.token';
 import { Task } from '@app/shared';
 
-
 /*### **Gestion des appels HTTP** */
 @Injectable({
   providedIn: 'root'

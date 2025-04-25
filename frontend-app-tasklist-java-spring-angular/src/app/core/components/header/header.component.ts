@@ -1,4 +1,4 @@
-import { Component,OnInit,  } from '@angular/core';
+import { Component} from '@angular/core';
 import { RouterLink} from '@angular/router';
 
 @Component({
@@ -7,8 +7,6 @@ import { RouterLink} from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent {
   path ='./assets/images/logo.png';
-  ngOnInit(): void {}
-
 }

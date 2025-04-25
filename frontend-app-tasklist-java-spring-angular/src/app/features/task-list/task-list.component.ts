@@ -1,4 +1,4 @@
-import { Component,OnInit, signal, computed,inject,linkedSignal } from '@angular/core';
+import { Component, signal, computed,inject,linkedSignal } from '@angular/core';
 import { TaskService} from '@app/core';
 import { Task} from '@app/shared';
 import {CommonModule} from '@angular/common';
@@ -12,7 +12,7 @@ import {MatIconModule} from '@angular/material/icon';
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss'
 })
-export class TaskListComponent implements OnInit{
+export class TaskListComponent {
   iconDeleteStyles = '#3498db';
   taskService = inject(TaskService);
 
@@ -38,10 +38,6 @@ export class TaskListComponent implements OnInit{
     source: this.tasks,
     computation: () => this.tasks().length
   });
-
-  ngOnInit(): void {
-
-   }
 
   // Ajouter une tâche
   addTask(): void {

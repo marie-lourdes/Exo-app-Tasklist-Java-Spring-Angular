@@ -1,4 +1,4 @@
-import { Component,OnInit,inject,signal,WritableSignal,Signal, computed } from '@angular/core';
+import { Component,inject,signal,WritableSignal,Signal, computed } from '@angular/core';
 import { CommonModule,UpperCasePipe} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
@@ -17,7 +17,7 @@ import {Observable, interval, tap, take} from 'rxjs';
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.scss'
 })
-export class AgendaComponent implements OnInit {
+export class AgendaComponent {
   agendaService = inject(AgendaService);
 
   // Signal pour la date actuelle
@@ -52,9 +52,6 @@ export class AgendaComponent implements OnInit {
   groupedTasksByDate = this.agendaService.groupedTasksByDate();
 
   constructor(private dialog: MatDialog){}
-
-  ngOnInit(): void {
-    }
 
   // Naviguer vers le mois précédent
   navigateToPreviousMonth(): void {

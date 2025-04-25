@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TaskListComponent} from  '../../features/task-list/task-list.component';
 import { LoadSpinnerComponent} from '@app/shared';
 
@@ -8,7 +8,5 @@ import { LoadSpinnerComponent} from '@app/shared';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {}
 
-  ngOnInit() : void{}
-}
