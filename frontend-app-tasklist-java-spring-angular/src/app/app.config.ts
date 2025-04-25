@@ -6,6 +6,7 @@ import { provideAnimationsAsync} from '@angular/platform-browser/animations/asyn
 import { routes } from './app.routes';
 import { TaskService } from './core/services/task.service';
 import {BASE_URL_API,URL_API} from '../environments/app.token';
+import  {CORE_PROVIDERS } from './core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +17,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),
     { provide: BASE_URL_API, useValue:URL_API },
-    TaskService
+    ...CORE_PROVIDERS
     ]
   }

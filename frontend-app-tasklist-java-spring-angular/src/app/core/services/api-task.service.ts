@@ -2,7 +2,8 @@ import { Injectable, Inject, WritableSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {BASE_URL_API} from '../../../environments/app.token';
-import {  Task } from '../../shared/model/task';
+import { Task } from '@app/shared';
+
 
 /*### **Gestion des appels HTTP** */
 @Injectable({
