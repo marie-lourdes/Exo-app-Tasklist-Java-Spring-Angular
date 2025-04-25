@@ -8,7 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-task-list',
-  imports: [CommonModule,FormsModule,MatIconModule],
+  imports: [FormsModule,MatIconModule],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss'
 })

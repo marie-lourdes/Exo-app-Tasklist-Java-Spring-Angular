@@ -7,16 +7,17 @@ import { TaskService } from './services/task.service';
 
 
 @NgModule({
-  declarations: [
+  /*declarations: [
     HeaderComponent, // Composant global
-    ],
+    ],*/
   imports: [
     CommonModule,
-   RouterModule //ajout routermodule pour les directive router link dans le headercomponent
+   RouterModule,//ajout routermodule pour les directive router link dans le headercomponent
+   HeaderComponent
   ],
-  exports: [
+ /* exports: [
     HeaderComponent, // Exporté pour être réutilisé directement dans AppComponent
-  ],
+  ],*/
   providers: [
     // Services globaux
     TaskService,

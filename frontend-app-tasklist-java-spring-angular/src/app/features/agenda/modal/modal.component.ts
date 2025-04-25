@@ -11,7 +11,6 @@ import {  Task } from '../model/task';
 @Component({
   selector: 'app-modal',
   imports: [
-    CommonModule,
     FormsModule,
     MatDialogModule,
     MatFormFieldModule,

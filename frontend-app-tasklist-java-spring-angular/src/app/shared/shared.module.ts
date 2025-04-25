@@ -6,10 +6,10 @@ import { CommonModule } from '@angular/common';
     LoadSpinnerComponent
   ],*/
   imports: [
-    CommonModule,
+    CommonModule
   ],
   exports: [
-     CommonModule,
+     CommonModule
   ]
 })
 export class SharedModule { }

@@ -14,7 +14,7 @@ const featuresRoutes: Routes = [
     },
     {
       path: 'tasks',
-      loadChildren: () => import('./task-list/task-list.module')
+      loadChildren: () => import('./task-list/tasklist.module')
         .then(m => m.TaskListModule)
     }
 

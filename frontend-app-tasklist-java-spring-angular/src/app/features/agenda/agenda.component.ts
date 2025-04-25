@@ -10,7 +10,7 @@ import {Observable, interval, tap, take} from 'rxjs';
 
 @Component({
   selector: 'app-agenda',
-  imports: [CommonModule,LoadSpinnerComponent,ModalComponent],
+  imports: [LoadSpinnerComponent,ModalComponent],
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.scss'
 })
