@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './load-spinner.component.html',
   styleUrl: './load-spinner.component.scss'
 })
-export class LoadSpinnerComponent implements OnInit{}
+export class LoadSpinnerComponent {}
