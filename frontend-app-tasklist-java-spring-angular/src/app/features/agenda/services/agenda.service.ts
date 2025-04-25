@@ -1,7 +1,7 @@
 import { Injectable, computed,Signal, WritableSignal  } from '@angular/core';
 import { Observable } from 'rxjs';
-import {  Task } from '../model/task';
-import { TaskService } from '../service/task.service';
+import { TaskService} from '../../../core/services/task.service';
+import {  Task } from '../../../shared/model/task';
 
 
 @Injectable({

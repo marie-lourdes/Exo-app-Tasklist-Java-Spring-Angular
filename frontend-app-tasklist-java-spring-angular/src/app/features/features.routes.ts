@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {Routes } from '@angular/router';
 
-const featuresRoutes: Routes = [
+export const featuresRoutes: Routes = [
    {
       path: '',
       loadChildren: () => import('./home/home.routes')

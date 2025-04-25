@@ -1,5 +1,5 @@
 import { Component,OnInit,inject,signal,WritableSignal,Signal, computed } from '@angular/core';
-import {UpperCasePipe} from '@angular/common';
+import { CommonModule,UpperCasePipe} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
 import { LoadSpinnerComponent} from '../../shared/components/load-spinner/load-spinner.component';
@@ -8,9 +8,13 @@ import {  Task } from '../../shared/model/task';
 import { DateTime,Info,Interval } from "luxon";
 import {Observable, interval, tap, take} from 'rxjs';
 
+/*L'import dans le décorateur `@Component` est nécessaire uniquement lorsque :
+  1. Vous utilisez le composant directement dans le template (HTML)
+  2. Vous utilisez un sélecteur du composant (par exemple `<app-modal>`)
+*/
 @Component({
   selector: 'app-agenda',
-  imports: [LoadSpinnerComponent,ModalComponent],
+  imports: [ CommonModule,LoadSpinnerComponent],
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.scss'
 })

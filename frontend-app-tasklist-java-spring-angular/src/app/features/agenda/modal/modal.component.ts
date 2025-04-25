@@ -5,12 +5,13 @@ import {CommonModule} from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialogModule} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { TaskService} from '../service/task.service';
-import {  Task } from '../model/task';
+import { TaskService} from '../../../core/services/task.service';
+import {  Task } from '../../../shared/model/task';
 
 @Component({
   selector: 'app-modal',
   imports: [
+    CommonModule,
     FormsModule,
     MatDialogModule,
     MatFormFieldModule,
