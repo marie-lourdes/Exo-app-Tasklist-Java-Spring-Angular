@@ -17,6 +17,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),
     { provide: BASE_URL_API, useValue:URL_API },
-    ...CORE_PROVIDERS
+    ...CORE_PROVIDERS // comprenant taskservice et permet inject(TaskService)
     ]
   }

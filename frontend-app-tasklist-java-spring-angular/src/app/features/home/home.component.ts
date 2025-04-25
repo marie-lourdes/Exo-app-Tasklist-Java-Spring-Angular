@@ -1,7 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { TaskListComponent} from  '../../features/task-list/task-list.component';
-import { LoadSpinnerComponent} from  '../../shared/components/load-spinner/load-spinner.component';
-
+import { LoadSpinnerComponent} from '@app/shared';
 
 @Component({
   selector: 'app-home',

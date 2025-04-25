@@ -2,9 +2,8 @@ import { Component,OnInit,inject,signal,WritableSignal,Signal, computed } from '
 import { CommonModule,UpperCasePipe} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
-import { LoadSpinnerComponent} from '../../shared/components/load-spinner/load-spinner.component';
+import { Task,LoadSpinnerComponent } from '@app/shared';
 import { AgendaService } from './services/agenda.service';
-import {  Task } from '../../shared/model/task';
 import { DateTime,Info,Interval } from "luxon";
 import {Observable, interval, tap, take} from 'rxjs';
 
