@@ -3,6 +3,9 @@ import {CommonModule} from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './core/components/header/header.component';
 
+//TODO: formatter les fichiers
+//TODO: Continuer a suivre les principe SOLID et l optimisation de l architecture
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,CommonModule,HeaderComponent],
