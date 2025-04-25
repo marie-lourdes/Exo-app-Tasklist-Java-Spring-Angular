@@ -1,8 +1,15 @@
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options.
+Pour que ces imports  @app/ raccourcis fonctionnent, il faut configurer les paths dans le `tsconfig.json` :
+
+*/
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@app/core": ["src/app/core"],
+      "@app/shared": ["src/app/shared"]
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
