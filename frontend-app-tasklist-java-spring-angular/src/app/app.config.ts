@@ -4,19 +4,21 @@ import { provideHttpClient,withFetch } from '@angular/common/http';
 import { provideClientHydration, withEventReplay,withIncrementalHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
-import { TaskService } from './core/services/task.service';
 import {BASE_URL_API,URL_API} from '../environments/app.token';
-import  {CORE_PROVIDERS } from './core';
+import { TaskService } from './core';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideClientHydration(withEventReplay(),
-    withIncrementalHydration()),
+    provideClientHydration(
+      withEventReplay(),
+      withIncrementalHydration()),
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),
     { provide: BASE_URL_API, useValue:URL_API },
-    ...CORE_PROVIDERS // comprenant taskservice et permet inject(TaskService)
+    TaskService
+
     ]
   }
