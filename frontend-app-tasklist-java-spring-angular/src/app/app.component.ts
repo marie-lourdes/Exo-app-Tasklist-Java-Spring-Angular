@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { HeaderComponent } from './core/components/header/header.component';
 
-//TODO: formatter les fichiers
+//TODO: supprimer commentaires inutiles, verifier les modificateurs d acces sur les champs des classes
 //TODO: Continuer a suivre les principe SOLID et l optimisation de l architecture
 
 @Component({
