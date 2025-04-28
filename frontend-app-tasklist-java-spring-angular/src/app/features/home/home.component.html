@@ -5,18 +5,14 @@
  l attente ne fonctionne qu avec un event (on interaction) ,
  ici le clic sur l onglet home mais au chargement de la page home, pas d attente et de spinner
  -->
-@defer(on timer(10s); hydrate on interaction) {
-<div class="banner">
-  <img src="./assets/images/banner.webp"/>
-</div>
-<app-task-list/>
-} @placeholder{
-<p>Chargement de la liste des tâches...</p>
-<app-load-spinner/>
-}@loading {
-<!--<app-load-spinner/>-->
+@defer (on timer(10s); hydrate on interaction) {
+  <div class="banner">
+    <img src="./assets/images/banner.webp" />
+  </div>
+  <app-task-list />
+} @placeholder {
+  <p>Chargement de la liste des tâches...</p>
+  <app-load-spinner />
+} @loading {
+  <!--<app-load-spinner/>-->
 }
-
-
-
-

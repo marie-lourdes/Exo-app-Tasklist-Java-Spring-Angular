@@ -1,65 +1,59 @@
 <h2>Agenda</h2>
 <div class="agenda-wrapper">
-
-<section>
-
-  <div class="agenda-container">
-    <div class="agenda">
-      <div class="agenda-healine">
-        <div class="agenda-healine_month">
-          {{ firstDayOfActiveMonth().monthShort}}
-          {{ firstDayOfActiveMonth().year}}
-        </div>
-        <!-- Contrôles de navigation -->
-        <div class="agenda-healine-controls">
-          <button (click)="navigateToPreviousMonth()">&#8592; Mois précédent</button>
-          <span class="agenda-healine-control agenda-healine-control--today">
+  <section>
+    <div class="agenda-container">
+      <div class="agenda">
+        <div class="agenda-healine">
+          <div class="agenda-healine_month">
+            {{ firstDayOfActiveMonth().monthShort }}
+            {{ firstDayOfActiveMonth().year }}
+          </div>
+          <!-- Contrôles de navigation -->
+          <div class="agenda-healine-controls">
+            <button (click)="navigateToPreviousMonth()">&#8592; Mois précédent</button>
+            <span class="agenda-healine-control agenda-healine-control--today">
               {{ today().toFormat('yyyy-LL-dd') }}
             </span>
-          <button (click)="navigateToNextMonth()">Mois suivant &#8594;</button>
+            <button (click)="navigateToNextMonth()">Mois suivant &#8594;</button>
+          </div>
         </div>
-      </div>
 
-
-      <table  class="agenda-week-table" >
+        <table class="agenda-week-table">
           <thead>
-          <tr>
-            @for( weekday of weekDays(); track $index){
-            <th scope="col" class="agenda-week-cell"> {{weekday | uppercase}}</th>
-            }
-          </tr>
+            <tr>
+              @for (weekday of weekDays(); track $index) {
+                <th scope="col" class="agenda-week-cell">{{ weekday | uppercase }}</th>
+              }
+            </tr>
           </thead>
           <tbody>
-          @for( week of daysInWeeks(); track week){
-          <tr>
-            @for( day of  week; track $index){
-            <td (click)="openModal(day)"> {{day.day}}</td>
+            @for (week of daysInWeeks(); track week) {
+              <tr>
+                @for (day of week; track $index) {
+                  <td (click)="openModal(day)">{{ day.day }}</td>
+                }
+              </tr>
             }
-          </tr>
-          }
           </tbody>
         </table>
+      </div>
     </div>
-
-  </div>
-</section>
-<section class="list-tasks">
-  <div>
-    <!-- Liste des tâches pour chaque jour -->
-    <ul *ngIf="groupedTasksByDate().size !==0; else loading" class="task-list">
-      <li *ngFor="let entry of  groupedTasksByDate()| keyvalue">
-        <h4>{{ entry.key }}</h4>
-        <ul>
-          <li *ngFor="let task of entry.value">{{ task.title }}</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  <ng-template #loading>
-    <app-load-spinner></app-load-spinner>
-    <p>Chargement des tâches...</p>
-  </ng-template>
-</section>
+  </section>
+  <section class="list-tasks">
+    <div>
+      <!-- Liste des tâches pour chaque jour -->
+      <ul *ngIf="groupedTasksByDate().size !== 0; else loading" class="task-list">
+        <li *ngFor="let entry of groupedTasksByDate() | keyvalue">
+          <h4>{{ entry.key }}</h4>
+          <ul>
+            <li *ngFor="let task of entry.value">{{ task.title }}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <ng-template #loading>
+      <app-load-spinner></app-load-spinner>
+      <p>Chargement des tâches...</p>
+    </ng-template>
+  </section>
 </div>
-
-

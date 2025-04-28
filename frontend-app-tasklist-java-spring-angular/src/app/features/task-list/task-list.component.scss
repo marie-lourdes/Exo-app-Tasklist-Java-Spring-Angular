@@ -4,28 +4,28 @@
 $button-margin: 1rem;
 
 ul {
-    list-style-type: disclosure-open;
-  }
+  list-style-type: disclosure-open;
+}
 
 li {
   margin-bottom: 1rem;
-  }
+}
 
 .task-list {
-  display:flex;
+  display: flex;
   justify-content: space-between;
   width: 75vw;
-  }
+}
 
 .task-list-input {
-  appearance:none;
+  appearance: none;
   border: 1px solid black;
   padding: 1rem;
-   &:focus{
-   color: colors.$primary-color;
-   border:0;
-   outline: 5px ridge  colors.$primary-color;
-   transition: border 0.2s ease;
+  &:focus {
+    color: colors.$primary-color;
+    border: 0;
+    outline: 5px ridge colors.$primary-color;
+    transition: border 0.2s ease;
   }
 }
 
@@ -34,7 +34,7 @@ li {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  }
+}
 
 .btn-delete {
   margin-left: $button-margin;
@@ -51,9 +51,10 @@ li {
   border: 1px solid colors.$primary-color;
   background-color: #fff;
   color: colors.$primary-color;
-  &:disabled{ //pseudo class
-       background-color: #ebe2ec;
-       color:#fff;
-       border-color: #000;
-     }
+  &:disabled {
+    //pseudo class
+    background-color: #ebe2ec;
+    color: #fff;
+    border-color: #000;
   }
+}

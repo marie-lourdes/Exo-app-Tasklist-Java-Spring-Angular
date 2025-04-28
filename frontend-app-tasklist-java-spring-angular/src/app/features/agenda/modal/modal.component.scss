@@ -2,8 +2,7 @@
 
 ::ng-deep mat-dialog-container {
   border-radius: 2rem;
-  & .mat-mdc-dialog-surface{
-      padding: 2rem;
-    }
+  & .mat-mdc-dialog-surface {
+    padding: 2rem;
+  }
 }
-

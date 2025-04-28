@@ -3,9 +3,7 @@
   <div *ngIf="tasks().length > 0">
     <h3>Liste des tâches :</h3>
     <ul>
-      <li *ngFor="let task of tasks()">
-        {{ task.title }} - {{ task.description }}
-      </li>
+      <li *ngFor="let task of tasks()">{{ task.title }} - {{ task.description }}</li>
     </ul>
   </div>
   <div *ngIf="tasks().length === 0">
@@ -14,21 +12,27 @@
 
   <h3 mat-dialog-title>Ajouter une tâche</h3>
   <form #taskForm="ngForm" (ngSubmit)="onSubmit()">
-    <mat-form-field style="width: 100%;">
+    <mat-form-field style="width: 100%">
       <mat-label>Titre</mat-label>
       <input matInput placeholder="Titre de la tâche" required [(ngModel)]="task.title" name="title" />
     </mat-form-field>
 
-    <mat-form-field style="width: 100%;">
+    <mat-form-field style="width: 100%">
       <mat-label>Description</mat-label>
-      <textarea matInput placeholder="Description" rows="3" [(ngModel)]="task.description" name="description"></textarea>
+      <textarea
+        matInput
+        placeholder="Description"
+        rows="3"
+        [(ngModel)]="task.description"
+        name="description"
+      ></textarea>
     </mat-form-field>
 
-    <p>Date sélectionnée : <strong>{{ task.date }}</strong></p>
+    <p>
+      Date sélectionnée : <strong>{{ task.date }}</strong>
+    </p>
 
     <button type="submit" mat-raised-button color="primary" [disabled]="!taskForm.valid">Ajouter</button>
     <button type="button" mat-button (click)="onClose()">Annuler</button>
   </form>
 </mat-dialog-content>
-
-

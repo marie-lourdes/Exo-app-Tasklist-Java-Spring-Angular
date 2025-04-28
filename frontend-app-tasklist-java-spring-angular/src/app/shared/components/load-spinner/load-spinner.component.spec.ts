@@ -8,9 +8,8 @@ describe('LoadSpinnerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoadSpinnerComponent]
-    })
-    .compileComponents();
+      imports: [LoadSpinnerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoadSpinnerComponent);
     component = fixture.componentInstance;

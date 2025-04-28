@@ -1,18 +1,16 @@
 <!-- block html statique -->
-<app-header/>
+<app-header />
 
-<div class="main-separator" >
-  <img src="./assets/images/rose.jpg" class="separator-rose" *ngFor="let element of iteration"/>
+<div class="main-separator">
+  <img src="./assets/images/rose.jpg" class="separator-rose" *ngFor="let element of iteration" />
 </div>
 <!-- ------------------------------ -->
-<main class="content ">
+<main class="content">
   <!-- block html dynamique avec routeroutlet-->
-  <router-outlet/>
+  <router-outlet />
 </main>
 <div class="container-link-agenda">
   <a routerLink="/agenda" class="link-agenda">+</a>
 </div>
 
-<footer>
- copyright 2025
-</footer>
+<footer>copyright 2025</footer>

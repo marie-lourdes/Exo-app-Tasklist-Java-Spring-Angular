@@ -1,70 +1,66 @@
 <h1>Task List</h1>
-<div class="task-list" >
+<div class="task-list">
   <section class="tasks-pending">
     <h2>Tâches en cours</h2>
 
     <ul>
-      @for(task of tasksPending(); track task.id){
-      <li *ngIf="!task.completed">
-        <input type="checkbox" [(ngModel)]="task.completed"   [checked]="task.completed" (change)="updateTask(task)"/>
-        <span >{{ task.title }} </span>
-        <button (click)="deleteTask(task.id!)" class="btn-delete">Delete</button>
-      </li>
+      @for (task of tasksPending(); track task.id) {
+        <li *ngIf="!task.completed">
+          <input type="checkbox" [(ngModel)]="task.completed" [checked]="task.completed" (change)="updateTask(task)" />
+          <span>{{ task.title }} </span>
+          <button (click)="deleteTask(task.id!)" class="btn-delete">Delete</button>
+        </li>
       } @empty {
-      <span> Aucune tâche pour le moment!  </span>
+        <span> Aucune tâche pour le moment! </span>
       }
     </ul>
   </section>
-  <section  *ngIf="tasksCompleted().length !== 0" class="tasks-pending" >
-  <h2>Tâches terminées</h2>
-    <table >
+  <section *ngIf="tasksCompleted().length !== 0" class="tasks-pending">
+    <h2>Tâches terminées</h2>
+    <table>
       <thead>
-      <tr>
-        <th>Title</th>
-        <th>status</th>
-        <th>action</th>
-      </tr>
+        <tr>
+          <th>Title</th>
+          <th>status</th>
+          <th>action</th>
+        </tr>
       </thead>
       <tbody>
-      @for(taskCompleted of tasksCompleted(); track taskCompleted.id){
-      <tr [style.color]="taskCompleted.completed ? 'red' : 'black'"
-          *ngIf="taskCompleted.completed">
-        <td>{{taskCompleted.title}}</td>
-        <td>done!</td>
-        <td>
-          <input
-            type="checkbox"
-            [(ngModel)]="taskCompleted.completed"
-            (change)="updateTask(taskCompleted )"
-          />
-          <button (click)="deleteTask(taskCompleted .id!)" mat-fab aria-label="Example icon button with a delete icon">
-            <mat-icon [style.color]="iconDeleteStyles ">delete</mat-icon>
-          </button>
-        </td>
-      </tr>
-      }
+        @for (taskCompleted of tasksCompleted(); track taskCompleted.id) {
+          <tr [style.color]="taskCompleted.completed ? 'red' : 'black'" *ngIf="taskCompleted.completed">
+            <td>{{ taskCompleted.title }}</td>
+            <td>done!</td>
+            <td>
+              <input type="checkbox" [(ngModel)]="taskCompleted.completed" (change)="updateTask(taskCompleted)" />
+              <button
+                (click)="deleteTask(taskCompleted.id!)"
+                mat-fab
+                aria-label="Example icon button with a delete icon"
+              >
+                <mat-icon [style.color]="iconDeleteStyles">delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </section>
 </div>
 <div>
-  <input class="task-list-input" [(ngModel)]="newTask.title"  placeholder="New task"/>
-  <button (click)="addTask()" [disabled]= "numberTask() >= 10" class="btn-add">Add Task</button>
+  <input class="task-list-input" [(ngModel)]="newTask.title" placeholder="New task" />
+  <button (click)="addTask()" [disabled]="numberTask() >= 10" class="btn-add">Add Task</button>
 </div>
 
 <div class="all-tasks">
-@defer(on interaction) {
-  <h2>Nombre total des tâches (en cours et non terminées)</h2>
+  @defer (on interaction) {
+    <h2>Nombre total des tâches (en cours et non terminées)</h2>
 
-  @if (numberTask() >=10){
-  <p> Vous avez atteint  le maximum de tâches, supprimez les tâches terminées ou inutiles</p>
-  }@else {
-  <p>Nombre de tâches : {{ numberTask() }}</p>
+    @if (numberTask() >= 10) {
+      <p>Vous avez atteint le maximum de tâches, supprimez les tâches terminées ou inutiles</p>
+    } @else {
+      <p>Nombre de tâches : {{ numberTask() }}</p>
+    }
+  } @placeholder {
+    <button>Voir toutes les tâches</button>
   }
-}@placeholder {
-<button >Voir toutes les tâches</button>
-}
 </div>
-
-
-
