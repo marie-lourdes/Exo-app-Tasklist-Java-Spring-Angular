@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { HeaderComponent } from './core/components/header/header.component';
 
 //TODO: formatter les fichiers
@@ -8,7 +8,7 @@ import { HeaderComponent } from './core/components/header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,CommonModule,HeaderComponent],
+  imports: [RouterOutlet,RouterLink,CommonModule,HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
