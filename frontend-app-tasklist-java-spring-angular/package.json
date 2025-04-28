@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:frontend-app-tasklist-java-spring-angular": "node dist/frontend-app-tasklist-java-spring-angular/server/server.mjs"
+    "serve:ssr:frontend-app-tasklist-java-spring-angular": "node dist/frontend-app-tasklist-java-spring-angular/server/server.mjs",
+    "format": "prettier --write \"src/**/*.{ts,html,scss}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,html,scss}\""
   },
   "private": true,
   "dependencies": {
