@@ -1,8 +1,9 @@
 import { Injectable, Inject, WritableSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BASE_URL_API } from '../../../environments/app.token';
+import { BASE_URL_API } from '@environments/app.token';
 import { Task } from '@app/shared';
+import { ICrudService } from '@app/core';
 
 /*### **Gestion des appels HTTP** */
 @Injectable({

@@ -9,7 +9,8 @@ Pour que ces imports  @app/ raccourcis fonctionnent, il faut configurer les path
     "paths": {
       "@app/core": ["./src/app/core"],
       "@app/shared": ["./src/app/shared"],
-      "@app/features": ["./src/app/features"]
+      "@app/features": ["./src/app/features"],
+      "@environments/*": ["./src/environments/*"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
