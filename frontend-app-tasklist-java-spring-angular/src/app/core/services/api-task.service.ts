@@ -28,15 +28,6 @@ export class ApiTaskService {
     return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
   }
 
-  getTasksByDate(date: string | null): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.apiUrl}/details/${date}`);
-  }
-
-  getTasksForMonth(startOfMonth: string, endOfMonth: string): Observable<Task[]> {
-    console.log(`URL appelée : ${this.apiUrl}?start=${startOfMonth}&end=${endOfMonth}`);
-
-    return this.http.get<Task[]>(`${this.apiUrl}?start=${startOfMonth}&end=${endOfMonth}`);
-  }
   // Charger à partir du backend et setter dans le signal
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.apiUrl);
