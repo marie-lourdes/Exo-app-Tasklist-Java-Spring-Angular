@@ -2,11 +2,12 @@ import { Injectable, computed, Signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TaskService } from '@app/core';
 import { Task } from '@app/shared';
+import { IFilteringTask } from '../interfaces/ifilteringtask.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AgendaService {
+export class AgendaService implements IFilteringTask {
   //inject pas necessaire dans une classe service ≠ agendacomponent
   constructor(private taskService: TaskService) {}
 
