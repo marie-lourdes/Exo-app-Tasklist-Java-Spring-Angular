@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AgendaService } from '@app/features/services/agenda.service';
+import { AgendaService } from '@app/features';
 import { Task } from '@app/shared';
 
 @Component({
@@ -31,7 +31,7 @@ export class ModalComponent {
   }
 
   onSubmit(): void {
-    this.taskService.createTask(this.task);
+    this.agendaService.addOneTask(this.task);
     this.dialogRef.close();
   }
 
