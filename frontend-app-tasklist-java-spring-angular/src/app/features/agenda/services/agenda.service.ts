@@ -30,4 +30,13 @@ export class AgendaService {
       return grouped; // Retourne une Map où chaque clé est une date, et chaque valeur est un tableau de tâches
     });
   }
+  getAllTasks(): WritableSignal<Task[]> {
+    return this.taskService.getTasks();
+  }
+
+  addOneTask(task: Task): void {
+    this.taskService.getTasks();
+
+  }
+
 }

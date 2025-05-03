@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { TaskService } from '@app/core';
+import { AgendaService } from '@app/features/services/agenda.service';
 import { Task } from '@app/shared';
 
 @Component({
@@ -22,7 +22,7 @@ export class ModalComponent {
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { date: string; tasks: WritableSignal<Task[]> },
-    private taskService: TaskService
+    private agendaService: AgendaService
   ) {
     this.task = { title: '', completed: false, description: '', date: data.date };
     this.date = data.date;

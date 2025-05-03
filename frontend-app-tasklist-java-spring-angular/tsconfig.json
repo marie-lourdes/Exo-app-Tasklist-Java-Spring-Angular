@@ -8,7 +8,8 @@ Pour que ces imports  @app/ raccourcis fonctionnent, il faut configurer les path
   "compilerOptions": {
     "paths": {
       "@app/core": ["./src/app/core"],
-      "@app/shared": ["./src/app/shared"]
+      "@app/shared": ["./src/app/shared"],
+      "@app/features": ["./src/app/features"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
