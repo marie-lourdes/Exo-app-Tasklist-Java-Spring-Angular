@@ -4,8 +4,9 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration, withEventReplay, withIncrementalHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
-import { BASE_URL_API, URL_API } from '../environments/app.token';
-import { TaskService } from './core';
+import { BASE_URL_API, URL_API } from '@environments/app.token';
+import { PROVIDER_SERVICE,CORE_PROVIDERS } from '@app/core';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),
     { provide: BASE_URL_API, useValue: URL_API },
-    TaskService,
+    { provide: PROVIDER_SERVICE, useValue: CORE_PROVIDERS },
   ],
 };

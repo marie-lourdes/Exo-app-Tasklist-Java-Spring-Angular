@@ -6,4 +6,12 @@ export * from './http/interfaces/icrudoperation.interface';
 
 import { ApiTaskService } from './http/services/api-task.service';
 import { TaskService } from './services/task.service';
+import { InjectionToken } from '@angular/core';
 import { Provider } from '@angular/core';
+
+export const PROVIDER_SERVICE = new InjectionToken<Provider[]>('PROVIDER_SERVICE');
+export const CORE_PROVIDERS: Provider[] = [
+  ApiTaskService,
+  TaskService
+];
+
