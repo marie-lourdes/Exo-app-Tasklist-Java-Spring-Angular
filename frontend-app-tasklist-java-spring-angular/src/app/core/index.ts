@@ -2,7 +2,7 @@
 export * from './http/services/api-task.service';
 export * from './services/task.service';
 export * from './components/header/header.component';
-export * from './http/interfaces/icrudservice.interface';
+export * from './http/interfaces/icrudoperation.interface';
 
 import { ApiTaskService } from './http/services/api-task.service';
 import { TaskService } from './services/task.service';

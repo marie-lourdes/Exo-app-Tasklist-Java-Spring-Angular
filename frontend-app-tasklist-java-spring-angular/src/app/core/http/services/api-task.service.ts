@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BASE_URL_API } from '@environments/app.token';
 import { ITask } from '@app/shared';
-import { ICrudService } from '@app/core';
+import { ICrudOperation } from '@app/core';
 
 /*### **Gestion des appels HTTP** */
 @Injectable({
   providedIn: 'root',
 })
-export class ApiTaskService implements ICrudService {
+export class ApiTaskService implements ICrudOperation {
   constructor(
     private http: HttpClient,
     @Inject(BASE_URL_API) private apiUrl: string
