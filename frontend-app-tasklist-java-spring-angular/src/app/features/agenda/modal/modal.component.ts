@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AgendaService } from '@app/features';
-import { Task } from '@app/shared';
+import { ITask } from '@app/shared';
 
 @Component({
   selector: 'app-modal',
@@ -15,13 +15,13 @@ import { Task } from '@app/shared';
   styleUrl: './modal.component.scss',
 })
 export class ModalComponent {
-  public task: Task;
+  public task: ITask;
   public date: string;
-  public tasks: WritableSignal<Task[]>;
+  public tasks: WritableSignal<ITask[]>;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { date: string; tasks: WritableSignal<Task[]> },
+    @Inject(MAT_DIALOG_DATA) public data: { date: string; tasks: WritableSignal<ITask[]> },
     private agendaService: AgendaService
   ) {
     this.task = { title: '', completed: false, description: '', date: data.date };

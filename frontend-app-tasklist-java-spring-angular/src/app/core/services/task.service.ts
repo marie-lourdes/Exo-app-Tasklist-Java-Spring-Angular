@@ -2,7 +2,7 @@ import { Injectable, OnInit, Inject, WritableSignal, signal, computed } from '@a
 import { Observable, tap } from 'rxjs';
 //import { ApiTaskService } from './api-task.service';
 import { ApiTaskService } from '@app/core';
-import { Task } from '@app/shared';
+import { ITask } from '@app/shared';
 
 /*1. **Gérer la logique métier des tâches** (organiser les tâches, grouper par date, gérer les `Signal` Angular).
   2. **Maintenir un état réactif** (via `WritableSignal` ou `ComputedSignal`).
@@ -15,7 +15,7 @@ export class TaskService {
   //TODO:deplacer les methodes et signaux liés au  taskbydate, taskbymonth dans agenda service dont dependra l'agendacomponent car tres fort couplage avec le taskservice
 
   // Signal contenant toutes les tâches
-  private tasks: WritableSignal<Task[]> = signal([]);
+  private tasks: WritableSignal<ITask[]> = signal([]);
 
   constructor(private apiTaskService: ApiTaskService) {
     this.loadTasks(); // Charger les tâches  à l initialisation
@@ -28,13 +28,13 @@ export class TaskService {
     });
   }
 
-  createTask(task: Task): void {
+  createTask(task: ITask): void {
     this.apiTaskService.createTask(task).subscribe(newTask => {
       this.tasks.update(tasks => [...tasks, newTask]);
     });
   }
 
-  updateTask(task: Task, onComplete: () => void): void {
+  updateTask(task: ITask, onComplete: () => void): void {
     this.apiTaskService.updateTask(task, onComplete).subscribe(updatedTask => {
       this.tasks.update(tasks => tasks.map(t => (t.id === updatedTask.id ? updatedTask : t)));
       // Appeler le callback après la mise à jour
@@ -49,7 +49,7 @@ export class TaskService {
   }
 
   // Obtenez les tâches sous forme de signal
-  getTasks(): WritableSignal<Task[]> {
+  getTasks(): WritableSignal<ITask[]> {
     return this.tasks;
   }
 }

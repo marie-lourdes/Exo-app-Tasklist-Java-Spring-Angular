@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
-import { Task } from '@app/shared';
+import { ITask } from '@app/shared';
 
 export interface ICrudService {
-   createTask(task: Task): Observable<Task>;
-   updateTask(task: Task, onComplete: () => void): Observable<Task>;
+   createTask(task: ITask): Observable<ITask>;
+   updateTask(task: ITask, onComplete: () => void): Observable<ITask>;
    deleteTask(id: number): Observable<void>;
-   getTasks(): Observable<Task[]> ;
+   getTasks(): Observable<ITask[]> ;
 
 }

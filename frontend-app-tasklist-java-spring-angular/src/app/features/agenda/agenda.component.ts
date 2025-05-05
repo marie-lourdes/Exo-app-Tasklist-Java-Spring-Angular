@@ -2,7 +2,7 @@ import { Component, inject, signal, WritableSignal, Signal, computed } from '@an
 import { CommonModule, UpperCasePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
-import { Task, LoadSpinnerComponent } from '@app/shared';
+import { ITask, LoadSpinnerComponent } from '@app/shared';
 import { AgendaService } from './services/agenda.service';
 import { DateTime, Info, Interval } from 'luxon';
 import { Observable, interval, tap, take } from 'rxjs';

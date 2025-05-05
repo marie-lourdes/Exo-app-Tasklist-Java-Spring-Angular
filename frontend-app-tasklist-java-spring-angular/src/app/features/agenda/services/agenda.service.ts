@@ -1,7 +1,7 @@
 import { Injectable, computed, Signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TaskService } from '@app/core';
-import { Task } from '@app/shared';
+import { ITask } from '@app/shared';
 import { IFilteringTask } from '../interfaces/ifilteringtask.interface';
 
 @Injectable({
@@ -12,16 +12,16 @@ export class AgendaService implements IFilteringTask {
   constructor(private taskService: TaskService) {}
 
   // Récupère un signal réactif contenant les tâches pour une date spécifique
-  getTasksByDate(date: string | null): Signal<Task[]> {
+  getTasksByDate(date: string | null): Signal<ITask[]> {
     const tasks = this.taskService.getTasks();
     return computed(() => tasks().filter(task => task.date === date));
   }
 
   // ComputedSignal contenant les tâches groupées par date
-  groupedTasksByDate(): Signal<Map<string, Task[]>> {
+  groupedTasksByDate(): Signal<Map<string, ITask[]>> {
     const tasks = this.taskService.getTasks(); // Obtient toutes les tâches
     return computed(() => {
-      const grouped = new Map<string, Task[]>();
+      const grouped = new Map<string, ITask[]>();
       tasks().forEach(task => {
         if (!grouped.has(task.date)) {
           grouped.set(task.date, []); // Initialiser un tableau de tâches pour cette date
@@ -32,7 +32,7 @@ export class AgendaService implements IFilteringTask {
     });
   }
 
-  addOneTask(task: Task): void {
+  addOneTask(task: ITask): void {
     this.taskService.getTasks();
 
   }
