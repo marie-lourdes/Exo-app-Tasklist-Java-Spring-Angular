@@ -1,4 +1,4 @@
-// core/index.ts regroupe les service utlisés par les composants et facilite l import
+// core/index.ts regroupe  et exporte les service utlisés par les composants et facilite l import dans les fichier externes
 
 // Services
 export * from './http/services/api-task.service';
@@ -9,7 +9,6 @@ export * from './components/header/header.component';
 
 // Interfaces
 export * from './http/interfaces/icrudoperation.interface';
-
 
 // Providers
 import { ApiTaskService } from './http/services/api-task.service';
