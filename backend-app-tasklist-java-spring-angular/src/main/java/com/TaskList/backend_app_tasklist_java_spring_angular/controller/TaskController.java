@@ -35,7 +35,7 @@ public class TaskController {
 	public Task updateTask(@PathVariable Long id, @RequestBody Task taskDetails) {
 		Task taskUpdated = taskService.findOneTaskById(id);
 		taskUpdated.setTitle(taskDetails.getTitle());
-		taskUpdated.setCompleted(taskDetails.isCompleted());
+		taskUpdated.setStatus(taskDetails.getStatus());
 		return taskService.updateOneTaskById(taskUpdated);
 	}
 

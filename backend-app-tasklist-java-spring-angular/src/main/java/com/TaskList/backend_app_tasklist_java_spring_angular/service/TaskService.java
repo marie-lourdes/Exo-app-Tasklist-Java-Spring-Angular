@@ -19,7 +19,7 @@ public class TaskService {
 	}
 
 	public Task updateOneTaskById(Task taskUpdated) {
-	    System.out.println(" request put"+taskUpdated.isCompleted());
+	    System.out.println(" request put"+taskUpdated.getStatus());
 		return taskRepository.save(taskUpdated);
 	}
 
