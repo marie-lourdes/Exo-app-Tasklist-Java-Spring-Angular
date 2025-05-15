@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AgendaService } from '@app/features';
-import { ITask } from '@app/shared';
+import { ITask,TaskStatus} from '@app/shared';
 
 @Component({
   selector: 'app-modal',
@@ -24,7 +24,7 @@ export class ModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: { date: string; tasks: WritableSignal<ITask[]> },
     private agendaService: AgendaService
   ) {
-    this.task = { title: '', completed: false, description: '', date: data.date };
+    this.task = { title: '', status: TaskStatus.PENDING, description: '', date: data.date };
     this.date = data.date;
     this.tasks = data.tasks; // Tâches passées par AgendaComponent, Signal des tâches injectées
     console.log('Tâches reçues dans le modal :', this.tasks());

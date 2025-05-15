@@ -1,6 +1,6 @@
 import { Component, signal, computed, inject, linkedSignal } from '@angular/core';
 import { TaskService } from '@app/core';
-import { ITask } from '@app/shared';
+import { ITask, TaskStatus} from '@app/shared';
 import { CommonModule } from '@angular/common';
 // pour ngModel!!! le formModule doit etre importe dans le component qui l utilise et pas dans le app.module  selon l exo
 import { FormsModule } from '@angular/forms'; // Importer FormsModule
@@ -20,13 +20,13 @@ export class TaskListComponent {
   tasks = this.taskService.getTasks();
 
   //on cree des donne vide et par defaut pour le template a remplir de l ajout d un task
-  newTask: ITask = { title: '', completed: false, date: '' };
+  newTask: ITask = { title: '', status: TaskStatus.PENDING, date: '' };
 
   // Computed pour filtrer les tâches non terminées
-  tasksPending = computed(() => this.tasks().filter(task => !task.completed));
+  tasksPending = computed(() => this.tasks().filter(task => task.status === TaskStatus.PENDING ));
 
   // Computed pour filtrer les tâches terminées
-  tasksCompleted = computed(() => this.tasks().filter(task => task.completed));
+  tasksCompleted = computed(() => this.tasks().filter(task.status === TaskStatus.COMPLETED));
 
   // Test de LinkedSignal qui rend modifiable un Signal et reagit au Signal source: this.tasks
   numberTask = linkedSignal({
@@ -41,7 +41,7 @@ export class TaskListComponent {
       return;
     }
     this.taskService.createTask(this.newTask);
-    this.newTask = { title: '', completed: false, date: '' }; // Réinitialiser la tâche
+    this.newTask = { title: '', status: TaskStatus.PENDING, date: '' }; // Réinitialiser la tâche
   }
 
   // Mettre à jour une tâche

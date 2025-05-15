@@ -5,7 +5,7 @@ import { ApiTaskService } from '@app/core';
 import { ITask } from '@app/shared';
 
 //TODO: Appliquer le pattern strategy avec des declinaison de tri pour les taches completées et en cours avec des interfaces et classes comcretes
-
+//TODO: fixer les erreurs avec la creation de l enum status
 /*1. **Gérer la logique métier des tâches** (organiser les tâches, grouper par date, gérer les `Signal` Angular).
   2. **Maintenir un état réactif** (via `WritableSignal` ou `ComputedSignal`).
 */

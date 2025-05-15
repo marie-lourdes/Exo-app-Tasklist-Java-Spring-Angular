@@ -1,7 +1,8 @@
+import {TaskStatus} from '@app/shared';
 export interface ITask {
   id?: number;
   title: string;
-  completed: boolean;
+  status:TaskStatus;
   description?: string;
   date: string; // Format: YYYY-MM-DD
 }
