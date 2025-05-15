@@ -4,6 +4,8 @@ import { Observable, tap } from 'rxjs';
 import { ApiTaskService } from '@app/core';
 import { ITask } from '@app/shared';
 
+//TODO: Appliquer le pattern strategy avec des declinaison de tri pour les taches completées et en cours avec des interfaces et classes comcretes
+
 /*1. **Gérer la logique métier des tâches** (organiser les tâches, grouper par date, gérer les `Signal` Angular).
   2. **Maintenir un état réactif** (via `WritableSignal` ou `ComputedSignal`).
 */
@@ -11,9 +13,6 @@ import { ITask } from '@app/shared';
   providedIn: 'root',
 })
 export class TaskService {
-  //TODO: decoupler les services avec la creation de Agenda service ,
-  //TODO:deplacer les methodes et signaux liés au  taskbydate, taskbymonth dans agenda service dont dependra l'agendacomponent car tres fort couplage avec le taskservice
-
   // Signal contenant toutes les tâches
   private tasks: WritableSignal<ITask[]> = signal([]);
 
