@@ -3,6 +3,8 @@ package com.TaskList.backend_app_tasklist_java_spring_angular.model;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,6 +19,8 @@ public class Task {
       private String title;
       private String description;
       private LocalDate date;
+      
+      @Enumerated(EnumType.STRING)
       private TaskStatusEnum status;
       
 }
