@@ -13,6 +13,9 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './task-list.component.scss',
 })
 export class TaskListComponent {
+  // Important : déclarer l'enum comme propriété pour l'utiliser dans le template
+  TaskStatus = TaskStatus;
+
   iconDeleteStyles = '#3498db';
   taskService = inject(TaskService);
 
@@ -26,7 +29,7 @@ export class TaskListComponent {
   tasksPending = computed(() => this.tasks().filter(task => task.status === TaskStatus.PENDING ));
 
   // Computed pour filtrer les tâches terminées
-  tasksCompleted = computed(() => this.tasks().filter(task.status === TaskStatus.COMPLETED));
+  tasksCompleted = computed(() => this.tasks().filter(task => task.status === TaskStatus.COMPLETED));
 
   // Test de LinkedSignal qui rend modifiable un Signal et reagit au Signal source: this.tasks
   numberTask = linkedSignal({
@@ -46,9 +49,15 @@ export class TaskListComponent {
 
   // Mettre à jour une tâche
   updateTask(task: ITask): void {
+     const updatedTask = {
+          ...task,
+          status: task.status === TaskStatus.PENDING ? TaskStatus.COMPLETED : TaskStatus.PENDING
+        };
+
     /*le signal computed tasksCompleted() reagira au changement au signal this.tasks
     via le call back dans la subscription du l 'observable ds taskservice' et affiche dans une pop le nombre de tâches complétée de manière reactive*/
-    this.taskService.updateTask(task, () => {
+
+    this.taskService.updateTask(updatedTask, () => {
       confirm('number of tasks completed computed:' + this.tasksCompleted().length);
     });
   }

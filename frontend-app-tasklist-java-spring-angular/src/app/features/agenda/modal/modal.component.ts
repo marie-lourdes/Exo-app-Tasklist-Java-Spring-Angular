@@ -18,6 +18,8 @@ export class ModalComponent {
   public task: ITask;
   public date: string;
   public tasks: WritableSignal<ITask[]>;
+  TaskStatus = TaskStatus;
+
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,

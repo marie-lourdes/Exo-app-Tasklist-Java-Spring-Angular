@@ -5,8 +5,8 @@
 
     <ul>
       @for (task of tasksPending(); track task.id) {
-        <li *ngIf="!task.completed">
-          <input type="checkbox" [(ngModel)]="task.status" [checked]="task.status === TaskStatus.COMPLETED" (change)="updateTask(task)" />
+        <li >
+          <input type="checkbox"  [checked]="task.status === TaskStatus.COMPLETED" (change)="updateTask(task)" />
           <span>{{ task.title }} - {{ task.date }} </span>
           <button (click)="deleteTask(task.id!)" class="btn-delete">Delete</button>
         </li>
@@ -27,7 +27,7 @@
       </thead>
       <tbody>
         @for (taskCompleted of tasksCompleted(); track taskCompleted.id) {
-          <tr [style.color]="taskCompleted.completed ? 'red' : 'black'" *ngIf="taskCompleted.completed">
+          <tr [style.color]="taskCompleted.status === TaskStatus.COMPLETED ? 'red' : 'black'" *ngIf="taskCompleted.status === TaskStatus.COMPLETED">
             <td>{{ taskCompleted.title }}- {{ taskCompleted.date }}</td>
             <td>done!</td>
             <td>
