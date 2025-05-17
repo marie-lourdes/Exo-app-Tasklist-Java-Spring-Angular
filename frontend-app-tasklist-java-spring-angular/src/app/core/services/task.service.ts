@@ -14,10 +14,10 @@ import { ITask, CompletedTasksStrategy, PendingTasksStrategy} from '@app/shared'
 export class TaskService {
   // Signal contenant toutes les tâches
   private tasks: WritableSignal<ITask[]> = signal([]);
-  private readonly completedTasksStrategy = new CompletedTasksStrategy();
-  private readonly pendingTasksStrategy = new PendingTasksStrategy();
 
-  constructor(private apiTaskService: ApiTaskService) {
+  constructor(private apiTaskService: ApiTaskService,
+    private readonly completedTasksStrategy: CompletedTasksStrategy,
+    private readonly pendingTasksStrategy: PendingTasksStrategy) {
     this.loadTasks(); // Charger les tâches  à l initialisation
   }
 
@@ -53,13 +53,13 @@ export class TaskService {
     return this.tasks;
   }
 
- /* // Pour obtenir directement les tâches filtrées et terminées
+  // Pour obtenir directement les tâches filtrées et terminées
   getCompletedTask():ITask[] {
     return this.completedTasksStrategy.sort(this.tasks());
   }
 
  // Pour obtenir directement les tâches filtrées et en cours
   getPendingTask():ITask[] {
-    return this.pendingTasksStrategy.sort(this.tasks());*/
+    return this.pendingTasksStrategy.sort(this.tasks());
   }
 }
