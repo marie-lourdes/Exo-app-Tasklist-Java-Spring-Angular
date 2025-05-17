@@ -6,7 +6,7 @@
     <ul>
       @for (task of tasksPending(); track task.id) {
         <li >
-          <input type="checkbox"  [checked]="task.status === TaskStatus.COMPLETED" (change)="updateTask(task)" />
+          <input type="checkbox"   [checked]="task.status === TaskStatus.COMPLETED" (change)="updateTask(task)" />
           <span>{{ task.title }} - {{ task.date }} </span>
           <button (click)="deleteTask(task.id!)" class="btn-delete">Delete</button>
         </li>
@@ -31,7 +31,7 @@
             <td>{{ taskCompleted.title }}- {{ taskCompleted.date }}</td>
             <td>done!</td>
             <td>
-              <input type="checkbox" [(ngModel)]="taskCompleted.status" [checked]="taskCompleted.status === TaskStatus.COMPLETED" (change)="updateTask(taskCompleted)" />
+              <input type="checkbox"  [checked]="taskCompleted.status === TaskStatus.COMPLETED" (change)="updateTask(taskCompleted)" />
               <button
                 (click)="deleteTask(taskCompleted.id!)"
                 mat-fab

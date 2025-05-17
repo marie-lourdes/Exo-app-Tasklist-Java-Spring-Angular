@@ -2,12 +2,12 @@ import { Injectable, computed, Signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TaskService } from '@app/core';
 import { ITask } from '@app/shared';
-import { IFilteringTask } from '../interfaces/ifilteringtask.interface';
+import { IFilteringDateTask } from '../interfaces/ifiltering-datetask.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AgendaService implements IFilteringTask {
+export class AgendaService implements IFilteringDateTask {
   //inject pas necessaire dans une classe service ≠ agendacomponent
   constructor(private taskService: TaskService) {}
 
@@ -33,8 +33,7 @@ export class AgendaService implements IFilteringTask {
   }
 
   addOneTask(task: ITask): void {
-    this.taskService.getTasks();
-
+    this.taskService.createTask(task);
   }
 
 }
