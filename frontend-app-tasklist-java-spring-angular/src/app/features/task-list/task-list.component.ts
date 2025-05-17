@@ -26,10 +26,10 @@ export class TaskListComponent {
   newTask: ITask = { title: '', status: TaskStatus.PENDING, date: '' };
 
   // Computed pour filtrer les tâches non terminées
-  tasksPending = computed(() => this.tasks().filter(task => task.status === TaskStatus.PENDING ));
+  tasksPending = computed(() => this.taskService.getPendingTask());
 
   // Computed pour filtrer les tâches terminées
-  tasksCompleted = computed(() => this.tasks().filter(task => task.status === TaskStatus.COMPLETED));
+  tasksCompleted = computed(() => this.taskService.getCompletedTask());
 
   // Test de LinkedSignal qui rend modifiable un Signal et reagit au Signal source: this.tasks
   numberTask = linkedSignal({
