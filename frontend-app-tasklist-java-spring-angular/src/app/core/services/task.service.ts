@@ -2,7 +2,7 @@ import { Injectable, OnInit, Inject, WritableSignal, signal, computed } from '@a
 import { Observable, tap } from 'rxjs';
 //import { ApiTaskService } from './api-task.service';
 import { ApiTaskService } from '@app/core';
-import { ITask, CompletedTasksStrategy, PendingTasksStrategy} from '@app/shared';
+import { ITask, TaskFilterService} from '@app/shared';
 
 //TODO: Appliquer le pattern strategy avec des declinaison de tri pour les taches completées et en cours avec des interfaces et classes comcretes
 /*1. **Gérer la logique métier des tâches** (organiser les tâches, grouper par date, gérer les `Signal` Angular).
@@ -15,9 +15,8 @@ export class TaskService {
   // Signal contenant toutes les tâches
   private tasks: WritableSignal<ITask[]> = signal([]);
 
-  constructor(private apiTaskService: ApiTaskService,
-    private readonly completedTasksStrategy: CompletedTasksStrategy,
-    private readonly pendingTasksStrategy: PendingTasksStrategy) {
+  constructor(private apiTaskService: ApiTaskService,private taskFilterService: TaskFilterService
+    ) {
     this.loadTasks(); // Charger les tâches  à l initialisation
   }
 
@@ -55,11 +54,11 @@ export class TaskService {
 
   // Pour obtenir directement les tâches filtrées et terminées
   getCompletedTask():ITask[] {
-    return this.completedTasksStrategy.sort(this.tasks());
+    return  this.taskFilterService.filterByStatus(this.tasks(), TaskStatus.COMPLETED);
   }
 
  // Pour obtenir directement les tâches filtrées et en cours
   getPendingTask():ITask[] {
-    return this.pendingTasksStrategy.sort(this.tasks());
+    return this.taskFilterService.filterByStatus(this.tasks(), TaskStatus.PENDING);
   }
 }

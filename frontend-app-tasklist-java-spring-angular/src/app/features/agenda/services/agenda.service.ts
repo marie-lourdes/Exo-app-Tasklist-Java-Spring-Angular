@@ -1,7 +1,7 @@
 import { Injectable, computed, Signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TaskService } from '@app/core';
-import { ITask } from '@app/shared';
+import { ITask,TaskFilterService } from '@app/shared';
 import { IFilteringDateTask } from '../interfaces/ifiltering-datetask.interface';
 
 @Injectable({
@@ -9,12 +9,13 @@ import { IFilteringDateTask } from '../interfaces/ifiltering-datetask.interface'
 })
 export class AgendaService implements IFilteringDateTask {
   //inject pas necessaire dans une classe service ≠ agendacomponent
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private taskFilterService: TaskFilterService) {}
 
   // Récupère un signal réactif contenant les tâches pour une date spécifique
   getTasksByDate(date: string | null): Signal<ITask[]> {
     const tasks = this.taskService.getTasks();
-    return computed(() => tasks().filter(task => task.date === date));
+    return computed(() => this.taskFilterService.filterByDate(tasks(), date || '');
+);
   }
 
   // ComputedSignal contenant les tâches groupées par date
