@@ -19,4 +19,7 @@ export class TaskFilterService {
     : this.pendingTasksStrategy.sort(tasks);
     }
 
+  filterByDate(tasks: ITask[], date: string): ITask[] {
+    return this.dateFilteringStrategy.filter(tasks, date);
+    }
 }
