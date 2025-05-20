@@ -4,7 +4,7 @@ import { TaskStatus} from '../../../enums/task-status.enum';
 import { ITaskSortingStrategy  } from '../interfaces/itask-sorting-strategy.interface';
 
 @Injectable({
-  providedIn: 'root'  // Important !
+  providedIn: 'root'  // Important pour l injection ds le provider de app.config !
 })
 export class PendingTasksStrategy implements ITaskSortingStrategy {
   sort(tasks: ITask[]): ITask[] {

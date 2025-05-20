@@ -17,6 +17,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     { provide: BASE_URL_API, useValue: URL_API },
     { provide: PROVIDER_CORE_SERVICE, useValue: CORE_PROVIDERS },
-    { provide: PROVIDER_SHARED_SERVICE, useValue: SHARED_PROVIDERS },
+    { provide: PROVIDER_SHARED_SERVICE, useValue: SHARED_PROVIDERS }
   ],
 };
