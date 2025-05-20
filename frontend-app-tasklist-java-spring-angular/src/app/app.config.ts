@@ -5,7 +5,7 @@ import { provideClientHydration, withEventReplay, withIncrementalHydration } fro
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
 import { BASE_URL_API, URL_API } from '@environments/app.token';
-import { PROVIDER_SERVICE,CORE_PROVIDERS } from '@app/core';
+import { PROVIDER_CORE_SERVICE,CORE_PROVIDERS } from '@app/core';
 
 
 export const appConfig: ApplicationConfig = {
@@ -16,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),
     { provide: BASE_URL_API, useValue: URL_API },
-    { provide: PROVIDER_SERVICE, useValue: CORE_PROVIDERS },
+    { provide: PROVIDER_CORE_SERVICE, useValue: CORE_PROVIDERS },
+    { provide: PROVIDER_SHARED_SERVICE, useValue: SHARED_PROVIDERS },
   ],
 };

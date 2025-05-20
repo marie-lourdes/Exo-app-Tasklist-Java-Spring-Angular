@@ -16,7 +16,7 @@ import { TaskService } from './services/task.service';
 import { InjectionToken } from '@angular/core';
 import { Provider } from '@angular/core';
 
-export const PROVIDER_SERVICE = new InjectionToken<Provider[]>('PROVIDER_SERVICE');
+export const PROVIDER_CORE_SERVICE = new InjectionToken<Provider[]>('PROVIDER_CORE_SERVICE');
 export const CORE_PROVIDERS: Provider[] = [
   ApiTaskService,
   TaskService
