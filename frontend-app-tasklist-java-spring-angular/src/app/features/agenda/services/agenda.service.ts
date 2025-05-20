@@ -14,8 +14,7 @@ export class AgendaService implements IFilteringDateTask {
   // Récupère un signal réactif contenant les tâches pour une date spécifique
   getTasksByDate(date: string | null): Signal<ITask[]> {
     const tasks = this.taskService.getTasks();
-    return computed(() => this.taskFilterService.filterByDate(tasks(), date || '');
-);
+    return computed(() => this.taskFilterService.filterByDate(tasks(), date || ''));
   }
 
   // ComputedSignal contenant les tâches groupées par date

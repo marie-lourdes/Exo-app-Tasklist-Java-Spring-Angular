@@ -3,7 +3,7 @@ import { CommonModule, UpperCasePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
 import { ITask, LoadSpinnerComponent } from '@app/shared';
-import { AgendaService } from './services/agenda.service';
+import { AgendaService } from '../services/agenda.service';
 import { DateTime, Info, Interval } from 'luxon';
 import { Observable, interval, tap, take } from 'rxjs';
 

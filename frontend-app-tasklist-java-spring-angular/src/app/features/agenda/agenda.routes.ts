@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AgendaComponent } from './agenda.component';
+import { AgendaComponent } from './components/agenda.component';
 
 export const agendaRoutes: Routes = [
   {

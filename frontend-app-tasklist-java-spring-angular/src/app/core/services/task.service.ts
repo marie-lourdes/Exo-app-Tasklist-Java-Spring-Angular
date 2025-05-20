@@ -2,7 +2,7 @@ import { Injectable, OnInit, Inject, WritableSignal, signal, computed } from '@a
 import { Observable, tap } from 'rxjs';
 //import { ApiTaskService } from './api-task.service';
 import { ApiTaskService } from '@app/core';
-import { ITask, TaskFilterService} from '@app/shared';
+import { ITask, TaskStatus, TaskFilterService} from '@app/shared';
 
 //TODO: Appliquer le pattern strategy avec des declinaison de tri pour les taches completées et en cours avec des interfaces et classes comcretes
 /*1. **Gérer la logique métier des tâches** (organiser les tâches, grouper par date, gérer les `Signal` Angular).
@@ -14,6 +14,7 @@ import { ITask, TaskFilterService} from '@app/shared';
 export class TaskService {
   // Signal contenant toutes les tâches
   private tasks: WritableSignal<ITask[]> = signal([]);
+  private readonly TaskStatus = TaskStatus;
 
   constructor(private apiTaskService: ApiTaskService,private taskFilterService: TaskFilterService
     ) {

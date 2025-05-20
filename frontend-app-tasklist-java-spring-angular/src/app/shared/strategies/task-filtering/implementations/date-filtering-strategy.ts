@@ -1,5 +1,5 @@
 import {ItaskFilteringStrategy } from  '../interfaces/itask-filtering-strategy.interface';
-import {ITask } from  '../../model/interfaces/itask.interface';
+import { ITask} from '../../../model/itask.interface';
 
 export class DateFilteringStrategy implements ItaskFilteringStrategy  {
   filter(tasks: ITask[], date: string): ITask[] {

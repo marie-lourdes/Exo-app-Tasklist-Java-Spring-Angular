@@ -6,7 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { routes } from './app.routes';
 import { BASE_URL_API, URL_API } from '@environments/app.token';
 import { PROVIDER_CORE_SERVICE,CORE_PROVIDERS } from '@app/core';
-
+import { PROVIDER_SHARED_SERVICE, SHARED_PROVIDERS} from '@app/shared';
 
 export const appConfig: ApplicationConfig = {
   providers: [

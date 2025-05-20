@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ITask, TaskStatus} from '@app/shared';
-import { ITaskSortingStrategy  } from './itask-sorting-strategy.interface';
+import { ITaskSortingStrategy  } from '../interfaces/itask-sorting-strategy.interface';
 
 @Injectable({
   providedIn: 'root'  // Important !

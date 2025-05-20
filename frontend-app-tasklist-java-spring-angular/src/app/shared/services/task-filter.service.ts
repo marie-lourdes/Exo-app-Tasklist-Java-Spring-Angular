@@ -1,4 +1,9 @@
 import { Injectable } from '@angular/core';
+import {TaskStatus} from '@app/shared';
+import { ITask} from '../model/itask.interface';
+import { CompletedTasksStrategy} from '../strategies/task-sorting/implementations/completed-tasks-strategy';
+import { PendingTasksStrategy} from '../strategies/task-sorting/implementations/pending-tasks-strategy';
+import { DateFilteringStrategy} from '../strategies/task-filtering/implementations/date-filtering-strategy';
 
 /* service qui centralise les filtrages des tâches
 */

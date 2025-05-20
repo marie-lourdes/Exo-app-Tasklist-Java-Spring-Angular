@@ -9,10 +9,10 @@ export * from './strategies/task-sorting/implementations/completed-tasks-strateg
 export * from './strategies/task-sorting/implementations/pending-tasks-strategy';
 
 //services
-export * from './strategies/services/task-filter.service';
+export * from './services/task-filter.service';
 
 //PROVIDERS
-import {TaskFilterService} from './strategies/services/task-filter.service';
+import {TaskFilterService} from './services/task-filter.service';
 import { InjectionToken } from '@angular/core';
 import { Provider } from '@angular/core';
 export const PROVIDER_SHARED_SERVICE = new InjectionToken<Provider[]>('PROVIDER_SHARED_SERVICE');
